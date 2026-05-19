@@ -1,0 +1,328 @@
+
+<style>
+:root { --gap: 10px; }
+.phase { border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; margin-bottom: 1rem; background: var(--color-background-primary); }
+.phase-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.phase-num { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 500; flex-shrink: 0; }
+.phase-title { font-size: 15px; font-weight: 500; color: var(--color-text-primary); }
+.phase-sub { font-size: 12px; color: var(--color-text-secondary); margin-top: 1px; }
+.items { display: flex; flex-direction: column; gap: 6px; }
+.item { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--color-text-primary); padding: 6px 8px; border-radius: var(--border-radius-md); background: var(--color-background-secondary); }
+.item-icon { font-size: 15px; flex-shrink: 0; margin-top: 1px; color: var(--color-text-secondary); }
+.item-body { flex: 1; }
+.item-title { font-weight: 500; }
+.item-comp { font-size: 11px; color: var(--color-text-secondary); margin-top: 2px; }
+.badge { display: inline-block; font-size: 10px; font-weight: 500; padding: 1px 6px; border-radius: 4px; margin-left: 4px; vertical-align: middle; }
+.b-purple { background: #EEEDFE; color: #3C3489; }
+.b-teal   { background: #E1F5EE; color: #0F6E56; }
+.b-amber  { background: #FAEEDA; color: #854F0B; }
+.b-coral  { background: #FAECE7; color: #993C1D; }
+.b-blue   { background: #E6F1FB; color: #185FA5; }
+.b-green  { background: #EAF3DE; color: #3B6D11; }
+@media (prefers-color-scheme: dark) {
+  .b-purple { background: #26215C; color: #CECBF6; }
+  .b-teal   { background: #04342C; color: #9FE1CB; }
+  .b-amber  { background: #412402; color: #FAC775; }
+  .b-coral  { background: #4A1B0C; color: #F5C4B3; }
+  .b-blue   { background: #042C53; color: #B5D4F4; }
+  .b-green  { background: #173404; color: #C0DD97; }
+}
+.n-purple { background: #EEEDFE; color: #3C3489; }
+.n-teal   { background: #E1F5EE; color: #0F6E56; }
+.n-amber  { background: #FAEEDA; color: #854F0B; }
+.n-coral  { background: #FAECE7; color: #993C1D; }
+.n-blue   { background: #E6F1FB; color: #185FA5; }
+.n-green  { background: #EAF3DE; color: #3B6D11; }
+.n-gray   { background: #F1EFE8; color: #5F5E5A; }
+@media (prefers-color-scheme: dark) {
+  .n-purple { background: #3C3489; color: #CECBF6; }
+  .n-teal   { background: #085041; color: #9FE1CB; }
+  .n-amber  { background: #633806; color: #FAC775; }
+  .n-coral  { background: #712B13; color: #F5C4B3; }
+  .n-blue   { background: #0C447C; color: #B5D4F4; }
+  .n-green  { background: #27500A; color: #C0DD97; }
+  .n-gray   { background: #444441; color: #D3D1C7; }
+}
+.legend { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1rem; }
+.legend-item { display: flex; align-items: center; gap: 4px; font-size: 11px; color: var(--color-text-secondary); }
+.dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.dot-p { background: #7F77DD; } .dot-t { background: #1D9E75; } .dot-a { background: #BA7517; }
+.dot-c { background: #D85A30; } .dot-b { background: #378ADD; } .dot-g { background: #639922; }
+.sep { border-top: 0.5px solid var(--color-border-tertiary); margin: 8px 0; }
+.tip { font-size: 11px; color: var(--color-text-secondary); border-left: 2px solid var(--color-border-secondary); padding-left: 8px; margin-top: 6px; }
+h2 { font-size: 18px; font-weight: 500; color: var(--color-text-primary); margin: 0 0 4px; }
+p.intro { font-size: 13px; color: var(--color-text-secondary); margin: 0 0 1rem; }
+</style>
+
+<h2 style="padding-top:1rem">Plan de réalisation — Projet M1 Management Numérique</h2>
+<p class="intro">De la mise en place jusqu'au diaporama P2 · Méthodologie hybride · MEP M+4</p>
+
+<div class="legend">
+  <div class="legend-item"><div class="dot dot-p"></div>C10 Planification</div>
+  <div class="legend-item"><div class="dot dot-t"></div>C11 Coordination</div>
+  <div class="legend-item"><div class="dot dot-a"></div>C12 KPI</div>
+  <div class="legend-item"><div class="dot dot-c"></div>C13 Incidents</div>
+  <div class="legend-item"><div class="dot dot-b"></div>C14 Revues</div>
+  <div class="legend-item"><div class="dot dot-g"></div>C15 Compétences</div>
+</div>
+
+<!-- PHASE 1 -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-num n-purple">1</div>
+    <div>
+      <div class="phase-title">Cadrage & gouvernance</div>
+      <div class="phase-sub">Livrables fondateurs · À produire en premier</div>
+    </div>
+  </div>
+  <div class="items">
+    <div class="item">
+      <i class="ti ti-file-description item-icon" aria-hidden="true"></i>
+      <div class="item-body">
+        <div class="item-title">Note de cadrage & charte projet<span class="badge b-purple">C10.1</span></div>
+        <div class="item-comp">Enjeux · Périmètre (API + front + facturation + SSO) · Hypothèses · Contraintes · Objectif −20 % délai partenaires · Budget cible · MEP M+4</div>
+      </div>
+    </div>
+    <div class="item">
+      <i class="ti ti-users item-icon" aria-hidden="true"></i>
+      <div class="item-body">
+        <div class="item-title">Matrice RACI<span class="badge b-purple">C10.1</span><span class="badge b-teal">C11.2</span></div>
+        <div class="item-comp">Rôles : Chef de projet · Tech lead · Dev front · Dev back · QA · Sponsor DSI · Partenaires métier · Inclure PSH</div>
+      </div>
+    </div>
+    <div class="item">
+      <i class="ti ti-sitemap item-icon" aria-hidden="true"></i>
+      <div class="item-body">
+        <div class="item-title">Cartographie des parties prenantes<span class="badge b-purple">C10.1</span></div>
+        <div class="item-comp">Grille influence / intérêt · Plan de communication associé</div>
+      </div>
+    </div>
+    <div class="item">
+      <i class="ti ti-building item-icon" aria-hidden="true"></i>
+      <div class="item-body">
+        <div class="item-title">Gouvernance & comités<span class="badge b-purple">C10.1</span></div>
+        <div class="item-comp">COPIL mensuel · COPRO bimensuel · Daily standup · Matrice de décision</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 2 -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-num n-teal">2</div>
+    <div>
+      <div class="phase-title">Planification & budget</div>
+      <div class="phase-sub">Structure du projet · Jalons · Risques</div>
+    </div>
+  </div>
+  <div class="items">
+    <div class="item">
+      <i class="ti ti-list-tree item-icon" aria-hidden="true"></i>
+      <div class="item-body">
+        <div class="item-title">WBS (Work Breakdown Structure)<span class="badge b-purple">C10.2</span></div>
+        <div class="item-comp">Décomposition : Cadrage · Architecture API · Dev front · Module facturation · SSO · Tests · Déploiement · Formation · 3 niveaux minimum</div>
+      </div>
+    </div>
+    <div class="item">
+      <i class="ti ti-calendar-event item-icon" aria-hidden="true"></i>
+      <div class="item-body">
+        <div class="item-title">Planning Gantt / roadmap avec jalons<span class="badge b-purple">C10.2</span></div>
+        <div class="item-comp">Phase prédictive (M0→M1) + sprints agiles (M1→M4) · Chemin critique identifié · Jalons : kick-off · fin cadrage · fin sprint 1–4 · recette · MEP</div>
+      </div>
+    </div>
+    <div class="item">
+      <i class="ti ti-coin item-icon" aria-hidden="true"></i>
+      <div class="item-body">
+        <div class="item-title">Budget prévisionnel<span class="badge b-amber">C12.1</span></div>
+        <div class="item-comp">Estimations par lots (charges × TJM) · Réserve pour aléas (10-15 %) · Ventilation mensuelle · Baseline budgétaire signée sponsor</div>
+      </div>
+    </div>
+    <div class="item">
+      <i class="ti ti-alert-triangle item-icon" aria-hidden="true"></i>
+      <div class="item-body">
+        <div class="item-title">Registre des risques<span class="badge b-purple">C10.2</span></div>
+        <div class="item-comp">Colonnes : ID · Description · Probabilité (1→5) · Impact (1→5) · Criticité · Propriétaire · Plan de réponse · Statut · Minimum 8 risques couvrant tech, budget, RH, planning</div>
+      </div>
+    </div>
+    <div class="item">
+      <i class="ti ti-shield-check item-icon" aria-hidden="true"></i>
+      <div class="item-body">
+        <div class="item-title">Plan qualité<span class="badge b-purple">C10.2</span></div>
+        <div class="item-comp">Critères d'acceptation · Processus de review · Outils de test · Seuils de couverture</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 3 -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-num n-amber">3</div>
+    <div>
+      <div class="phase-title">Méthodologie & coordination agile</div>
+      <div class="phase-sub">Choix hybride argumenté · Backlog · Outils</div>
+    </div>
+  </div>
+  <div class="items">
+    <div class="item">
+      <i class="ti ti-file-text item-icon" aria-hidden="true"></i>
+      <div class="item-body">
+        <div class="item-title">Note de choix méthodologique<span class="badge b-teal">C11.1</span></div>
+        <div class="item-comp">Justification hybride : cadrage prédictif (périmètre fixe SSO/facturation) + sprints agiles (front évolutif) · Comparatif agile pur vs hybride vs cycle en V</div>
+      </div>
+    </div>
+    <div class="item">
+      <i class="ti ti-layout-list item-icon" aria-hidden="true"></i>
+      <div class="item-body">
+        <div class="item-title">Backlog priorisé (épics → stories)<span class="badge b-teal">C11.1</span></div>
+        <div class="item-comp">Épics : Auth SSO · Portail B2B · API partenaires · Facturation · Admin · DoR et DoD définis · Stories avec critères d'acceptation · Priorisation MoSCoW</div>
+      </div>
+    </div>
+    <div class="item">
+      <i class="ti ti-columns item-icon" aria-hidden="true"></i>
+      <div class="item-body">
+        <div class="item-title">Tableau Kanban / Jira configuré<span class="badge b-teal">C11.1</span></div>
+        <div class="item-comp">Colonnes : Backlog · To Do · In Progress · Review · Done · Limites WIP définies · Procès-verbaux des décisions horodatés</div>
+      </div>
+    </div>
+    <div class="item">
+      <i class="ti ti-repeat item-icon" aria-hidden="true"></i>
+      <div class="item-body">
+        <div class="item-title">Définition des rituels agiles<span class="badge b-teal">C11.2</span></div>
+        <div class="item-comp">Sprint planning · Daily standup · Sprint review · Rétrospective · Fréquences et durées · Rôles dans chaque rituel</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 4 -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-num n-coral">4</div>
+    <div>
+      <div class="phase-title">KPI, reporting & suivi budgétaire</div>
+      <div class="phase-sub">Tableau de bord · Indicateurs agiles · Écarts</div>
+    </div>
+  </div>
+  <div class="items">
+    <div class="item">
+      <i class="ti ti-chart-bar item-icon" aria-hidden="true"></i>
+      <div class="item-body">
+        <div class="item-title">Tableau de bord KPI<span class="badge b-amber">C12.1</span><span class="badge b-blue">C14.1</span></div>
+        <div class="item-comp">Coût : Budget consommé vs prévu · CPI (Cost Performance Index) · EV, AC, PV · Délai : SPI (Schedule Performance Index) · Qualité : taux de bugs · couverture tests · taux de stories livrées</div>
+      </div>
+    </div>
+    <div class="item">
+      <i class="ti ti-trending-down item-icon" aria-hidden="true"></i>
+      <div class="item-body">
+        <div class="item-title">Indicateurs agiles : burndown & vélocité<span class="badge b-amber">C12.1</span></div>
+        <div class="item-comp">Burndown chart par sprint (idéal vs réel) · Burnup cumulé · Vélocité moyenne · Prévision de livraison</div>
+      </div>
+    </div>
+    <div class="item">
+      <i class="ti ti-adjustments item-icon" aria-hidden="true"></i>
+      <div class="item-body">
+        <div class="item-title">Plan d'actions correctives<span class="badge b-amber">C12.2</span></div>
+        <div class="item-comp">Tableau : Écart identifié · Cause racine · Action corrective · Responsable · Délai · KPI de suivi · Au moins 3 scénarios (retard planning · dépassement budget · dette technique)</div>
+      </div>
+    </div>
+    <div class="item">
+      <i class="ti ti-report item-icon" aria-hidden="true"></i>
+      <div class="item-body">
+        <div class="item-title">Revue de performance & rapport d'étape<span class="badge b-blue">C14.1</span><span class="badge b-blue">C14.2</span></div>
+        <div class="item-comp">Structure : Avancement vs plan · KPI période · Risques actifs · Décisions prises · Points d'attention · Prochaines actions · 1 rapport par sprint minimum</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 5 -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-num n-blue">5</div>
+    <div>
+      <div class="phase-title">Résolution d'incidents</div>
+      <div class="phase-sub">Journal structuré · Sources FR/EN · C13</div>
+    </div>
+  </div>
+  <div class="items">
+    <div class="item">
+      <i class="ti ti-bug item-icon" aria-hidden="true"></i>
+      <div class="item-body">
+        <div class="item-title">Journal d'incident technique<span class="badge b-coral">C13.1</span><span class="badge b-coral">C13.2</span></div>
+        <div class="item-comp">1 incident réaliste (ex : SSO token expiry · API rate limit · régression facturation) · Champs : Date · Description · Impacts · Analyse cause · Options étudiées (EN sources) · Décision retenue · Mitigation · Clôture · Sources en anglais citées</div>
+      </div>
+    </div>
+  </div>
+  <div class="tip">Exemples de sources EN à mobiliser : OWASP, RFC OAuth2, Stripe API docs, Swagger/OpenAPI spec, NIST incident handling guide.</div>
+</div>
+
+<!-- PHASE 6 -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-num n-green">6</div>
+    <div>
+      <div class="phase-title">Montée en compétences (C15)</div>
+      <div class="phase-sub">Ateliers · RETEX · Revues de code · Mesure d'impact</div>
+    </div>
+  </div>
+  <div class="items">
+    <div class="item">
+      <i class="ti ti-school item-icon" aria-hidden="true"></i>
+      <div class="item-body">
+        <div class="item-title">Mini-plan d'animation<span class="badge b-green">C15.1</span></div>
+        <div class="item-comp">Atelier SSO/OAuth (1h) · Revue de code collaborative (bi-hebdo) · RETEX fin de sprint · Format · Animateur · Durée · Objectifs pédagogiques · Actions post-session</div>
+      </div>
+    </div>
+    <div class="item">
+      <i class="ti ti-chart-line item-icon" aria-hidden="true"></i>
+      <div class="item-body">
+        <div class="item-title">Indicateurs d'impact mesurables<span class="badge b-green">C15.2</span></div>
+        <div class="item-comp">Réduction des bugs (%) · Amélioration couverture tests · Réduction lead time · Score satisfaction équipe (1–5) · Réduction duplications de code · Évolution entre sprint 1 et sprint 4</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 7 -->
+<div class="phase">
+  <div class="phase-header">
+    <div class="phase-num n-gray">7</div>
+    <div>
+      <div class="phase-title">Diaporama P2 — Soutenance individuelle</div>
+      <div class="phase-sub">10 min présentation + 5 min Q/R · Anonymat obligatoire</div>
+    </div>
+  </div>
+  <div class="items">
+    <div class="item">
+      <i class="ti ti-presentation item-icon" aria-hidden="true"></i>
+      <div class="item-body">
+        <div class="item-title">Structure du diaporama (12–15 slides)</div>
+        <div class="item-comp">
+          <b>Slide 1</b> — Contexte & enjeux du projet (30 s)<br>
+          <b>Slide 2</b> — Mon rôle & mes apports dans l'équipe (1 min)<br>
+          <b>Slide 3</b> — Choix méthodologique hybride argumenté · C10.1<br>
+          <b>Slide 4</b> — Planification : WBS, jalons, chemin critique · C10.2<br>
+          <b>Slide 5</b> — Gouvernance, RACI, rituels agiles · C11<br>
+          <b>Slide 6</b> — Backlog & DoR/DoD · C11.1<br>
+          <b>Slide 7</b> — Tableau de bord KPI : SPI/CPI, burndown · C12.1<br>
+          <b>Slide 8</b> — Analyse des écarts & mesures correctives · C12.2<br>
+          <b>Slide 9</b> — Journal d'incident (FR + sources EN) · C13<br>
+          <b>Slide 10</b> — Revue de performance & rapport d'étape · C14<br>
+          <b>Slide 11</b> — Plan de montée en compétences + indicateurs d'impact · C15<br>
+          <b>Slide 12</b> — Recommandations & leçons apprises<br>
+          <b>Slide 13</b> — Conclusion & ouverture (30 s)
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <i class="ti ti-help-circle item-icon" aria-hidden="true"></i>
+      <div class="item-body">
+        <div class="item-title">Préparation aux questions jury</div>
+        <div class="item-comp">Pourquoi hybride plutôt que Scrum pur ? · Comment avez-vous géré le dérapage X ? · Que signifie un CPI &lt; 1 ? · Comment mesurez-vous la réduction de 20 % ? · Quelle source EN pour l'incident SSO ?</div>
+      </div>
+    </div>
+  </div>
+  <div class="tip">Règle anonymat : aucun nom, prénom ou identifiant personnel dans les slides. Numéro de candidat uniquement.</div>
+</div>
