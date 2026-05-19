@@ -425,7 +425,7 @@ Bilan intermédiaire : Les 5 sessions réalisées ont produit des effets mesurab
 
 # ANNEXE - Guide de soutenance individuelle (P2)
 
-Soutenance : 2 juillet 2025 - 10 minutes exposé + 5 minutes Q/R jury
+Soutenance : 3 juillet 2025 - 10 minutes exposé + 5 minutes Q/R jury
 
 ## Structure recommandée par rôle
 
