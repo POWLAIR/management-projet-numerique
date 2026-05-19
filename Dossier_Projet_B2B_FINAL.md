@@ -12,7 +12,7 @@ RNCP 39765 - Bloc 2 : Manager les projets numériques
 | Développeur (DEV) | Développeur | Architecture technique, dev API/SSO, gestion incidents |
 | Analyste (ANA) | Analyste | Risques, KPI, budget, revues de performance, RETEX |
 
-Date de remise livrables : 22 mai 2025   |   Soutenance : 2 juillet 2025   |   Promotion 2025-2026
+Date de remise livrables : 22 mai 2025   |   Soutenance : 3 juillet 2025   |   Promotion 2025-2026
 
 # LIVRABLE 1 - Note de cadrage & Charte projet
 
@@ -118,7 +118,7 @@ R = Responsible (réalise)   |   A = Accountable (garant)   |   C = Consulté   
 | Rapports COPIL | A/R | I | C | A |
 | Journal d'incidents | A | R | C | I |
 | Plan montée en compétences | A | R | C | I |
-| MEP & mise en production | A/R | R | C | A |
+| Mise en production | A/R | R | C | A |
 
 # LIVRABLE 2 - WBS, Planning & Budget prévisionnel
 
@@ -248,24 +248,24 @@ Priorisation MoSCoW : MUST = obligatoire pour MEP M+4 | SHOULD = haute valeur, i
 
 | ID | Épic | User Story | Priorité | Pts | Sprint | Statut |
 | --- | --- | --- | --- | --- | --- | --- |
-| US01 | SSO | En tant que partenaire, je veux me connecter via SSO (OAuth2) afin d'éviter de gérer plusieurs mots de passe | MUST | 8 | S1 | ✅ Done |
-| US02 | SSO | En tant qu'admin DSI, je veux gérer les rôles et habilitations SSO afin de contrôler les accès par profil partenaire | MUST | 5 | S1 | ✅ Done |
-| US03 | SSO | En tant que partenaire, je veux être redirigé automatiquement après expiration de session afin de ne pas perdre mon travail | SHOULD | 3 | S1 | ✅ Done |
-| US04 | API Commandes | En tant que partenaire, je veux soumettre une commande via API REST afin d'automatiser mes flux ERP | MUST | 8 | S2 | ✅ Done |
-| US05 | API Commandes | En tant que partenaire, je veux consulter le statut de ma commande en temps réel via l'API afin de piloter mes livraisons | MUST | 5 | S2 | ✅ Done |
-| US06 | API Commandes | En tant que partenaire, je veux recevoir un webhook lors de chaque changement de statut afin d'être alerté sans polling | SHOULD | 5 | S2 | 🔄 In Progress |
-| US07 | Facturation | En tant que comptable partenaire, je veux qu'une facture PDF soit auto-générée à la validation de commande afin d'éliminer la saisie manuelle | MUST | 8 | S3 | 📋 To Do |
-| US08 | Facturation | En tant que partenaire, je veux télécharger mes factures au format PDF depuis le portail afin d'archiver mes documents | MUST | 3 | S3 | 📋 To Do |
-| US09 | Facturation | En tant que comptable DSI, je veux exporter les factures en format CSV/Excel afin d'alimenter le logiciel comptable | SHOULD | 3 | S3 | 📋 To Do |
-| US10 | Tableau de bord | En tant que partenaire, je veux visualiser mes KPI commandes (volume, délai, taux de succès) sur un dashboard afin de piloter mon activité | SHOULD | 5 | S4 | 📋 To Do |
-| US11 | Notifications | En tant que partenaire, je veux recevoir un email récapitulatif hebdomadaire de mes commandes afin de suivre mon activité sans connexion | COULD | 3 | S4 | 📋 To Do |
-| US12 | Documentation | En tant que développeur partenaire, je veux accéder à une documentation Swagger interactive afin d'intégrer l'API sans contacter le support | SHOULD | 2 | S4 | 📋 To Do |
+| US01 | SSO | En tant que partenaire, je veux me connecter via SSO (OAuth2) afin d'éviter de gérer plusieurs mots de passe | MUST | 8 | S1 | Done |
+| US02 | SSO | En tant qu'admin DSI, je veux gérer les rôles et habilitations SSO afin de contrôler les accès par profil partenaire | MUST | 5 | S1 | Done |
+| US03 | SSO | En tant que partenaire, je veux être redirigé automatiquement après expiration de session afin de ne pas perdre mon travail | SHOULD | 3 | S1 | Done |
+| US04 | API Commandes | En tant que partenaire, je veux soumettre une commande via API REST afin d'automatiser mes flux ERP | MUST | 8 | S2 | Done |
+| US05 | API Commandes | En tant que partenaire, je veux consulter le statut de ma commande en temps réel via l'API afin de piloter mes livraisons | MUST | 5 | S2 | Done |
+| US06 | API Commandes | En tant que partenaire, je veux recevoir un webhook lors de chaque changement de statut afin d'être alerté sans polling | SHOULD | 5 | S2 | In Progress |
+| US07 | Facturation | En tant que comptable partenaire, je veux qu'une facture PDF soit auto-générée à la validation de commande afin d'éliminer la saisie manuelle | MUST | 8 | S3 | To Do |
+| US08 | Facturation | En tant que partenaire, je veux télécharger mes factures au format PDF depuis le portail afin d'archiver mes documents | MUST | 3 | S3 | To Do |
+| US09 | Facturation | En tant que comptable DSI, je veux exporter les factures en format CSV/Excel afin d'alimenter le logiciel comptable | SHOULD | 3 | S3 | To Do |
+| US10 | Tableau de bord | En tant que partenaire, je veux visualiser mes KPI commandes (volume, délai, taux de succès) sur un dashboard afin de piloter mon activité | SHOULD | 5 | S4 | To Do |
+| US11 | Notifications | En tant que partenaire, je veux recevoir un email récapitulatif hebdomadaire de mes commandes afin de suivre mon activité sans connexion | COULD | 3 | S4 | To Do |
+| US12 | Documentation | En tant que développeur partenaire, je veux accéder à une documentation Swagger interactive afin d'intégrer l'API sans contacter le support | SHOULD | 2 | S4 | To Do |
 
 ## 4.4 Tableau Kanban - État à la date de rendu (22/05/2025)
 
 Règle WIP : Maximum 2 stories en cours simultanément par personne - toute entrée en 'In Progress' au-delà de cette limite est bloquée jusqu'à livraison d'une story existante
 
-| 📋 TO DO (7 stories) | 🔄 IN PROGRESS - WIP max 2 | 👁 IN REVIEW | ✅ DONE (4 stories) |
+| TO DO (7 stories) | IN PROGRESS - WIP max 2 | IN REVIEW | DONE (4 stories) |
 | --- | --- | --- | --- |
 | US07 - Facture auto PDF US08 - Téléchargement PDF US09 - Export CSV US10 - Dashboard KPI US11 - Email récap US12 - Doc Swagger | US06 - Webhook statut [DEV] (démarré 20/04, en attente test) | - (aucune story en revue à cette date) | US01 - Connexion SSO US02 - Gestion rôles US03 - Redirect session US04 - Soumission commande US05 - Statut temps réel |
 
@@ -368,13 +368,13 @@ Responsable : Développeur (DEV)   |   Contributions : Analyste (documentation),
 
 | Action | Type | Responsable | Délai | Statut |
 | --- | --- | --- | --- | --- |
-| Corriger encodeURIComponent dans le front-end React et mettre à jour l'URI Keycloak realm | Correctif | DEV | 22/04 - 16h00 | ✅ Réalisé |
-| Ajouter cors({ credentials: true }) + configurer Web Origins Keycloak | Correctif | DEV | 22/04 - 18h00 | ✅ Réalisé |
-| Ticket infra : synchronisation NTP serveur de recette (ntpd + pool.ntp.org) | Correctif infra | DEV + Infra | 23/04 - 10h00 | ✅ Réalisé |
-| Mettre à jour le wiki Confluence et le README avec les ports par environnement | Documentation | ANA | 24/04 EOD | ✅ Réalisé |
-| Ajouter un test automatisé E2E (Cypress) vérifiant le flux OAuth2 complet à chaque déploiement | Prévention | DEV | Sprint 3 | 🔄 En cours |
-| Intégrer la checklist CORS/SSO dans la DoD pour toutes les stories d'authentification | Process | CP | Sprint 3 - S1 | ✅ Réalisé |
-| Présenter l'incident en rétrospective S2 pour partage d'expérience équipe | RETEX | DEV | Rétro S2 - 30/04 | ✅ Réalisé |
+| Corriger encodeURIComponent dans le front-end React et mettre à jour l'URI Keycloak realm | Correctif | DEV | 22/04 - 16h00 | Réalisé |
+| Ajouter cors({ credentials: true }) + configurer Web Origins Keycloak | Correctif | DEV | 22/04 - 18h00 | Réalisé |
+| Ticket infra : synchronisation NTP serveur de recette (ntpd + pool.ntp.org) | Correctif infra | DEV + Infra | 23/04 - 10h00 | Réalisé |
+| Mettre à jour le wiki Confluence et le README avec les ports par environnement | Documentation | ANA | 24/04 EOD | Réalisé |
+| Ajouter un test automatisé E2E (Cypress) vérifiant le flux OAuth2 complet à chaque déploiement | Prévention | DEV | Sprint 3 | En cours |
+| Intégrer la checklist CORS/SSO dans la DoD pour toutes les stories d'authentification | Process | CP | Sprint 3 - S1 | Réalisé |
+| Présenter l'incident en rétrospective S2 pour partage d'expérience équipe | RETEX | DEV | Rétro S2 - 30/04 | Réalisé |
 
 Clôture incident : INC-001 clôturé le 24 avril 2025 à 11h00 - validé par le Développeur et le Chef de Projet. Durée totale de résolution : 44 heures. Perte de vélocité estimée : 4 points de story. Absorbée par la réserve de risques (R01).
 
