@@ -195,7 +195,7 @@ Le projet est décomposé en 5 lots principaux, chacun découpé en sous-livrabl
 ### Vue arborescente du WBS
 
 ```mermaid
-flowchart TB
+flowchart LR
     ROOT["Horizon B2B - TechPartner SA"]
 
     ROOT --> L1["L1 : Cadrage &\nGouvernance"]
