@@ -86,20 +86,22 @@ Le sponsor (Directeur de la DSI) a validé en janvier 2025 un budget et une road
 
 ### Matrice influence / intérêt
 
-```
-INFLUENCE
-(pouvoir de décision)
-  FORTE  |  GÉRER ATTENTIVEMENT          |  MOBILISER & IMPLIQUER
-         |  Équipe Sécurité DSI          |  Directeur DSI (Sponsor) ★
-         |                               |  Chef de Projet ★
-         |                               |  Développeur ★
-  -------+-------------------------------+-------------------------------
-  FAIBLE |  SURVEILLER (effort minimal)  |  INFORMER RÉGULIÈREMENT
-         |  Comptabilité                 |  Partenaires B2B (140) ★
-         |                               |  Analyste ★
-         +-------------------------------+-------------------------------
-                    FAIBLE                          FORTE
-                              INTÉRÊT (implication dans les résultats)
+```mermaid
+quadrantChart
+    title Cartographie des parties prenantes — Influence / Intérêt
+    x-axis "Faible intérêt" --> "Fort intérêt"
+    y-axis "Faible influence" --> "Forte influence"
+    quadrant-1 Mobiliser et Impliquer
+    quadrant-2 Gerer attentivement
+    quadrant-3 Surveiller
+    quadrant-4 Informer regulierement
+    Directeur DSI: [0.88, 0.92]
+    Chef de Projet: [0.82, 0.85]
+    Developpeur: [0.76, 0.78]
+    Eq. Securite DSI: [0.22, 0.85]
+    Partenaires B2B: [0.84, 0.22]
+    Analyste: [0.72, 0.28]
+    Comptabilite: [0.18, 0.15]
 ```
 
 ★ = parties prenantes prioritaires
@@ -427,6 +429,25 @@ Seuils de criticité : ≥ 15 = CRITIQUE · 8–14 = ÉLEVÉ · 4–7 = MOYEN ·
 
 Synthèse risques : 2 risques CRITIQUES (R01 activé, R08 sous surveillance) · 1 risque ÉLEVÉ sous surveillance (R02) · 5 risques MOYEN/FAIBLE non activés
 
+```mermaid
+quadrantChart
+    title Matrice des risques — Probabilité x Impact
+    x-axis "Probabilité faible" --> "Probabilité forte"
+    y-axis "Impact faible" --> "Impact fort"
+    quadrant-1 CRITIQUE
+    quadrant-2 ELEVE
+    quadrant-3 FAIBLE
+    quadrant-4 MOYEN
+    R01 SSO Keycloak: [0.72, 0.88]
+    R08 Velocite MEP: [0.55, 0.90]
+    R02 Depassement budget: [0.52, 0.72]
+    R03 Indisponibilite RH: [0.32, 0.52]
+    R05 Rejet UAT: [0.38, 0.48]
+    R04 Non-conformite RGPD: [0.12, 0.75]
+    R06 Perte donnees: [0.18, 0.68]
+    R07 Dependance Keycloak: [0.15, 0.42]
+```
+
 # LIVRABLE 4 - Méthodologie, Backlog priorisé & Tableau Kanban
 
 Responsable : Développeur (DEV)   |   Contributions : Chef de Projet (priorisation), Analyste (DoR/DoD, WIP)
@@ -519,6 +540,42 @@ Règle WIP : Maximum 2 stories en cours simultanément par personne - toute entr
 | --- | --- | --- | --- |
 | US07 - Facture auto PDF US08 - Téléchargement PDF US09 - Export CSV US10 - Dashboard KPI US11 - Email récap US12 - Doc Swagger | US06 - Webhook statut [DEV] (démarré 20/04, en attente test) | - (aucune story en revue à cette date) | US01 - Connexion SSO US02 - Gestion rôles US03 - Redirect session US04 - Soumission commande US05 - Statut temps réel |
 
+```mermaid
+flowchart LR
+    subgraph TODO["TO DO — 7 stories"]
+        direction TB
+        US07["US07 - Facture auto PDF\nMUST - 8 pts"]
+        US08["US08 - Telechargement PDF\nMUST - 3 pts"]
+        US09["US09 - Export CSV\nSHOULD - 3 pts"]
+        US10["US10 - Dashboard KPI\nSHOULD - 5 pts"]
+        US11["US11 - Email recap\nCOULD - 3 pts"]
+        US12["US12 - Doc Swagger\nSHOULD - 2 pts"]
+    end
+    subgraph WIP["IN PROGRESS — WIP max 2"]
+        direction TB
+        US06["US06 - Webhook statut\nSHOULD - 5 pts — DEV"]
+    end
+    subgraph REVIEW["IN REVIEW"]
+        direction TB
+        NONE["(aucune story)"]
+    end
+    subgraph DONE["DONE — 5 stories"]
+        direction TB
+        US01["US01 - Connexion SSO\nMUST - 8 pts"]
+        US02["US02 - Gestion roles\nMUST - 5 pts"]
+        US03["US03 - Redirect session\nSHOULD - 3 pts"]
+        US04["US04 - Soumission commande\nMUST - 8 pts"]
+        US05["US05 - Statut temps reel\nMUST - 5 pts"]
+    end
+
+    style TODO fill:#fff9db,stroke:#d4a017
+    style WIP fill:#dbeafe,stroke:#2563eb
+    style REVIEW fill:#f3f4f6,stroke:#9ca3af
+    style DONE fill:#dcfce7,stroke:#16a34a
+    style US06 fill:#bfdbfe,stroke:#1d4ed8
+    style NONE fill:#e5e7eb,stroke:#9ca3af
+```
+
 Point d'attention : US06 (webhook) est en cours depuis 10 jours - durée inhabituelle. Investigation en cours : complexité de la gestion des retry et de l'idempotence. Décision COPROJ du 21/05 : découpage en US06a (émission webhook) + US06b (retry logic) pour débloquer la livraison partielle.
 
 ## 4.5 Procès-verbaux de réunion horodatés
@@ -598,6 +655,18 @@ Budget total du projet : 32 351 €
 | J3 - UAT (prévision) | 06/06/2025 | 82 % | / | 26 528 | / | / | cible ≥ 0,90 | cible ≥ 0,95 | / | / | Planifié |
 | J4 - MEP (prévision) | 30/06/2025 | 100 % | / | 32 351 | / | / | cible ≥ 0,90 | cible ≥ 0,95 | / | - | Planifié |
 
+*Courbe EVM — ligne 1 : PV (Valeur Planifiée) · ligne 2 : EV (Valeur Acquise) · ligne 3 : AC (Coût Réel)*
+
+```mermaid
+xychart-beta
+    title "Courbe EVM — Horizon B2B (Budget : 32 351 euros)"
+    x-axis ["J0 Kick-off", "J1 Archi", "Fin S1", "J2 Dev M1", "Fin S2", "Actuel 22/05"]
+    y-axis "Valeur en euros" 0 --> 25000
+    line [1618, 7117, 11323, 17793, 20058, 22003]
+    line [1618, 7117, 10029, 16822, 19411, 20381]
+    line [1590, 7050, 9800, 16400, 20060, 20060]
+```
+
 ### Lecture des indicateurs actuels (22/05/2025)
 
 - **CPI = 0,97** : pour chaque euro dépensé, 0,97 € de valeur est produite. Légère sous-performance due à l'incident INC-001 (coûts DEV absorbés). Situation saine, réserve de 2 141 € encore disponible.
@@ -626,6 +695,17 @@ Budget total du projet : 32 351 €
 | Couverture de tests | 62 % | 71 % | 73 % (en progression) | ≥ 70 % |
 | Nombre de PR rejetées (revue code) | 3 | 1 | 0 à ce stade | ≤ 2 / sprint |
 
+*Vélocité par sprint — barres : points livrés · ligne : cible (16 pts)*
+
+```mermaid
+xychart-beta
+    title "Velocite par sprint — cible 16 pts"
+    x-axis ["Sprint 1", "Sprint 2", "Sprint 3 (en cours)"]
+    y-axis "Points livres" 0 --> 22
+    bar [14, 18, 6]
+    line [16, 16, 16]
+```
+
 ### Burndown Chart - Sprint 1 (idéal vs réel)
 
 Sprint 1 : 16 points planifiés sur 14 jours ouvrés (29/03 → 11/04/2025)
@@ -644,6 +724,17 @@ Sprint 1 : 16 points planifiés sur 14 jours ouvrés (29/03 → 11/04/2025)
 | J+9 (10/04) | 5,7 | 5 | US04 démarrée : trop tardif |
 | J+10 (11/04) | 4,6 | 4 | Clôture : US04 non livrée (2 pts restants) |
 | **Résultat** | **0 pts attendus** | **2 pts non livrés** | **SPI = 0,88, US04 reportée S2** |
+
+*Burndown S1 — ligne 1 : progression idéale · ligne 2 : progression réelle*
+
+```mermaid
+xychart-beta
+    title "Burndown Chart — Sprint 1 (29/03 au 11/04/2025) — 16 pts planifies"
+    x-axis ["J+0", "J+1", "J+2", "J+3", "J+4", "J+5", "J+6", "J+7", "J+8", "J+9", "J+10"]
+    y-axis "Points restants" 0 --> 18
+    line [16, 14.9, 13.7, 12.6, 11.4, 10.3, 9.1, 8.0, 6.9, 5.7, 4.6]
+    line [16, 16, 14, 12, 12, 10, 8, 8, 5, 5, 4]
+```
 
 Analyse burndown S1 : Démarrage conforme jusqu'à J+6, puis ralentissement causé par la complexité du spike OAuth2 (risque R01). L'équipe a livré 14 pts sur 16 planifiés. US04 (8 pts) a été démarrée trop tardivement pour être finalisée dans le sprint.
 
@@ -669,6 +760,17 @@ Sprint 2 : 20 points planifiés sur 14 jours ouvrés (14/04 → 09/05/2025, déc
 | J+13 (09/05) | 1,4 | 2 | US06a non finalisée |
 | J+14 (11/05) | 0 | 2 | Clôture : US06 (2 pts) reportée S3 |
 | **Résultat** | **0 pts attendus** | **2 pts non livrés** | **SPI = 0,93 en amélioration** |
+
+*Burndown S2 — ligne 1 : progression idéale · ligne 2 : progression réelle*
+
+```mermaid
+xychart-beta
+    title "Burndown Chart — Sprint 2 (14/04 au 11/05/2025) — 20 pts planifies"
+    x-axis ["J+0", "J+1", "J+2", "J+3", "J+4", "J+5", "J+6", "J+7", "J+8", "J+9", "J+10", "J+11", "J+12", "J+13", "J+14"]
+    y-axis "Points restants" 0 --> 22
+    line [20, 18.6, 17.1, 15.7, 14.3, 12.9, 11.4, 10.0, 8.6, 7.1, 5.7, 4.3, 2.9, 1.4, 0]
+    line [20, 20, 20, 20, 20, 16, 11, 11, 8, 5, 5, 3, 2, 2, 2]
+```
 
 Analyse burndown S2 : La courbe burndown du Sprint 2 montre un démarrage lent (J+1 à J+4 : seulement 0 pts livrés sur ~6 attendus) dû à l'incident SSO (INC-001). Accélération notable à partir de J+5 après résolution. La vélocité de 18 pts confirme la capacité de l'équipe une fois les blocages levés. Le retard restant (US06) est dû à la complexité de la gestion de l'idempotence des webhooks, non liée à INC-001.
 
