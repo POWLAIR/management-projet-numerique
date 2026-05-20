@@ -196,13 +196,13 @@ Le projet est décomposé en 5 lots principaux, chacun découpé en sous-livrabl
 
 ```mermaid
 flowchart TB
-    ROOT["Portail B2B — TechPartner SA"]
+    ROOT["Portail B2B - TechPartner SA"]
 
-    ROOT --> L1["L1 — Cadrage &\nGouvernance"]
-    ROOT --> L2["L2 — Architecture\n& Développement"]
-    ROOT --> L3["L3 — Tests\n& Recette"]
-    ROOT --> L4["L4 — Pilotage"]
-    ROOT --> L5["L5 — Déploiement\n& Clôture"]
+    ROOT --> L1["L1 : Cadrage &\nGouvernance"]
+    ROOT --> L2["L2 : Architecture\n& Développement"]
+    ROOT --> L3["L3 : Tests\n& Recette"]
+    ROOT --> L4["L4 : Pilotage"]
+    ROOT --> L5["L5 : Déploiement\n& Clôture"]
 
     L1 --> L1a["1.1 Note de cadrage\nCP · 2 j"]
     L1 --> L1b["1.2 Registre des risques\nANA · 1,5 j"]
@@ -234,7 +234,7 @@ flowchart TB
     style L5 fill:#2c5282,color:#fff
 ```
 
-### Architecture système — Vue d'ensemble
+### Architecture système - Vue d'ensemble
 
 ```mermaid
 flowchart LR
@@ -297,17 +297,17 @@ Note sur J2 : Un retard de 3 jours sur l'intégration SSO (incident INC-001 - vo
 
 ```mermaid
 gantt
-    title Portail B2B TechPartner SA — Planning Mars → Juin 2025
+    title Portail B2B TechPartner SA - Planning Mars → Juin 2025
     dateFormat  YYYY-MM-DD
     axisFormat  %d/%m
 
-    section L1 — Cadrage
+    section L1 : Cadrage
     Note de cadrage (1.1)         :done,    l1a, 2025-03-03, 7d
     Registre des risques (1.2)    :done,    l1b, 2025-03-10, 7d
     Budget prévisionnel (1.3)     :done,    l1c, 2025-03-17, 7d
     ★ J0 Kick-off (02/03)         :milestone, done, j0, 2025-03-02, 0d
 
-    section L2 — Architecture & Dev
+    section L2 : Architecture & Dev
     Architecture & specs (2.1)    :done, crit, l2a, 2025-03-17, 14d
     ★ J1 Architecture validée     :milestone, done, j1, 2025-03-28, 0d
     SSO Keycloak (2.3)            :done, crit, l2c, 2025-03-31, 28d
@@ -316,16 +316,16 @@ gantt
     Module facturation (2.4)      :active,  l2d, 2025-05-05, 28d
     Front-end React (2.5)         :active,  l2e, 2025-05-12, 28d
 
-    section L3 — Tests & Recette
+    section L3 : Tests & Recette
     Tests unitaires (3.1)         :done,    l3a, 2025-05-12, 14d
     Tests d'intégration (3.2)     :done,    l3b, 2025-05-19, 14d
     UAT partenaires (3.3)         :crit,    l3c, 2025-06-02, 14d
     ★ J3 Recette UAT (06/06)      :milestone, j3, 2025-06-06, 0d
 
-    section L4 — Pilotage
+    section L4 : Pilotage
     Reporting & COPIL (continu)   :active,  l4a, 2025-03-03, 119d
 
-    section L5 — Déploiement
+    section L5 : Déploiement
     Documentation (5.2)           :         l5b, 2025-06-16, 14d
     MEP production (5.1)          :crit,    l5a, 2025-06-23, 7d
     Bilan de projet (5.3)         :         l5c, 2025-06-30, 1d
