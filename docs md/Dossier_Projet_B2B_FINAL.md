@@ -293,8 +293,6 @@ Note sur J2 : Un retard de 3 jours sur l'intégration SSO (incident INC-001 - vo
 
 ### Planning Gantt
 
-> Rendu automatiquement dans GitHub, VS Code (extension Mermaid Preview), Obsidian et la plupart des éditeurs Markdown modernes. Pour modifier : éditez les dates et durées directement dans le bloc de code.
-
 ```mermaid
 gantt
     title Portail B2B TechPartner SA - Planning Mars → Juin 2025
