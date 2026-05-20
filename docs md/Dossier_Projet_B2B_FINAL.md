@@ -192,6 +192,93 @@ Le projet est décomposé en 5 lots principaux, chacun découpé en sous-livrabl
 | L5 - Déploiement & Clôture | 5.2 Documentation | Guide tech., guide utilisateur partenaires | DEV + ANA | 2 | 3 j |
 | L5 - Déploiement & Clôture | 5.3 Bilan de projet | RETEX final, rapport de clôture | CP + ANA | 1 | 1 j |
 
+### Vue arborescente du WBS
+
+```mermaid
+flowchart TB
+    ROOT["Portail B2B — TechPartner SA"]
+
+    ROOT --> L1["L1 — Cadrage &\nGouvernance"]
+    ROOT --> L2["L2 — Architecture\n& Développement"]
+    ROOT --> L3["L3 — Tests\n& Recette"]
+    ROOT --> L4["L4 — Pilotage"]
+    ROOT --> L5["L5 — Déploiement\n& Clôture"]
+
+    L1 --> L1a["1.1 Note de cadrage\nCP · 2 j"]
+    L1 --> L1b["1.2 Registre des risques\nANA · 1,5 j"]
+    L1 --> L1c["1.3 Budget prévisionnel\nANA · 1 j"]
+
+    L2 --> L2a["2.1 Architecture & specs API\nDEV · 4 j"]
+    L2 --> L2b["2.2 Dev API REST\nDEV · 8 j"]
+    L2 --> L2c["2.3 SSO Keycloak\nDEV · 7 j"]
+    L2 --> L2d["2.4 Module facturation\nDEV · 6 j"]
+    L2 --> L2e["2.5 Front-end React\nDEV · 5 j"]
+
+    L3 --> L3a["3.1 Tests unitaires\nDEV · 4 j"]
+    L3 --> L3b["3.2 Tests d'intégration\nDEV · 3 j"]
+    L3 --> L3c["3.3 Recette UAT\nANA · 3 j"]
+
+    L4 --> L4a["4.1 Reporting & COPIL\nCP + ANA · 4 j"]
+    L4 --> L4b["4.2 Gestion des risques\nANA · 2 j"]
+    L4 --> L4c["4.3 Coordination équipe\nCP · 3 j"]
+
+    L5 --> L5a["5.1 MEP production\nDEV + CP · 2 j"]
+    L5 --> L5b["5.2 Documentation\nDEV + ANA · 2 j"]
+    L5 --> L5c["5.3 Bilan de projet\nCP + ANA · 1 j"]
+
+    style ROOT fill:#1e3a5f,color:#fff
+    style L1 fill:#2c5282,color:#fff
+    style L2 fill:#2c5282,color:#fff
+    style L3 fill:#2c5282,color:#fff
+    style L4 fill:#2c5282,color:#fff
+    style L5 fill:#2c5282,color:#fff
+```
+
+### Architecture système — Vue d'ensemble
+
+```mermaid
+flowchart LR
+    subgraph EXT["Utilisateurs externes"]
+        PAR["Partenaires B2B\n(140)"]
+        ADMIN["Admin DSI"]
+    end
+
+    subgraph FRONT["Front-end"]
+        PORTAL["Portail Partenaires\nReact 18\n• Dashboard KPI\n• Commandes\n• Factures"]
+    end
+
+    subgraph BACKEND["Back-end"]
+        APIGW["API REST\nNode.js / Express\n• /commandes\n• /statuts\n• /partenaires"]
+        BILL["Module Facturation\n• Génération PDF\n• Envoi email\n• Export CSV"]
+        WH["Service Webhook\n• Notifications statut"]
+    end
+
+    subgraph SSO["Authentification"]
+        KC["Keycloak 21.x\n• OAuth2 / OIDC\n• Gestion des rôles\n• Audit trail"]
+    end
+
+    subgraph DATA["Infrastructure"]
+        DB[("MySQL\nCommandes · Partenaires")]
+        S3["Stockage S3\nPDF générés"]
+        SMTP["SMTP\nEmails"]
+    end
+
+    PAR -->|HTTPS| PORTAL
+    ADMIN -->|HTTPS| KC
+
+    PORTAL <-->|OAuth2 PKCE| KC
+    PORTAL <-->|"REST / JSON (Bearer JWT)"| APIGW
+
+    APIGW <-->|Validation JWT| KC
+    APIGW --> BILL
+    APIGW --> WH
+    APIGW <--> DB
+
+    BILL --> S3
+    BILL --> SMTP
+    WH -->|"HTTP POST (retry)"| PAR
+```
+
 ## 2.2 Jalons & chemin critique
 
 | # | Jalon | Livrable(s) associé(s) | Date cible | Resp. | Statut |
@@ -204,35 +291,55 @@ Le projet est décomposé en 5 lots principaux, chacun découpé en sous-livrabl
 
 Note sur J2 : Un retard de 3 jours sur l'intégration SSO (incident INC-001 - voir L6) a été absorbé par anticipation. Le jalon J2 est repoussé au 28/04/2025 mais reste dans la marge de flottement du chemin critique.
 
-### Planning Gantt - Vue synthétique par semaine
+### Planning Gantt
 
-Légende : ██ = en cours / planifié · ✅ = terminé · ⚠ = vigilance · [CC] = chemin critique
+> Rendu automatiquement dans GitHub, VS Code (extension Mermaid Preview), Obsidian et la plupart des éditeurs Markdown modernes. Pour modifier : éditez les dates et durées directement dans le bloc de code.
 
-| Lot / Activité | S1 (03/03) | S2 (10/03) | S3 (17/03) | S4 (24/03) | S5 (31/03) | S6 (07/04) | S7 (14/04) | S8 (21/04) | S9 (28/04) | S10 (05/05) | S11 (12/05) | S12 (19/05) | S13 (26/05) | S14 (02/06) | S15 (09/06) | S16 (16/06) | S17 (23/06) | MEP (30/06) |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| **L1 — Cadrage** | ██[CC] | ██[CC] | ✅ | | | | | | | | | | | | | | | |
-| 1.1 Note de cadrage | ██[CC] | ✅ | | | | | | | | | | | | | | | | |
-| 1.2 Registre risques | | ██ | ✅ | | | | | | | | | | | | | | | |
-| 1.3 Budget prévis. | | | ██ | ✅ | | | | | | | | | | | | | | |
-| **J0 — Kick-off** | **✅ 02/03** | | | | | | | | | | | | | | | | | |
-| **L2 — Archi & Dev** | | | ██[CC] | ██[CC] | ██[CC] | ██[CC] | ██[CC] | ██[CC] | ██[CC] | ██[CC] | ██[CC] | ██[CC] | | | | | | |
-| 2.1 Archi & specs API | | | ██[CC] | ██[CC] | ✅ | | | | | | | | | | | | | |
-| **J1 — Archi validée** | | | | | **✅ 28/03** | | | | | | | | | | | | | |
-| 2.3 SSO Keycloak (spike) | | | | | ██[CC] | ██[CC] | ██[CC] | ⚠[CC] | ██[CC] | ✅ | | | | | | | | |
-| 2.2 Dev API REST | | | | | | ██ | ██ | ██ | ██ | ✅ | | | | | | | | |
-| 2.4 Module facturation | | | | | | | | | | ██ | ██ | ██ | ██ | | | | | |
-| 2.5 Front-end React | | | | | | | | | | | ██ | ██ | ██ | ██ | | | | |
-| **J2 — Dev M1 livré** | | | | | | | | | **⚠ 28/04** | | | | | | | | | |
-| **L3 — Tests & Recette** | | | | | | | | | | | | ██ | ██ | ██[CC] | ██[CC] | | | |
-| 3.1 Tests unitaires | | | | | | | | | | | ██ | ██ | ✅ | | | | | |
-| 3.2 Tests intégration | | | | | | | | | | | | ██ | ██ | ✅ | | | | |
-| 3.3 UAT partenaires | | | | | | | | | | | | | | ██[CC] | ██[CC] | | | |
-| **J3 — UAT validée** | | | | | | | | | | | | | | | **06/06** | | | |
-| **L4 — Pilotage** | ██ | ██ | ██ | ██ | ██ | ██ | ██ | ██ | ██ | ██ | ██ | ██ | ██ | ██ | ██ | ██ | ██ | ██ |
-| **L5 — Déploiement** | | | | | | | | | | | | | | | | ██[CC] | ██[CC] | ██[CC] |
-| 5.1 MEP production | | | | | | | | | | | | | | | | | ██[CC] | ✅[CC] |
-| 5.2 Documentation | | | | | | | | | | | | | | | | ██ | ██ | ✅ |
-| **J4 — MEP Go/NoGo** | | | | | | | | | | | | | | | | | | **30/06** |
+```mermaid
+gantt
+    title Portail B2B TechPartner SA — Planning Mars → Juin 2025
+    dateFormat  YYYY-MM-DD
+    axisFormat  %d/%m
+
+    section L1 — Cadrage
+    Note de cadrage (1.1)         :done,    l1a, 2025-03-03, 7d
+    Registre des risques (1.2)    :done,    l1b, 2025-03-10, 7d
+    Budget prévisionnel (1.3)     :done,    l1c, 2025-03-17, 7d
+    ★ J0 Kick-off (02/03)         :milestone, done, j0, 2025-03-02, 0d
+
+    section L2 — Architecture & Dev
+    Architecture & specs (2.1)    :done, crit, l2a, 2025-03-17, 14d
+    ★ J1 Architecture validée     :milestone, done, j1, 2025-03-28, 0d
+    SSO Keycloak (2.3)            :done, crit, l2c, 2025-03-31, 28d
+    Dev API REST (2.2)            :done,    l2b, 2025-04-07, 21d
+    ★ J2 Dev M1 livré ⚠ (28/04)  :milestone, done, j2, 2025-04-28, 0d
+    Module facturation (2.4)      :active,  l2d, 2025-05-05, 28d
+    Front-end React (2.5)         :active,  l2e, 2025-05-12, 28d
+
+    section L3 — Tests & Recette
+    Tests unitaires (3.1)         :done,    l3a, 2025-05-12, 14d
+    Tests d'intégration (3.2)     :done,    l3b, 2025-05-19, 14d
+    UAT partenaires (3.3)         :crit,    l3c, 2025-06-02, 14d
+    ★ J3 Recette UAT (06/06)      :milestone, j3, 2025-06-06, 0d
+
+    section L4 — Pilotage
+    Reporting & COPIL (continu)   :active,  l4a, 2025-03-03, 119d
+
+    section L5 — Déploiement
+    Documentation (5.2)           :         l5b, 2025-06-16, 14d
+    MEP production (5.1)          :crit,    l5a, 2025-06-23, 7d
+    Bilan de projet (5.3)         :         l5c, 2025-06-30, 1d
+    ★ J4 MEP Go/NoGo (30/06)      :milestone, j4, 2025-06-30, 0d
+```
+
+**Légende :**
+
+| Style | Signification |
+|:-----:|:-------------|
+| Barres grises | Tâches terminées (`done`) |
+| Barres bleues | Tâches en cours (`active`) |
+| Barres rouges | Chemin critique (`crit`) |
+| Losanges ★ | Jalons (`milestone`) |
 
 Chemin critique : L1.1 Note de cadrage → J0 → L2.1 Architecture → J1 → L2.3 SSO Keycloak → J2 → L3.3 UAT → J3 → L5.1 MEP → J4
 
