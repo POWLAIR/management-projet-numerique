@@ -1,6 +1,6 @@
 DOSSIER DE PROJET
 
-Refonte Portail B2B - Intégration SSO & Module de Facturation
+Horizon B2B - Intégration SSO & Module de Facturation
 
 RNCP 39765 - Bloc 2 : Manager les projets numériques
 
@@ -196,7 +196,7 @@ Le projet est décomposé en 5 lots principaux, chacun découpé en sous-livrabl
 
 ```mermaid
 flowchart TB
-    ROOT["Portail B2B - TechPartner SA"]
+    ROOT["Horizon B2B - TechPartner SA"]
 
     ROOT --> L1["L1 : Cadrage &\nGouvernance"]
     ROOT --> L2["L2 : Architecture\n& Développement"]
@@ -295,7 +295,7 @@ Note sur J2 : Un retard de 3 jours sur l'intégration SSO (incident INC-001 - vo
 
 ```mermaid
 gantt
-    title Portail B2B TechPartner SA - Planning Mars → Juin 2025
+    title Horizon B2B - TechPartner SA - Planning Mars → Juin 2025
     dateFormat  YYYY-MM-DD
     axisFormat  %d/%m
 
