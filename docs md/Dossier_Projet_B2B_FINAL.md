@@ -16,7 +16,7 @@ Date de remise livrables : 22 mai 2025   |   Soutenance : 3 juillet 2025   |   P
 
 # LIVRABLE 1 - Note de cadrage & Charte projet
 
-Responsable : Chef de Projet (CP)   |   Contributions : Analyste (parties prenantes, contraintes)   |   Compétence visée : C10
+Responsable : Chef de Projet (CP)   |   Contributions : Analyste (parties prenantes, contraintes)
 
 ## 1.1 Contexte et enjeux
 
@@ -166,7 +166,7 @@ R = Responsible (réalise)   |   A = Accountable (garant)   |   C = Consulté   
 
 # LIVRABLE 2 - WBS, Planning & Budget prévisionnel
 
-Responsable : Chef de Projet (CP)   |   Contributions : Développeur (estimations techniques), Analyste (budget, risques)   |   Compétence visée : C10
+Responsable : Chef de Projet (CP)   |   Contributions : Développeur (estimations techniques), Analyste (budget, risques)
 
 ## 2.1 Work Breakdown Structure (WBS)
 
@@ -361,7 +361,7 @@ Lecture du CPI : CPI = 0,97 → pour chaque euro dépensé, 0,97 € de valeur e
 
 ## 2.4 Plan qualité
 
-Responsable : Chef de Projet (CP)   |   Contributions : Développeur (outils techniques), Analyste (critères acceptation)   |   Compétence visée : C10.2
+Responsable : Chef de Projet (CP)   |   Contributions : Développeur (outils techniques), Analyste (critères acceptation)
 
 ### Critères d'acceptation du projet (niveau projet au-delà de la DoD story)
 
@@ -410,7 +410,7 @@ Responsable : Chef de Projet (CP)   |   Contributions : Développeur (outils tec
 
 # LIVRABLE 3 - Registre des risques
 
-Responsable : Analyste (ANA)   |   Contributions : Développeur (risques techniques), Chef de Projet (risques planning/budget)   |   Compétence visée : C10, C12
+Responsable : Analyste (ANA)   |   Contributions : Développeur (risques techniques), Chef de Projet (risques planning/budget)
 
 Échelle de cotation : Probabilité : 1 = Très faible | 2 = Faible | 3 = Moyen | 4 = Fort | 5 = Très fort   ×   Impact : 1 = Négligeable | 2 = Mineur | 3 = Modéré | 4 = Majeur | 5 = Critique   →   Criticité = P × I
 
@@ -431,7 +431,7 @@ Synthèse risques : 2 risques CRITIQUES (R01 activé, R08 sous surveillance) · 
 
 # LIVRABLE 4 - Méthodologie, Backlog priorisé & Tableau Kanban
 
-Responsable : Développeur (DEV)   |   Contributions : Chef de Projet (priorisation), Analyste (DoR/DoD, WIP)   |   Compétences visées : C11
+Responsable : Développeur (DEV)   |   Contributions : Chef de Projet (priorisation), Analyste (DoR/DoD, WIP)
 
 ## 4.1 Note de choix méthodologique
 
@@ -567,11 +567,11 @@ Horodatage de clôture : 14/04/2025 à 09h45 : validé par CP, DEV, ANA
 
 # LIVRABLE 5 - Tableau de bord KPI & Reporting
 
-Responsable : Analyste (ANA)   |   Contributions : Chef de Projet (décisions correctives), Développeur (données techniques)   |   Compétences visées : C12, C14
+Responsable : Analyste (ANA)   |   Contributions : Chef de Projet (décisions correctives), Développeur (données techniques)
 
 ## 5.1 Analyse par la Valeur Acquise : Earned Value Management (EVM)
 
-Responsable : Analyste (ANA)   |   Compétence visée : C12.1
+Responsable : Analyste (ANA)
 
 ### Définitions des indicateurs
 
@@ -714,7 +714,7 @@ Excusés : Sponsor (représenté par CP pour la synthèse)
 
 ## 5.4 Plan d'actions correctives - C12.2
 
-Responsable : Analyste (ANA)   |   Contributions : Chef de Projet (décisions), Développeur (données techniques)   |   Compétence visée : C12.2
+Responsable : Analyste (ANA)   |   Contributions : Chef de Projet (décisions), Développeur (données techniques)
 
 Les trois scénarios ci-dessous couvrent les principaux types d'écarts identifiables sur le projet.
 
@@ -762,7 +762,7 @@ Les trois scénarios ci-dessous couvrent les principaux types d'écarts identifi
 
 # LIVRABLE 6 - Journal de résolution d'incident (INC-001)
 
-Responsable : Développeur (DEV)   |   Contributions : Analyste (documentation), Chef de Projet (décision)   |   Compétence visée : C13
+Responsable : Développeur (DEV)   |   Contributions : Analyste (documentation), Chef de Projet (décision)
 
 ## 6.1 Fiche incident - Identification & Description
 
@@ -822,7 +822,7 @@ Clôture incident : INC-001 clôturé le 24 avril 2025 à 11h00 - validé par le
 
 # LIVRABLE 7 - Plan de montée en compétences (C15)
 
-Responsable : Développeur (DEV)   |   Contributions : Chef de Projet (planification), Analyste (indicateurs d'impact)   |   Compétence visée : C15
+Responsable : Développeur (DEV)   |   Contributions : Chef de Projet (planification), Analyste (indicateurs d'impact)
 
 ## 7.1 Diagnostic initial des besoins (réalisé le 07/03/2025)
 
