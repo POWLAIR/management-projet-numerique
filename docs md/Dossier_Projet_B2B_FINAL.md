@@ -88,7 +88,7 @@ Le sponsor (Directeur de la DSI) a validé en janvier 2026 un budget et une road
 
 ```mermaid
 quadrantChart
-    title Cartographie des parties prenantes — Influence / Intérêt
+    title Cartographie des parties prenantes - Influence / Intérêt
     x-axis "Faible intérêt" --> "Fort intérêt"
     y-axis "Faible influence" --> "Forte influence"
     quadrant-1 Mobiliser et Impliquer
@@ -431,7 +431,7 @@ Synthèse risques : 2 risques CRITIQUES (R01 activé, R08 sous surveillance) · 
 
 ```mermaid
 quadrantChart
-    title Matrice des risques — Probabilité x Impact
+    title Matrice des risques - Probabilité x Impact
     x-axis "Probabilité faible" --> "Probabilité forte"
     y-axis "Impact faible" --> "Impact fort"
     quadrant-1 CRITIQUE
@@ -541,69 +541,69 @@ Règle WIP : Maximum 2 stories en cours simultanément par personne - toute entr
 
 Le tableau ci-dessous reflète l'intégralité des items Jira : user stories (US), tâches techniques ([Lx]) et bugs ([INC]), répartis sur les sprints S1 à S3.
 
-### Stories & tâches terminées — DONE (16 items)
+### Stories & tâches terminées - DONE (16 items)
 
 | Réf Jira | Type | Item | Sprint | Clôturé le |
 | --- | --- | --- | --- | --- |
 | SCRUM-86 | Tâche | [L4] PV Sprint Planning S1 + Kick-off J0 | S1 | 29/03/2026 |
-| SCRUM-84 | Tâche | [L2] Architecture & specs API — J1 validé | S1 | 28/03/2026 |
+| SCRUM-84 | Tâche | [L2] Architecture & specs API : J1 validé | S1 | 28/03/2026 |
 | SCRUM-82 | Tâche | [L1] Note de cadrage & charte projet | S1 | 31/03/2026 |
 | SCRUM-83 | Tâche | [L1] Registre des risques + budget prévisionnel | S1 | 02/04/2026 |
 | SCRUM-85 | Tâche | [L2] Configuration environnements + CI/CD GitHub Actions | S1 | 04/04/2026 |
-| SCRUM-79 | Story | US01 - Connexion SSO Partenaire (OAuth2 PKCE) — MUST 8 pts | S1 | 02/04/2026 |
-| SCRUM-80 | Story | US02 - Gestion des rôles et habilitations SSO (Admin DSI) — MUST 5 pts | S1 | 07/04/2026 |
-| SCRUM-81 | Story | US03 - Redirection automatique après expiration de session — SHOULD 3 pts | S1 | 09/04/2026 |
+| SCRUM-79 | Story | US01 - Connexion SSO Partenaire (OAuth2 PKCE) - MUST 8 pts | S1 | 02/04/2026 |
+| SCRUM-80 | Story | US02 - Gestion des rôles et habilitations SSO (Admin DSI) - MUST 5 pts | S1 | 07/04/2026 |
+| SCRUM-81 | Story | US03 - Redirection automatique après expiration de session - SHOULD 3 pts | S1 | 09/04/2026 |
 | SCRUM-94 | Bug | [INC] BUG-047 - SSO Keycloak HTTP 401 OAuth2 (INC-001 résolu) | S2 | 24/04/2026 |
 | SCRUM-90 | Tâche | [L2] Développement API REST - Endpoints commandes & statuts | S2 | 25/04/2026 |
-| SCRUM-87 | Story | US04 - Soumission de commande via API REST — MUST 8 pts | S2 | 25/04/2026 |
-| SCRUM-91 | Tâche | [L3] Tests unitaires Jest/Pytest — couverture 71% (atelier 25/04) | S2 | 30/04/2026 |
-| SCRUM-93 | Tâche | [L4] Rapport COPIL M+2 + revue sprint S2 — 30/04/2026 | S2 | 30/04/2026 |
-| SCRUM-88 | Story | US05 - Consultation statut commande en temps réel — MUST 5 pts | S2 | 28/04/2026 |
+| SCRUM-87 | Story | US04 - Soumission de commande via API REST - MUST 8 pts | S2 | 25/04/2026 |
+| SCRUM-91 | Tâche | [L3] Tests unitaires Jest/Pytest : couverture 71% (atelier 25/04) | S2 | 30/04/2026 |
+| SCRUM-93 | Tâche | [L4] Rapport COPIL M+2 + revue sprint S2 - 30/04/2026 | S2 | 30/04/2026 |
+| SCRUM-88 | Story | US05 - Consultation statut commande en temps réel - MUST 5 pts | S2 | 28/04/2026 |
 | SCRUM-92 | Tâche | [L3] Tests d'intégration Cypress E2E (flux OAuth2 + commandes) | S2 | 05/05/2026 |
-| SCRUM-89 | Story | US06a - Émission webhook changement statut commande — SHOULD 3 pts | S2 | 06/05/2026 |
-| SCRUM-95 | Story | US06b - Webhook retry logic & idempotence — SHOULD 2 pts | S3 | 14/05/2026 |
-| SCRUM-99 | Tâche | [L2] Module facturation — génération PDF + email + historique S3 | S3 | 16/05/2026 |
-| SCRUM-100 | Tâche | [L2] Front-end React 18 — portail partenaires + dashboard commandes | S3 | 19/05/2026 |
+| SCRUM-89 | Story | US06a - Émission webhook changement statut commande - SHOULD 3 pts | S2 | 06/05/2026 |
+| SCRUM-95 | Story | US06b - Webhook retry logic & idempotence - SHOULD 2 pts | S3 | 14/05/2026 |
+| SCRUM-99 | Tâche | [L2] Module facturation - génération PDF + email + historique S3 | S3 | 16/05/2026 |
+| SCRUM-100 | Tâche | [L2] Front-end React 18 - portail partenaires + dashboard commandes | S3 | 19/05/2026 |
 | SCRUM-102 | Tâche | [L4] Tableau de bord KPI SPI/CPI + suivi EVM (budget 64 702€) | S3 | 21/05/2026 |
 
-### En cours — IN PROGRESS (WIP = 2/2)
+### En cours - IN PROGRESS (WIP = 2/2)
 
 | Réf Jira | Type | Item | Sprint | Démarré le |
 | --- | --- | --- | --- | --- |
-| SCRUM-96 | Story | US07 - Facture PDF auto-générée à validation commande — MUST 8 pts | S3 | 19/05/2026 |
-| SCRUM-97 | Story | US08 - Téléchargement PDF facture depuis le portail — MUST 3 pts | S3 | 19/05/2026 |
+| SCRUM-96 | Story | US07 - Facture PDF auto-générée à validation commande - MUST 8 pts | S3 | 19/05/2026 |
+| SCRUM-97 | Story | US08 - Téléchargement PDF facture depuis le portail - MUST 3 pts | S3 | 19/05/2026 |
 
-### À faire — TO DO sprint S3 en cours
-
-| Réf Jira | Type | Item | Sprint |
-| --- | --- | --- | --- |
-| SCRUM-98 | Story | US09 - Export CSV/Excel des factures (comptabilité DSI) — SHOULD 3 pts | S3 |
-| SCRUM-101 | Tâche | [L3] Recette UAT — 5 partenaires pilotes (J3 — 06/06/2026) | S3 |
-
-### À faire — TO DO sprint S4
+### À faire - TO DO sprint S3 en cours
 
 | Réf Jira | Type | Item | Sprint |
 | --- | --- | --- | --- |
-| SCRUM-103 | Story | US10 - Dashboard KPI commandes partenaire — SHOULD 5 pts | S4 |
-| SCRUM-104 | Story | US11 - Email récapitulatif hebdomadaire — COULD 3 pts | S4 |
-| SCRUM-105 | Story | US12 - Documentation Swagger interactive API — SHOULD 2 pts | S4 |
+| SCRUM-98 | Story | US09 - Export CSV/Excel des factures (comptabilité DSI) - SHOULD 3 pts | S3 |
+| SCRUM-101 | Tâche | [L3] Recette UAT : 5 partenaires pilotes (J3 - 06/06/2026) | S3 |
+
+### À faire - TO DO sprint S4
+
+| Réf Jira | Type | Item | Sprint |
+| --- | --- | --- | --- |
+| SCRUM-103 | Story | US10 - Dashboard KPI commandes partenaire - SHOULD 5 pts | S4 |
+| SCRUM-104 | Story | US11 - Email récapitulatif hebdomadaire - COULD 3 pts | S4 |
+| SCRUM-105 | Story | US12 - Documentation Swagger interactive API - SHOULD 2 pts | S4 |
 | SCRUM-106 | Tâche | [L5] Documentation technique API (Swagger + README + architecture) | S4 |
 | SCRUM-107 | Tâche | [L5] Guide utilisateur partenaires (onboarding + FAQ + tutoriels) | S4 |
 | SCRUM-108 | Tâche | [L5] Procédure MEP production + tests fumée + monitoring J4 | S4 |
 | SCRUM-109 | Tâche | [L5] Bilan projet & RETEX final (clôture projet) | S4 |
-| SCRUM-110 | Tâche | [L4] Rapport COPIL final + décision Go/NoGo (J4 — 30/06/2026) | S4 |
+| SCRUM-110 | Tâche | [L4] Rapport COPIL final + décision Go/NoGo (J4 - 30/06/2026) | S4 |
 
 ```mermaid
 flowchart LR
-    subgraph DONE["DONE — 20 items S1+S2+S3"]
+    subgraph DONE["DONE - 20 items S1+S2+S3"]
         direction TB
-        D1["[L1][L2][L4] Cadrage, Archi,\nEnv CI/CD, PV S1\n(S1 — 29/03→11/04)"]
-        D2["US01 SSO MUST 8pts\nUS02 Roles MUST 5pts\nUS03 Redirect SHOULD 3pts\n(S1 clos — 14/16 pts)"]
-        D3["BUG-047 INC-001 resolu\nUS04 API MUST 8pts\nUS05 Statut MUST 5pts\nUS06a Webhook SHOULD 3pts\n(S2 — 18/20 pts)"]
-        D4["[L2][L3][L4] Dev API\nTests unit 71%, Cypress\nCOPIL M+2\n(S2 — 14→11/05)"]
-        D5["US06b Webhook retry SHOULD 2pts\n[L2] Module fact, Front React\n[L4] KPI Dashboard\n(S3 — 12/05→)"]
+        D1["[L1][L2][L4] Cadrage, Archi,\nEnv CI/CD, PV S1\n(S1 - 29/03→11/04)"]
+        D2["US01 SSO MUST 8pts\nUS02 Roles MUST 5pts\nUS03 Redirect SHOULD 3pts\n(S1 clos - 14/16 pts)"]
+        D3["BUG-047 INC-001 resolu\nUS04 API MUST 8pts\nUS05 Statut MUST 5pts\nUS06a Webhook SHOULD 3pts\n(S2 - 18/20 pts)"]
+        D4["[L2][L3][L4] Dev API\nTests unit 71%, Cypress\nCOPIL M+2\n(S2 - 14→11/05)"]
+        D5["US06b Webhook retry SHOULD 2pts\n[L2] Module fact, Front React\n[L4] KPI Dashboard\n(S3 - 12/05→)"]
     end
-    subgraph WIP["IN PROGRESS — WIP 2/2"]
+    subgraph WIP["IN PROGRESS - WIP 2/2"]
         direction TB
         W1["US07 Facture PDF MUST 8pts\n[DEV] depuis 19/05"]
         W2["US08 Telechargement PDF MUST 3pts\n[DEV] depuis 19/05"]
@@ -625,11 +625,11 @@ flowchart LR
     style TODO_S4 fill:#f3f4f6,stroke:#9ca3af
 ```
 
-Note sur le découpage US06 : suite à la complexité de la gestion de l'idempotence des webhooks détectée en Sprint 2 (J+10 : 5,7 pts restants, blocage retry/idempotence), la décision COPROJ du 21/05 a découpé US06 en deux sous-stories : US06a (émission webhook — livré S2 le 06/05) et US06b (retry logic & idempotence — livré S3 le 14/05). Cette pratique de découpage illustre l'application du principe "stories ≤ 8 pts" de la DoR.
+Note sur le découpage US06 : suite à la complexité de la gestion de l'idempotence des webhooks détectée en Sprint 2 (J+10 : 5,7 pts restants, blocage retry/idempotence), la décision COPROJ du 21/05 a découpé US06 en deux sous-stories : US06a (émission webhook - livré S2 le 06/05) et US06b (retry logic & idempotence - livré S3 le 14/05). Cette pratique de découpage illustre l'application du principe "stories ≤ 8 pts" de la DoR.
 
 ## 4.4.1 Backlog des retours client non priorisés (à raffiner)
 
-En complément du backlog sprint priorisé (§4.3), le projet collecte en flux continu des retours issus des partenaires et de l'équipe interne. Ces retours arrivent via les canaux suivants : sessions UAT, feedback ERP post-intégration des webhooks, retours de la comptabilité pendant la préparation des UAT, et observations lors des dailys ou des revues UX. Ils sont remontés au COPROJ hebdomadaire, puis soumis au filtre de la DoR (rédaction de la story canonique, critères d'acceptation Given/When/Then, estimation en Planning Poker, identification des dépendances) avant toute entrée en sprint. Cette pratique de grooming continu garantit que le Sprint Planning S4 ne retient que des stories prêtes, réduisant le risque de blocage en cours de sprint (R08 — planning, §3). Elle illustre aussi concrètement pourquoi certains items MoSCoW COULD ne sont pas encore sprintés : ils sont en attente de raffinage, pas abandonnés.
+En complément du backlog sprint priorisé (§4.3), le projet collecte en flux continu des retours issus des partenaires et de l'équipe interne. Ces retours arrivent via les canaux suivants : sessions UAT, feedback ERP post-intégration des webhooks, retours de la comptabilité pendant la préparation des UAT, et observations lors des dailys ou des revues UX. Ils sont remontés au COPROJ hebdomadaire, puis soumis au filtre de la DoR (rédaction de la story canonique, critères d'acceptation Given/When/Then, estimation en Planning Poker, identification des dépendances) avant toute entrée en sprint. Cette pratique de grooming continu garantit que le Sprint Planning S4 ne retient que des stories prêtes, réduisant le risque de blocage en cours de sprint (R08 - planning, §3). Elle illustre aussi concrètement pourquoi certains items MoSCoW COULD ne sont pas encore sprintés : ils sont en attente de raffinage, pas abandonnés.
 
 Les 4 retours ci-dessous (SCRUM-111 à SCRUM-114 dans Jira) sont dans le backlog en statut "À faire", **sans attribution de sprint**, labels `client-feedback` et `to-refine`.
 
@@ -638,11 +638,11 @@ Les 4 retours ci-dessous (SCRUM-111 à SCRUM-114 dans Jira) sont dans le backlog
 | CR01 | SCRUM-111 | UAT partenaires pilotes (29/05/2026) | Filtrage avancé liste commandes (statut + plage de dates) | SHOULD | Estimation et maquette manquantes | Dépendance US10 (Dashboard) ; DoR incomplète |
 | CR02 | SCRUM-112 | Partenaire ERP B2B (post-intégration US06a) | Signature HMAC SHA-256 sur les webhooks (validation côté ERP) | COULD | Évaluation sécurité DSI à réaliser | Validation Équipe Sécurité DSI préalable requise |
 | CR03 | SCRUM-113 | Comptable DSI (préparation UAT M+3) | Filtre par période (mois/trimestre) sur l'export CSV factures | SHOULD | Estimation à réaliser | Dépendance US09 non encore livrée en S3 |
-| CR04 | SCRUM-114 | Observation interne — daily 19/05/2026 | Tooltips explicatifs sur les codes statuts commande (dashboard) | COULD | Textes tooltip non arbitrés | Dépendance US10 ; effort faible (1-2 pts) mais DoR incomplète |
+| CR04 | SCRUM-114 | Observation interne - daily 19/05/2026 | Tooltips explicatifs sur les codes statuts commande (dashboard) | COULD | Textes tooltip non arbitrés | Dépendance US10 ; effort faible (1-2 pts) mais DoR incomplète |
 
 **Processus de raffinage prévu** : ANA convoque une session de grooming dédiée avant le Sprint Planning S4 (02/06/2026). CR01 et CR03 (priorité SHOULD) seront instruits en priorité. CR02 et CR04 (COULD) seront traités si la capacité du sprint le permet après stabilisation des MUST et SHOULD.
 
-Lien avec le registre des risques : le risque R05 (rejet UAT partenaires — criticité 6 MOYEN, §3) est directement alimenté par ces retours. CR01 (filtrage liste commandes) et CR04 (tooltips statuts) sont des retours UX qui, s'ils restaient sans réponse, pourraient dégrader l'acceptation lors de la recette J3.
+Lien avec le registre des risques : le risque R05 (rejet UAT partenaires, criticité 6 MOYEN, §3) est directement alimenté par ces retours. CR01 (filtrage liste commandes) et CR04 (tooltips statuts) sont des retours UX qui, s'ils restaient sans réponse, pourraient dégrader l'acceptation lors de la recette J3.
 
 ## 4.5 Procès-verbaux de réunion horodatés
 
@@ -721,11 +721,11 @@ Budget total du projet : 64 702 €
 | J3 - UAT (prévision) | 06/06/2026 | 82 % | / | 53 056 | / | / | cible ≥ 0,90 | cible ≥ 0,95 | / | / | Planifié |
 | J4 - MEP (prévision) | 30/06/2026 | 100 % | / | 64 702 | / | / | cible ≥ 0,90 | cible ≥ 0,95 | / | - | Planifié |
 
-*Courbe EVM — ligne 1 : PV (Valeur Planifiée) · ligne 2 : EV (Valeur Acquise) · ligne 3 : AC (Coût Réel)*
+*Courbe EVM - ligne 1 : PV (Valeur Planifiée) · ligne 2 : EV (Valeur Acquise) · ligne 3 : AC (Coût Réel)*
 
 ```mermaid
 xychart-beta
-    title "Courbe EVM — Horizon B2B (Budget : 64 702 euros)"
+    title "Courbe EVM - Horizon B2B (Budget : 64 702 euros)"
     x-axis ["J0 Kick-off", "J1 Archi", "Fin S1", "J2 Dev M1", "Fin S2", "Actuel 22/05"]
     y-axis "Valeur en euros" 0 --> 70000
     line [3236, 14234, 22646, 35586, 40116, 44006]
@@ -761,45 +761,45 @@ xychart-beta
 | Couverture de tests | 62 % | 71 % | 73 % (en progression) | ≥ 70 % |
 | Nombre de PR rejetées (revue code) | 3 | 1 | 0 à ce stade | ≤ 2 / sprint |
 
-*Vélocité par sprint — barres : points livrés · ligne : cible (16 pts)*
+*Vélocité par sprint - barres : points livrés · ligne : cible (16 pts)*
 
 ```mermaid
 xychart-beta
-    title "Velocite par sprint — cible 16 pts"
+    title "Velocite par sprint - cible 16 pts"
     x-axis ["Sprint 1", "Sprint 2", "Sprint 3 (en cours)"]
     y-axis "Points livres" 0 --> 22
     bar [14, 18, 6]
     line [16, 16, 16]
 ```
 
-### Sprint Report — Planifié vs Livré par sprint
+### Sprint Report - Planifié vs Livré par sprint
 
 *Barres bleues : points planifiés (engagement) · Barres orange : points effectivement livrés (Done)*
 
 ```mermaid
 xychart-beta
-    title "Sprint Report — Planifie vs Livre (story points)"
+    title "Sprint Report - Planifie vs Livre (story points)"
     x-axis ["S1 - Socle SSO", "S2 - API Commandes", "S3 - Facturation (en cours)"]
     y-axis "Story points" 0 --> 24
     bar [16, 20, 18]
     bar [14, 18, 6]
 ```
 
-Lecture : S1 — 14/16 pts livrés (87,5 % — US04 reportée S2 cause spike OAuth2) · S2 — 18/20 pts livrés (90 % — US06b reportée S3 cause complexité idempotence) · S3 — 6 pts livrés sur 18 à J+5 (sprint en cours au 22/05/2026). La progression entre S1 et S2 (+4 pts, +29 %) confirme l'effet de l'atelier tests unitaires du 25/04 et la résolution de INC-001.
+Lecture : S1 : 14/16 pts livrés (87,5 %, US04 reportée S2 cause spike OAuth2) · S2 : 18/20 pts livrés (90 %, US06b reportée S3 cause complexité idempotence) · S3 : 6 pts livrés sur 18 à J+5 (sprint en cours au 22/05/2026). La progression entre S1 et S2 (+4 pts, +29 %) confirme l'effet de l'atelier tests unitaires du 25/04 et la résolution de INC-001.
 
-### Diagramme de flux cumulé — Items terminés (cumulatif)
+### Diagramme de flux cumulé - Items terminés (cumulatif)
 
 *Ligne : nombre cumulé d'items passés au statut "Terminé" depuis le lancement du projet*
 
 ```mermaid
 xychart-beta
-    title "Flux cumule — items termines (Stories + Taches + Bugs)"
+    title "Flux cumule - items termines (Stories + Taches + Bugs)"
     x-axis ["J0 Kick-off", "Fin S1 (11/04)", "J2 Dev M1 (28/04)", "Fin S2 (11/05)", "22/05 actuel", "Fin S3 prev. (30/05)"]
     y-axis "Items termines (cumul)" 0 --> 25
     line [0, 8, 11, 19, 20, 24]
 ```
 
-Lecture : la pente est régulière entre J0 et la fin S1 (8 items), s'accélère en S2 après résolution de INC-001 (+11 items en 4 semaines), puis ralentit légèrement en S3 (sprint en cours — 1 item terminé entre fin S2 et le 22/05, reflétant le démarrage de S3 au 12/05). L'objectif fin S3 est 24 items terminés avant l'UAT du 29/05.
+Lecture : la pente est régulière entre J0 et la fin S1 (8 items), s'accélère en S2 après résolution de INC-001 (+11 items en 4 semaines), puis ralentit légèrement en S3 (sprint en cours, 1 item terminé entre fin S2 et le 22/05, reflétant le démarrage de S3 au 12/05). L'objectif fin S3 est 24 items terminés avant l'UAT du 29/05.
 
 ### Burndown Chart - Sprint 1 (idéal vs réel)
 
@@ -820,11 +820,11 @@ Sprint 1 : 16 points planifiés sur 14 jours ouvrés (29/03 → 11/04/2026)
 | J+10 (11/04) | 4,6 | 4 | Clôture : US04 non livrée (2 pts restants) |
 | **Résultat** | **0 pts attendus** | **2 pts non livrés** | **SPI = 0,88, US04 reportée S2** |
 
-*Burndown S1 — ligne 1 : progression idéale · ligne 2 : progression réelle*
+*Burndown S1 - ligne 1 : progression idéale · ligne 2 : progression réelle*
 
 ```mermaid
 xychart-beta
-    title "Burndown Chart — Sprint 1 (29/03 au 11/04/2026) — 16 pts planifies"
+    title "Burndown Chart - Sprint 1 (29/03 au 11/04/2026) - 16 pts planifies"
     x-axis ["J+0", "J+1", "J+2", "J+3", "J+4", "J+5", "J+6", "J+7", "J+8", "J+9", "J+10"]
     y-axis "Points restants" 0 --> 18
     line [16, 14.9, 13.7, 12.6, 11.4, 10.3, 9.1, 8.0, 6.9, 5.7, 4.6]
@@ -856,11 +856,11 @@ Sprint 2 : 20 points planifiés sur 14 jours ouvrés (14/04 → 09/05/2026, déc
 | J+14 (11/05) | 0 | 2 | Clôture : US06 (2 pts) reportée S3 |
 | **Résultat** | **0 pts attendus** | **2 pts non livrés** | **SPI = 0,93 en amélioration** |
 
-*Burndown S2 — ligne 1 : progression idéale · ligne 2 : progression réelle*
+*Burndown S2 - ligne 1 : progression idéale · ligne 2 : progression réelle*
 
 ```mermaid
 xychart-beta
-    title "Burndown Chart — Sprint 2 (14/04 au 11/05/2026) — 20 pts planifies"
+    title "Burndown Chart - Sprint 2 (14/04 au 11/05/2026) - 20 pts planifies"
     x-axis ["J+0", "J+1", "J+2", "J+3", "J+4", "J+5", "J+6", "J+7", "J+8", "J+9", "J+10", "J+11", "J+12", "J+13", "J+14"]
     y-axis "Points restants" 0 --> 22
     line [20, 18.6, 17.1, 15.7, 14.3, 12.9, 11.4, 10.0, 8.6, 7.1, 5.7, 4.3, 2.9, 1.4, 0]
@@ -904,7 +904,7 @@ Excusés : Sponsor (représenté par CP pour la synthèse)
 | Points positifs | Résolution complète de l'incident SSO en 48h (INC-001). Couverture de tests passée de 62 % à 71 % grâce à l'atelier du 25/04. Vélocité en hausse (+4 pts entre S1 et S2). |
 | Points de vigilance | US06 (webhook) en retard de 5 jours - décision de découpage prise. SPI encore sous la cible (0,93 vs 0,95). Recette UAT partenaires à planifier avant fin mai. |
 | Décisions actées | 1/ US06 découpée en US06a + US06b (validé). 2/ Test utilisateur UAT planifié le 29/05 avec 5 partenaires pilotes. 3/ Revue sécurité RGPD confirmée au J3 (06/06). |
-| Actions correctives | DEV : livrer US06a avant le 26/05. ANA : envoyer convocations UAT partenaires avant le 23/05. ANA : organiser session de grooming des 4 retours client CR01-CR04 (SCRUM-111 à 114) avant Sprint Planning S4 du 02/06 — prioriser CR01 et CR03 (SHOULD). CP : mettre à jour le planning et notifier le sponsor de l'ajustement J2. |
+| Actions correctives | DEV : livrer US06a avant le 26/05. ANA : envoyer convocations UAT partenaires avant le 23/05. ANA : organiser session de grooming des 4 retours client CR01-CR04 (SCRUM-111 à 114) avant Sprint Planning S4 du 02/06 ; prioriser CR01 et CR03 (SHOULD). CP : mettre à jour le planning et notifier le sponsor de l'ajustement J2. |
 | Prochains jalons | J3 - Recette UAT validée : 06/06/2026. J4 - MEP Go/NoGo : 30/06/2026. |
 
 ## 5.4 Plan d'actions correctives - C12.2
