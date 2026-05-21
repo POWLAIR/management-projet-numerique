@@ -12,7 +12,7 @@ RNCP 39765 - Bloc 2 : Manager les projets numériques
 | Développeur (DEV) | Développeur | Architecture technique, dev API/SSO, gestion incidents |
 | Analyste (ANA) | Analyste | Risques, KPI, budget, revues de performance, RETEX |
 
-Date de remise livrables : 22 mai 2025   |   Soutenance : 3 juillet 2025   |   Promotion 2025-2026
+Date de remise livrables : 22 mai 2026   |   Soutenance : 3 juillet 2026   |   Promotion 2025-2026
 
 # LIVRABLE 1 - Note de cadrage & Charte projet
 
@@ -22,15 +22,15 @@ Responsable : Chef de Projet (CP)   |   Contributions : Analyste (parties prenan
 
 La DSI de TechPartner SA exploite depuis 2018 un portail B2B monolithique (PHP/MySQL) utilisé par 140 partenaires actifs pour soumettre et suivre leurs commandes. Les délais de traitement atteignent en moyenne 6,2 jours, bien au-delà de la cible sectorielle de 5 jours. L'architecture actuelle ne permet plus d'évoluer sans risque de régression.
 
-Le sponsor (Directeur de la DSI) a validé en janvier 2025 un budget et une roadmap pour une refonte complète intégrant une API REST, un SSO centralisé et un module de facturation automatisée.
+Le sponsor (Directeur de la DSI) a validé en janvier 2026 un budget et une roadmap pour une refonte complète intégrant une API REST, un SSO centralisé et un module de facturation automatisée.
 
 | Enjeu | Description | Mesure de succès | Priorité |
 | --- | --- | --- | --- |
 | Performance | Réduire de 20 % le délai de traitement des demandes partenaires | Délai moyen ≤ 5,0 j (vs 6,2 j actuel) | CRITIQUE |
 | Sécurité | Centraliser l'authentification via SSO (OAuth2/OIDC) | 0 compte orphelin à M+4 | HAUTE |
 | Automatisation | Module facturation : génération et envoi automatiques | 100 % des factures auto-générées | HAUTE |
-| Budget | Tenir l'enveloppe de 32 351 € validée par le COMEX | CPI ≥ 0,90 à chaque jalon | HAUTE |
-| Délai | Première MEP à M+4 (30 juin 2025) - impératif sponsor | Go/NoGo validé à M+4 | CRITIQUE |
+| Budget | Tenir l'enveloppe de 64 702 € validée par le COMEX | CPI ≥ 0,90 à chaque jalon | HAUTE |
+| Délai | Première MEP à M+4 (30 juin 2026) - impératif sponsor | Go/NoGo validé à M+4 | CRITIQUE |
 
 ## 1.2 Périmètre
 
@@ -65,8 +65,8 @@ Le sponsor (Directeur de la DSI) a validé en janvier 2025 un budget et une road
 | Hypothèse | Les partenaires disposent d'un accès HTTPS stable et d'un navigateur récent (2022+) | Faible | Guide de prérequis envoyé à J-10 |
 | Hypothèse | L'environnement de dev/recette est disponible dès J+5 (validé avec l'infra) | Moyen | Confirmation écrite infra reçue |
 | Hypothèse | Le fournisseur SSO Keycloak est déjà licencié par l'entreprise | Moyen | Vérifié en séance de cadrage |
-| Contrainte | Budget de 32 351 € non révisable : toute dérive > 5 % nécessite un arbitrage sponsor | Fort | Suivi CPI hebdomadaire |
-| Contrainte | MEP M+4 (30 juin 2025) non négociable - engagement contractuel partenaires | Critique | Jalon Go/NoGo à M+3 S2 |
+| Contrainte | Budget de 64 702 € non révisable : toute dérive > 5 % nécessite un arbitrage sponsor | Fort | Suivi CPI hebdomadaire |
+| Contrainte | MEP M+4 (30 juin 2026) non négociable - engagement contractuel partenaires | Critique | Jalon Go/NoGo à M+3 S2 |
 | Contrainte | Conformité RGPD obligatoire pour toutes les données partenaires traitées | Fort | Checklist RGPD intégrée à la DoD |
 | Contrainte | Équipe de 3 personnes : disponibilité CP à 60 %, DEV à 100 %, ANA à 70 % | Moyen | WBS ajusté aux capacités réelles |
 
@@ -285,51 +285,51 @@ flowchart LR
 
 | # | Jalon | Livrable(s) associé(s) | Date cible | Resp. | Statut |
 | --- | --- | --- | --- | --- | --- |
-| J0 | Lancement officiel du projet | Note de cadrage validée, RACI, budget | 02/03/2025 | CP | OK |
-| J1 | Architecture validée | Schéma API, choix stack, specs SSO | 28/03/2025 | DEV | OK |
-| J2 | Livraison Dev M1 | API REST + SSO fonctionnels en recette | 25/04/2025 | DEV | VIGILANCE |
-| J3 | Recette UAT validée | PV de recette signé, go partenaires | 06/06/2025 | ANA | PARTIEL |
-| J4 | MEP Go/NoGo | Mise en production validée | 30/06/2025 | CP | PARTIEL |
+| J0 | Lancement officiel du projet | Note de cadrage validée, RACI, budget | 02/03/2026 | CP | OK |
+| J1 | Architecture validée | Schéma API, choix stack, specs SSO | 28/03/2026 | DEV | OK |
+| J2 | Livraison Dev M1 | API REST + SSO fonctionnels en recette | 25/04/2026 | DEV | VIGILANCE |
+| J3 | Recette UAT validée | PV de recette signé, go partenaires | 06/06/2026 | ANA | PARTIEL |
+| J4 | MEP Go/NoGo | Mise en production validée | 30/06/2026 | CP | PARTIEL |
 
-Note sur J2 : Un retard de 3 jours sur l'intégration SSO (incident INC-001 - voir L6) a été absorbé par anticipation. Le jalon J2 est repoussé au 28/04/2025 mais reste dans la marge de flottement du chemin critique.
+Note sur J2 : Un retard de 3 jours sur l'intégration SSO (incident INC-001 - voir L6) a été absorbé par anticipation. Le jalon J2 est repoussé au 28/04/2026 mais reste dans la marge de flottement du chemin critique.
 
 ### Planning Gantt
 
 ```mermaid
 gantt
-    title Horizon B2B - TechPartner SA - Planning Mars → Juin 2025
+    title Horizon B2B - TechPartner SA - Planning Mars → Juin 2026
     dateFormat  YYYY-MM-DD
     axisFormat  %d/%m
 
     section L1 - Cadrage
-    Note de cadrage (1.1)         :done,    l1a, 2025-03-03, 7d
-    Registre des risques (1.2)    :done,    l1b, 2025-03-10, 7d
-    Budget prévisionnel (1.3)     :done,    l1c, 2025-03-17, 7d
-    ★ J0 Kick-off (02/03)         :milestone, done, j0, 2025-03-02, 0d
+    Note de cadrage (1.1)         :done,    l1a, 2026-03-03, 7d
+    Registre des risques (1.2)    :done,    l1b, 2026-03-10, 7d
+    Budget prévisionnel (1.3)     :done,    l1c, 2026-03-17, 7d
+    ★ J0 Kick-off (02/03)         :milestone, done, j0, 2026-03-02, 0d
 
     section L2 - Architecture & Dev
-    Architecture & specs (2.1)    :done, crit, l2a, 2025-03-17, 14d
-    ★ J1 Architecture validée     :milestone, done, j1, 2025-03-28, 0d
-    SSO Keycloak (2.3)            :done, crit, l2c, 2025-03-31, 28d
-    Dev API REST (2.2)            :done,    l2b, 2025-04-07, 21d
-    ★ J2 Dev M1 livré ⚠ (28/04)  :milestone, done, j2, 2025-04-28, 0d
-    Module facturation (2.4)      :active,  l2d, 2025-05-05, 28d
-    Front-end React (2.5)         :active,  l2e, 2025-05-12, 28d
+    Architecture & specs (2.1)    :done, crit, l2a, 2026-03-17, 14d
+    ★ J1 Architecture validée     :milestone, done, j1, 2026-03-28, 0d
+    SSO Keycloak (2.3)            :done, crit, l2c, 2026-03-31, 28d
+    Dev API REST (2.2)            :done,    l2b, 2026-04-07, 21d
+    ★ J2 Dev M1 livré ⚠ (28/04)  :milestone, done, j2, 2026-04-28, 0d
+    Module facturation (2.4)      :active,  l2d, 2026-05-05, 28d
+    Front-end React (2.5)         :active,  l2e, 2026-05-12, 28d
 
     section L3 - Tests & Recette
-    Tests unitaires (3.1)         :done,    l3a, 2025-05-12, 14d
-    Tests d'intégration (3.2)     :done,    l3b, 2025-05-19, 14d
-    UAT partenaires (3.3)         :crit,    l3c, 2025-06-02, 14d
-    ★ J3 Recette UAT (06/06)      :milestone, j3, 2025-06-06, 0d
+    Tests unitaires (3.1)         :done,    l3a, 2026-05-12, 14d
+    Tests d'intégration (3.2)     :done,    l3b, 2026-05-19, 14d
+    UAT partenaires (3.3)         :crit,    l3c, 2026-06-02, 14d
+    ★ J3 Recette UAT (06/06)      :milestone, j3, 2026-06-06, 0d
 
     section L4 - Pilotage
-    Reporting & COPIL (continu)   :active,  l4a, 2025-03-03, 119d
+    Reporting & COPIL (continu)   :active,  l4a, 2026-03-03, 119d
 
     section L5 - Déploiement
-    Documentation (5.2)           :         l5b, 2025-06-16, 14d
-    MEP production (5.1)          :crit,    l5a, 2025-06-23, 7d
-    Bilan de projet (5.3)         :         l5c, 2025-06-30, 1d
-    ★ J4 MEP Go/NoGo (30/06)      :milestone, j4, 2025-06-30, 0d
+    Documentation (5.2)           :         l5b, 2026-06-16, 14d
+    MEP production (5.1)          :crit,    l5a, 2026-06-23, 7d
+    Bilan de projet (5.3)         :         l5c, 2026-06-30, 1d
+    ★ J4 MEP Go/NoGo (30/06)      :milestone, j4, 2026-06-30, 0d
 ```
 
 **Légende :**
@@ -349,13 +349,13 @@ Flottement disponible : lot API REST = 3 jours · lot Front-end = 5 jours · lot
 
 | Poste de charge | Quantité | TJM (€) | Budget prévu (€) | Réalisé à date (€) | Écart (€) |
 | --- | --- | --- | --- | --- | --- |
-| Chef de Projet | 15 j/h | 450 €/j | 6 750 | 4 050 | + 0 (en cours) |
-| Développeur | 28 j/h | 500 €/j | 14 000 | 9 500 | - 500 (retard INC-001) |
-| Analyste | 12 j/h | 430 €/j | 5 160 | 3 010 | + 0 (en cours) |
-| Licences & outils (Jira, SonarQube, Keycloak) | - | - | 1 500 | 1 500 | 0 |
-| Infrastructure (serveurs recette + prod) | - | - | 2 000 | 1 200 | + 800 (budget non consommé) |
-| Réserve pour aléas (10 %) | - | - | 2 941 | 800 (INC-001) | + 2 141 |
-| TOTAL |  |  | 32 351 | 20 060 | CPI = 0,97 |
+| Chef de Projet | 30 j/h | 450 €/j | 13 500 | 8 100 | + 0 (en cours) |
+| Développeur | 56 j/h | 500 €/j | 28 000 | 19 000 | - 1 000 (retard INC-001) |
+| Analyste | 24 j/h | 430 €/j | 10 320 | 6 020 | + 0 (en cours) |
+| Licences & outils (Jira, SonarQube, Keycloak) | - | - | 6 000 | 6 000 | 0 |
+| Infrastructure (serveurs recette + prod) | - | - | 4 000 | 2 400 | + 1 600 (budget non consommé) |
+| Réserve pour aléas (10 %) | - | - | 5 882 | 1 600 (INC-001) | + 4 282 |
+| TOTAL |  |  | 64 702 | 40 120 | CPI = 0,97 |
 
 Lecture du CPI : CPI = 0,97 → pour chaque euro dépensé, 0,97 € de valeur est produite. Situation saine, légèrement sous-performante sur le lot DEV en raison de l'incident SSO. Aucun arbitrage de périmètre nécessaire à ce stade.
 
@@ -397,7 +397,7 @@ Responsable : Chef de Projet (CP)   |   Contributions : Développeur (outils tec
 | GitHub Actions (CI/CD) | Pipeline automatique à chaque PR + merge | Blocage si Jest/Pytest < 70 % ou SonarQube fail |
 | Jira | Suivi des bugs (filtre BUG + sévérité) | Alerte si > 2 bugs HAUTE/CRITIQUE ouverts |
 
-### Critères Go/NoGo MEP (J4 - 30/06/2025)
+### Critères Go/NoGo MEP (J4 - 30/06/2026)
 
 | Critère | Valeur requise | Statut actuel | Décision si non atteint |
 | --- | --- | --- | --- |
@@ -419,7 +419,7 @@ Seuils de criticité : ≥ 15 = CRITIQUE · 8–14 = ÉLEVÉ · 4–7 = MOYEN ·
 | ID | Risque identifié | Catégorie | P | I | Criticité | Statut | Plan de réponse | Resp. | Mise à jour |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | R01 | Retard intégration SSO Keycloak (complexité OAuth2 sous-estimée) | Technique | 4 | 5 | 20 - CRITIQUE | ACTIVE - en cours de résolution (INC-001) | Prototypage spike dès S1 ; correctif appliqué (redirect_uri + CORS + NTP) ; buffer de 3 jours sur chemin critique absorbé | DEV | 25/04/25 |
-| R02 | Dépassement budgétaire suite aux aléas techniques | Budget | 3 | 4 | 12 - ÉLEVÉ | SURVEILLE - CPI = 0,97 | Suivi CPI hebdomadaire ; si CPI < 0,90 → arbitrage scope avec sponsor ; réserve de 2 141 € disponible | ANA / CP | 22/05/25 |
+| R02 | Dépassement budgétaire suite aux aléas techniques | Budget | 3 | 4 | 12 - ÉLEVÉ | SURVEILLE - CPI = 0,97 | Suivi CPI hebdomadaire ; si CPI < 0,90 → arbitrage scope avec sponsor ; réserve de 4 282 € disponible | ANA / CP | 22/05/25 |
 | R03 | Indisponibilité d'un membre clé (maladie, départ) | Ressources humaines | 2 | 3 | 6 - MOYEN | NON ACTIVE | Polyvalence croisée documentée ; wiki technique maintenu à jour ; contrat de sous-traitance identifié (délai 48 h) | CP | 15/04/25 |
 | R04 | Non-conformité RGPD sur le module de facturation (données partenaires) | Juridique | 1 | 4 | 4 - MOYEN | NON ACTIVE | Checklist RGPD intégrée à la DoD ; revue DPO planifiée à J3 ; 100 % des stories données personnelles vérifiées | ANA | 10/03/25 |
 | R05 | Rejet de la recette UAT par les partenaires (UX non validée) | Qualité | 2 | 3 | 6 - MOYEN | NON ACTIVE - test M+2 prévu | Test utilisateur avec 5 partenaires pilotes à M+2 ; itérations UX intégrées dans le sprint S4 avant recette finale | DEV / ANA | 01/04/25 |
@@ -535,7 +535,7 @@ Note : 4 retours client collectés en cours de projet (CR01-CR04) sont en attent
 | US11 | Notifications | En tant que partenaire, je veux recevoir un email récapitulatif hebdomadaire de mes commandes afin de suivre mon activité sans connexion | COULD | 3 | S4 | To Do |
 | US12 | Documentation | En tant que développeur partenaire, je veux accéder à une documentation Swagger interactive afin d'intégrer l'API sans contacter le support | SHOULD | 2 | S4 | To Do |
 
-## 4.4 Tableau Kanban - État à la date de rendu (22/05/2025)
+## 4.4 Tableau Kanban - État à la date de rendu (22/05/2026)
 
 Règle WIP : Maximum 2 stories en cours simultanément par personne - toute entrée en 'In Progress' au-delà de cette limite est bloquée jusqu'à livraison d'une story existante
 
@@ -545,40 +545,40 @@ Le tableau ci-dessous reflète l'intégralité des items Jira : user stories (US
 
 | Réf Jira | Type | Item | Sprint | Clôturé le |
 | --- | --- | --- | --- | --- |
-| SCRUM-86 | Tâche | [L4] PV Sprint Planning S1 + Kick-off J0 | S1 | 29/03/2025 |
-| SCRUM-84 | Tâche | [L2] Architecture & specs API — J1 validé | S1 | 28/03/2025 |
-| SCRUM-82 | Tâche | [L1] Note de cadrage & charte projet | S1 | 31/03/2025 |
-| SCRUM-83 | Tâche | [L1] Registre des risques + budget prévisionnel | S1 | 02/04/2025 |
-| SCRUM-85 | Tâche | [L2] Configuration environnements + CI/CD GitHub Actions | S1 | 04/04/2025 |
-| SCRUM-79 | Story | US01 - Connexion SSO Partenaire (OAuth2 PKCE) — MUST 8 pts | S1 | 02/04/2025 |
-| SCRUM-80 | Story | US02 - Gestion des rôles et habilitations SSO (Admin DSI) — MUST 5 pts | S1 | 07/04/2025 |
-| SCRUM-81 | Story | US03 - Redirection automatique après expiration de session — SHOULD 3 pts | S1 | 09/04/2025 |
-| SCRUM-94 | Bug | [INC] BUG-047 - SSO Keycloak HTTP 401 OAuth2 (INC-001 résolu) | S2 | 24/04/2025 |
-| SCRUM-90 | Tâche | [L2] Développement API REST - Endpoints commandes & statuts | S2 | 25/04/2025 |
-| SCRUM-87 | Story | US04 - Soumission de commande via API REST — MUST 8 pts | S2 | 25/04/2025 |
-| SCRUM-91 | Tâche | [L3] Tests unitaires Jest/Pytest — couverture 71% (atelier 25/04) | S2 | 30/04/2025 |
-| SCRUM-93 | Tâche | [L4] Rapport COPIL M+2 + revue sprint S2 — 30/04/2025 | S2 | 30/04/2025 |
-| SCRUM-88 | Story | US05 - Consultation statut commande en temps réel — MUST 5 pts | S2 | 28/04/2025 |
-| SCRUM-92 | Tâche | [L3] Tests d'intégration Cypress E2E (flux OAuth2 + commandes) | S2 | 05/05/2025 |
-| SCRUM-89 | Story | US06a - Émission webhook changement statut commande — SHOULD 3 pts | S2 | 06/05/2025 |
-| SCRUM-95 | Story | US06b - Webhook retry logic & idempotence — SHOULD 2 pts | S3 | 14/05/2025 |
-| SCRUM-99 | Tâche | [L2] Module facturation — génération PDF + email + historique S3 | S3 | 16/05/2025 |
-| SCRUM-100 | Tâche | [L2] Front-end React 18 — portail partenaires + dashboard commandes | S3 | 19/05/2025 |
-| SCRUM-102 | Tâche | [L4] Tableau de bord KPI SPI/CPI + suivi EVM (budget 32 351€) | S3 | 21/05/2025 |
+| SCRUM-86 | Tâche | [L4] PV Sprint Planning S1 + Kick-off J0 | S1 | 29/03/2026 |
+| SCRUM-84 | Tâche | [L2] Architecture & specs API — J1 validé | S1 | 28/03/2026 |
+| SCRUM-82 | Tâche | [L1] Note de cadrage & charte projet | S1 | 31/03/2026 |
+| SCRUM-83 | Tâche | [L1] Registre des risques + budget prévisionnel | S1 | 02/04/2026 |
+| SCRUM-85 | Tâche | [L2] Configuration environnements + CI/CD GitHub Actions | S1 | 04/04/2026 |
+| SCRUM-79 | Story | US01 - Connexion SSO Partenaire (OAuth2 PKCE) — MUST 8 pts | S1 | 02/04/2026 |
+| SCRUM-80 | Story | US02 - Gestion des rôles et habilitations SSO (Admin DSI) — MUST 5 pts | S1 | 07/04/2026 |
+| SCRUM-81 | Story | US03 - Redirection automatique après expiration de session — SHOULD 3 pts | S1 | 09/04/2026 |
+| SCRUM-94 | Bug | [INC] BUG-047 - SSO Keycloak HTTP 401 OAuth2 (INC-001 résolu) | S2 | 24/04/2026 |
+| SCRUM-90 | Tâche | [L2] Développement API REST - Endpoints commandes & statuts | S2 | 25/04/2026 |
+| SCRUM-87 | Story | US04 - Soumission de commande via API REST — MUST 8 pts | S2 | 25/04/2026 |
+| SCRUM-91 | Tâche | [L3] Tests unitaires Jest/Pytest — couverture 71% (atelier 25/04) | S2 | 30/04/2026 |
+| SCRUM-93 | Tâche | [L4] Rapport COPIL M+2 + revue sprint S2 — 30/04/2026 | S2 | 30/04/2026 |
+| SCRUM-88 | Story | US05 - Consultation statut commande en temps réel — MUST 5 pts | S2 | 28/04/2026 |
+| SCRUM-92 | Tâche | [L3] Tests d'intégration Cypress E2E (flux OAuth2 + commandes) | S2 | 05/05/2026 |
+| SCRUM-89 | Story | US06a - Émission webhook changement statut commande — SHOULD 3 pts | S2 | 06/05/2026 |
+| SCRUM-95 | Story | US06b - Webhook retry logic & idempotence — SHOULD 2 pts | S3 | 14/05/2026 |
+| SCRUM-99 | Tâche | [L2] Module facturation — génération PDF + email + historique S3 | S3 | 16/05/2026 |
+| SCRUM-100 | Tâche | [L2] Front-end React 18 — portail partenaires + dashboard commandes | S3 | 19/05/2026 |
+| SCRUM-102 | Tâche | [L4] Tableau de bord KPI SPI/CPI + suivi EVM (budget 64 702€) | S3 | 21/05/2026 |
 
 ### En cours — IN PROGRESS (WIP = 2/2)
 
 | Réf Jira | Type | Item | Sprint | Démarré le |
 | --- | --- | --- | --- | --- |
-| SCRUM-96 | Story | US07 - Facture PDF auto-générée à validation commande — MUST 8 pts | S3 | 19/05/2025 |
-| SCRUM-97 | Story | US08 - Téléchargement PDF facture depuis le portail — MUST 3 pts | S3 | 19/05/2025 |
+| SCRUM-96 | Story | US07 - Facture PDF auto-générée à validation commande — MUST 8 pts | S3 | 19/05/2026 |
+| SCRUM-97 | Story | US08 - Téléchargement PDF facture depuis le portail — MUST 3 pts | S3 | 19/05/2026 |
 
 ### À faire — TO DO sprint S3 en cours
 
 | Réf Jira | Type | Item | Sprint |
 | --- | --- | --- | --- |
 | SCRUM-98 | Story | US09 - Export CSV/Excel des factures (comptabilité DSI) — SHOULD 3 pts | S3 |
-| SCRUM-101 | Tâche | [L3] Recette UAT — 5 partenaires pilotes (J3 — 06/06/2025) | S3 |
+| SCRUM-101 | Tâche | [L3] Recette UAT — 5 partenaires pilotes (J3 — 06/06/2026) | S3 |
 
 ### À faire — TO DO sprint S4
 
@@ -591,7 +591,7 @@ Le tableau ci-dessous reflète l'intégralité des items Jira : user stories (US
 | SCRUM-107 | Tâche | [L5] Guide utilisateur partenaires (onboarding + FAQ + tutoriels) | S4 |
 | SCRUM-108 | Tâche | [L5] Procédure MEP production + tests fumée + monitoring J4 | S4 |
 | SCRUM-109 | Tâche | [L5] Bilan projet & RETEX final (clôture projet) | S4 |
-| SCRUM-110 | Tâche | [L4] Rapport COPIL final + décision Go/NoGo (J4 — 30/06/2025) | S4 |
+| SCRUM-110 | Tâche | [L4] Rapport COPIL final + décision Go/NoGo (J4 — 30/06/2026) | S4 |
 
 ```mermaid
 flowchart LR
@@ -635,20 +635,20 @@ Les 4 retours ci-dessous (SCRUM-111 à SCRUM-114 dans Jira) sont dans le backlog
 
 | Réf | Jira | Source du retour | Description | Priorité MoSCoW provisoire | État DoR | Justification non-inclusion sprint |
 | --- | --- | --- | --- | --- | --- | --- |
-| CR01 | SCRUM-111 | UAT partenaires pilotes (29/05/2025) | Filtrage avancé liste commandes (statut + plage de dates) | SHOULD | Estimation et maquette manquantes | Dépendance US10 (Dashboard) ; DoR incomplète |
+| CR01 | SCRUM-111 | UAT partenaires pilotes (29/05/2026) | Filtrage avancé liste commandes (statut + plage de dates) | SHOULD | Estimation et maquette manquantes | Dépendance US10 (Dashboard) ; DoR incomplète |
 | CR02 | SCRUM-112 | Partenaire ERP B2B (post-intégration US06a) | Signature HMAC SHA-256 sur les webhooks (validation côté ERP) | COULD | Évaluation sécurité DSI à réaliser | Validation Équipe Sécurité DSI préalable requise |
 | CR03 | SCRUM-113 | Comptable DSI (préparation UAT M+3) | Filtre par période (mois/trimestre) sur l'export CSV factures | SHOULD | Estimation à réaliser | Dépendance US09 non encore livrée en S3 |
-| CR04 | SCRUM-114 | Observation interne — daily 19/05/2025 | Tooltips explicatifs sur les codes statuts commande (dashboard) | COULD | Textes tooltip non arbitrés | Dépendance US10 ; effort faible (1-2 pts) mais DoR incomplète |
+| CR04 | SCRUM-114 | Observation interne — daily 19/05/2026 | Tooltips explicatifs sur les codes statuts commande (dashboard) | COULD | Textes tooltip non arbitrés | Dépendance US10 ; effort faible (1-2 pts) mais DoR incomplète |
 
-**Processus de raffinage prévu** : ANA convoque une session de grooming dédiée avant le Sprint Planning S4 (02/06/2025). CR01 et CR03 (priorité SHOULD) seront instruits en priorité. CR02 et CR04 (COULD) seront traités si la capacité du sprint le permet après stabilisation des MUST et SHOULD.
+**Processus de raffinage prévu** : ANA convoque une session de grooming dédiée avant le Sprint Planning S4 (02/06/2026). CR01 et CR03 (priorité SHOULD) seront instruits en priorité. CR02 et CR04 (COULD) seront traités si la capacité du sprint le permet après stabilisation des MUST et SHOULD.
 
 Lien avec le registre des risques : le risque R05 (rejet UAT partenaires — criticité 6 MOYEN, §3) est directement alimenté par ces retours. CR01 (filtrage liste commandes) et CR04 (tooltips statuts) sont des retours UX qui, s'ils restaient sans réponse, pourraient dégrader l'acceptation lors de la recette J3.
 
 ## 4.5 Procès-verbaux de réunion horodatés
 
-### PV Sprint Planning S1 - 29 mars 2025
+### PV Sprint Planning S1 - 29 mars 2026
 
-Date : 29 mars 2025 - 09h00 à 10h30
+Date : 29 mars 2026 - 09h00 à 10h30
 
 Animateur : Chef de Projet
 
@@ -663,13 +663,13 @@ Participants : Chef de Projet, Développeur, Analyste
 | Risques identifiés en planning | R01 (SSO) activé en VIGILANCE : spike prévu pour limiter l'impact. DEV signale que la documentation Keycloak est en anglais uniquement → mobilisation C13. |
 | Actions post-planning | DEV : commencer spike OAuth2 dès J+1. ANA : mettre à jour le registre R01 en statut VIGILANCE. CP : envoyer le sprint backlog validé à J+1. |
 
-Horodatage de clôture : 29/03/2025 à 10h30 : validé par CP, DEV, ANA
+Horodatage de clôture : 29/03/2026 à 10h30 : validé par CP, DEV, ANA
 
 ---
 
-### PV COPROJ intermédiaire - 14 avril 2025
+### PV COPROJ intermédiaire - 14 avril 2026
 
-Date : 14 avril 2025 - 09h00 à 09h45
+Date : 14 avril 2026 - 09h00 à 09h45
 
 Animateur : Chef de Projet
 
@@ -682,9 +682,9 @@ Participants : Chef de Projet, Développeur, Analyste
 | Points de vigilance | SPI sous la cible (0,88 vs 0,95). US04 démarrée trop tard. DEV a besoin d'un atelier tests unitaires : PR rejetées (3 en S1) révèlent un manque de couverture initiale. |
 | Décisions prises | 1/ Atelier tests unitaires planifié le 25/04 (DEV anime, ANA + CP participants). 2/ US04 + US05 priorisées en tête de S2 pour rattraper le retard. 3/ Alerte R01 maintenue, suivi quotidien par DEV. 4/ Sprint 2 démarre le 14/04 avec 20 pts planifiés. |
 | Actions correctives | DEV : US04 à livrer avant J+5 de S2 (18/04). ANA : mettre à jour le rapport EVM (SPI = 0,88, CV positif). CP : informer le sponsor de l'ajustement prévisionnel du jalon J2 (25/04 → 28/04). |
-| Prochains jalons | J2 ajusté : 28/04/2025 · Atelier tests unitaires : 25/04/2025 · COPIL mensuel : 30/04/2025. |
+| Prochains jalons | J2 ajusté : 28/04/2026 · Atelier tests unitaires : 25/04/2026 · COPIL mensuel : 30/04/2026. |
 
-Horodatage de clôture : 14/04/2025 à 09h45 : validé par CP, DEV, ANA
+Horodatage de clôture : 14/04/2026 à 09h45 : validé par CP, DEV, ANA
 
 # LIVRABLE 5 - Tableau de bord KPI & Reporting
 
@@ -708,44 +708,44 @@ Responsable : Analyste (ANA)
 
 ### Tableau EV/AC/PV par jalon
 
-Budget total du projet : 32 351 €
+Budget total du projet : 64 702 €
 
 | Jalon | Date | % Planifié (PV %) | % Réalisé (EV %) | PV (€) | EV (€) | AC (€) | CPI | SPI | CV (€) | SV (€) | Statut |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| J0 - Kick-off | 02/03/2025 | 5 % | 5 % | 1 618 | 1 618 | 1 590 | 1,02 | 1,00 | +28 | 0 | OK |
-| J1 - Archi validée | 28/03/2025 | 22 % | 22 % | 7 117 | 7 117 | 7 050 | 1,01 | 1,00 | +67 | 0 | OK |
-| Fin Sprint 1 | 11/04/2025 | 35 % | 31 % | 11 323 | 10 029 | 9 800 | 1,02 | 0,88 | +229 | −1 294 | SPI bas |
-| J2 - Dev M1 (ajusté) | 28/04/2025 | 55 % | 52 % | 17 793 | 16 822 | 16 400 | 1,03 | 0,95 | +422 | −971 | Vigilance |
-| Fin Sprint 2 | 11/05/2025 | 62 % | 60 % | 20 058 | 19 411 | 20 060 | 0,97 | 0,97 | −649 | −647 | INC-001 |
-| Situation actuelle | 22/05/2025 | 68 % | 63 % | 22 003 | 20 381 | 20 060 | **0,97** | **0,93** | **+321** | **−1 622** | Vigilance |
-| J3 - UAT (prévision) | 06/06/2025 | 82 % | / | 26 528 | / | / | cible ≥ 0,90 | cible ≥ 0,95 | / | / | Planifié |
-| J4 - MEP (prévision) | 30/06/2025 | 100 % | / | 32 351 | / | / | cible ≥ 0,90 | cible ≥ 0,95 | / | - | Planifié |
+| J0 - Kick-off | 02/03/2026 | 5 % | 5 % | 3 236 | 3 236 | 3 180 | 1,02 | 1,00 | +56 | 0 | OK |
+| J1 - Archi validée | 28/03/2026 | 22 % | 22 % | 14 234 | 14 234 | 14 100 | 1,01 | 1,00 | +134 | 0 | OK |
+| Fin Sprint 1 | 11/04/2026 | 35 % | 31 % | 22 646 | 20 058 | 19 600 | 1,02 | 0,88 | +458 | −2 588 | SPI bas |
+| J2 - Dev M1 (ajusté) | 28/04/2026 | 55 % | 52 % | 35 586 | 33 644 | 32 800 | 1,03 | 0,95 | +844 | −1 942 | Vigilance |
+| Fin Sprint 2 | 11/05/2026 | 62 % | 60 % | 40 116 | 38 822 | 40 120 | 0,97 | 0,97 | −1 298 | −1 294 | INC-001 |
+| Situation actuelle | 22/05/2026 | 68 % | 63 % | 44 006 | 40 762 | 40 120 | **0,97** | **0,93** | **+642** | **−3 244** | Vigilance |
+| J3 - UAT (prévision) | 06/06/2026 | 82 % | / | 53 056 | / | / | cible ≥ 0,90 | cible ≥ 0,95 | / | / | Planifié |
+| J4 - MEP (prévision) | 30/06/2026 | 100 % | / | 64 702 | / | / | cible ≥ 0,90 | cible ≥ 0,95 | / | - | Planifié |
 
 *Courbe EVM — ligne 1 : PV (Valeur Planifiée) · ligne 2 : EV (Valeur Acquise) · ligne 3 : AC (Coût Réel)*
 
 ```mermaid
 xychart-beta
-    title "Courbe EVM — Horizon B2B (Budget : 32 351 euros)"
+    title "Courbe EVM — Horizon B2B (Budget : 64 702 euros)"
     x-axis ["J0 Kick-off", "J1 Archi", "Fin S1", "J2 Dev M1", "Fin S2", "Actuel 22/05"]
-    y-axis "Valeur en euros" 0 --> 25000
-    line [1618, 7117, 11323, 17793, 20058, 22003]
-    line [1618, 7117, 10029, 16822, 19411, 20381]
-    line [1590, 7050, 9800, 16400, 20060, 20060]
+    y-axis "Valeur en euros" 0 --> 70000
+    line [3236, 14234, 22646, 35586, 40116, 44006]
+    line [3236, 14234, 20058, 33644, 38822, 40762]
+    line [3180, 14100, 19600, 32800, 40120, 40120]
 ```
 
-### Lecture des indicateurs actuels (22/05/2025)
+### Lecture des indicateurs actuels (22/05/2026)
 
-- **CPI = 0,97** : pour chaque euro dépensé, 0,97 € de valeur est produite. Légère sous-performance due à l'incident INC-001 (coûts DEV absorbés). Situation saine, réserve de 2 141 € encore disponible.
+- **CPI = 0,97** : pour chaque euro dépensé, 0,97 € de valeur est produite. Légère sous-performance due à l'incident INC-001 (coûts DEV absorbés). Situation saine, réserve de 4 282 € encore disponible.
 - **SPI = 0,93** : le projet avance à 93 % de la vitesse planifiée. Retard cumulé estimé à 2,3 jours sur le chemin critique. En amélioration depuis la résolution de INC-001 (SPI était à 0,88 en fin S1).
-- **EAC - Estimate at Completion** = AC + (BAC − EV) / CPI = 20 060 + (32 351 − 20 381) / 0,97 = **32 380 €** : dépassement estimé de 29 € vs budget (< 0,1 %). Situation sous contrôle.
+- **EAC - Estimate at Completion** = AC + (BAC − EV) / CPI = 40 120 + (64 702 − 40 762) / 0,97 = **64 800 €** : dépassement estimé de 98 € vs budget (< 0,1 %). Situation sous contrôle.
 
-## 5.2 Indicateurs de pilotage management - Situation au 22/05/2025
+## 5.2 Indicateurs de pilotage management - Situation au 22/05/2026
 
 | Indicateur | Formule | Cible | Valeur J3-actuelle | Tendance | Statut |
 | --- | --- | --- | --- | --- | --- |
 | SPI (Schedule Performance Index) | Valeur Acquise / Valeur Planifiée | ≥ 0,95 | 0,93 | ↗ En amélioration (était 0,88 à J+45) | VIGILANCE |
 | CPI (Cost Performance Index) | Valeur Acquise / Coût Réel | ≥ 0,90 | 0,97 | → Stable | OK |
-| Coût réel vs Budget | Σ réalisé vs 32 351 € | < 100 % | 20 060 € / 62 % | → Dans enveloppe | OK |
+| Coût réel vs Budget | Σ réalisé vs 64 702 € | < 100 % | 40 120 € / 62 % | → Dans enveloppe | OK |
 | Taux de stories livrées (sprint) | Stories Done / Stories planifiées sprint | ≥ 85 % | 83 % (S2) | ↗ (était 75 % en S1) | VIGILANCE |
 | Risques ouverts HAUTE/CRITIQUE | Nb risques criticité ≥ 6 | ≤ 2 | 2 (R01 en résolution, R02 surveillé) | ↘ En baisse | VIGILANCE |
 | Conformité RGPD (DoD) | Stories avec checklist RGPD cochée / stories données perso | 100 % | 100 % (5/5 stories concernées) | → Conforme | OK |
@@ -785,7 +785,7 @@ xychart-beta
     bar [14, 18, 6]
 ```
 
-Lecture : S1 — 14/16 pts livrés (87,5 % — US04 reportée S2 cause spike OAuth2) · S2 — 18/20 pts livrés (90 % — US06b reportée S3 cause complexité idempotence) · S3 — 6 pts livrés sur 18 à J+5 (sprint en cours au 22/05/2025). La progression entre S1 et S2 (+4 pts, +29 %) confirme l'effet de l'atelier tests unitaires du 25/04 et la résolution de INC-001.
+Lecture : S1 — 14/16 pts livrés (87,5 % — US04 reportée S2 cause spike OAuth2) · S2 — 18/20 pts livrés (90 % — US06b reportée S3 cause complexité idempotence) · S3 — 6 pts livrés sur 18 à J+5 (sprint en cours au 22/05/2026). La progression entre S1 et S2 (+4 pts, +29 %) confirme l'effet de l'atelier tests unitaires du 25/04 et la résolution de INC-001.
 
 ### Diagramme de flux cumulé — Items terminés (cumulatif)
 
@@ -803,7 +803,7 @@ Lecture : la pente est régulière entre J0 et la fin S1 (8 items), s'accélère
 
 ### Burndown Chart - Sprint 1 (idéal vs réel)
 
-Sprint 1 : 16 points planifiés sur 14 jours ouvrés (29/03 → 11/04/2025)
+Sprint 1 : 16 points planifiés sur 14 jours ouvrés (29/03 → 11/04/2026)
 
 | Jour | Points restants IDÉAL | Points restants RÉEL | Événement |
 | --- | --- | --- | --- |
@@ -824,7 +824,7 @@ Sprint 1 : 16 points planifiés sur 14 jours ouvrés (29/03 → 11/04/2025)
 
 ```mermaid
 xychart-beta
-    title "Burndown Chart — Sprint 1 (29/03 au 11/04/2025) — 16 pts planifies"
+    title "Burndown Chart — Sprint 1 (29/03 au 11/04/2026) — 16 pts planifies"
     x-axis ["J+0", "J+1", "J+2", "J+3", "J+4", "J+5", "J+6", "J+7", "J+8", "J+9", "J+10"]
     y-axis "Points restants" 0 --> 18
     line [16, 14.9, 13.7, 12.6, 11.4, 10.3, 9.1, 8.0, 6.9, 5.7, 4.6]
@@ -835,7 +835,7 @@ Analyse burndown S1 : Démarrage conforme jusqu'à J+6, puis ralentissement caus
 
 ### Burndown Chart - Sprint 2 (idéal vs réel)
 
-Sprint 2 : 20 points planifiés sur 14 jours ouvrés (14/04 → 09/05/2025, décalé au 11/05)
+Sprint 2 : 20 points planifiés sur 14 jours ouvrés (14/04 → 09/05/2026, décalé au 11/05)
 
 | Jour | Points restants IDÉAL | Points restants RÉEL | Événement |
 | --- | --- | --- | --- |
@@ -860,7 +860,7 @@ Sprint 2 : 20 points planifiés sur 14 jours ouvrés (14/04 → 09/05/2025, déc
 
 ```mermaid
 xychart-beta
-    title "Burndown Chart — Sprint 2 (14/04 au 11/05/2025) — 20 pts planifies"
+    title "Burndown Chart — Sprint 2 (14/04 au 11/05/2026) — 20 pts planifies"
     x-axis ["J+0", "J+1", "J+2", "J+3", "J+4", "J+5", "J+6", "J+7", "J+8", "J+9", "J+10", "J+11", "J+12", "J+13", "J+14"]
     y-axis "Points restants" 0 --> 22
     line [20, 18.6, 17.1, 15.7, 14.3, 12.9, 11.4, 10.0, 8.6, 7.1, 5.7, 4.3, 2.9, 1.4, 0]
@@ -869,28 +869,28 @@ xychart-beta
 
 Analyse burndown S2 : La courbe burndown du Sprint 2 montre un démarrage lent (J+1 à J+4 : seulement 0 pts livrés sur ~6 attendus) dû à l'incident SSO (INC-001). Accélération notable à partir de J+5 après résolution. La vélocité de 18 pts confirme la capacité de l'équipe une fois les blocages levés. Le retard restant (US06) est dû à la complexité de la gestion de l'idempotence des webhooks, non liée à INC-001.
 
-## 5.3 Rapport d'étape - Sprint 1 (clôture : 11/04/2025)
+## 5.3 Rapport d'étape - Sprint 1 (clôture : 11/04/2026)
 
-Date de rédaction : 11 avril 2025
+Date de rédaction : 11 avril 2026
 
 Rédacteur : Analyste (ANA)
 
-Période couverte : 29/03/2025 → 11/04/2025
+Période couverte : 29/03/2026 → 11/04/2026
 
 | Rubrique | Contenu |
 | --- | --- |
 | Avancement global | Sprint 1 clôturé à 87,5 % : 14 pts livrés sur 16 planifiés. 3 stories Done (US01, US02, US03). US04 démarrée mais non livrée (repoussée en S2). SPI de fin de sprint : 0,88. |
 | KPI période | SPI = 0,88 (cible ≥ 0,95) · CPI = 1,02 (cible ≥ 0,90) · Vélocité : 14 pts · Couverture tests : 62 % · Bugs recette : 4 · PR rejetées : 3 |
-| Valeur acquise (EV) | EV = 8 750 € (14/16 pts × valeur planifiée S1) · AC = 8 561 € · PV = 9 956 € |
+| Valeur acquise (EV) | EV = 17 500 € (14/16 pts × valeur planifiée S1) · AC = 17 122 € · PV = 19 912 € |
 | Risques actifs | R01 (SSO Keycloak) : VIGILANCE : spike technique réalisé mais complexité OAuth2 sous-estimée. Probabilité de retard J2 estimée à 40 %. R02 (budget) : NON ACTIF, CPI > 1 en S1. |
 | Décisions prises | 1/ US04 (soumission commande API) déplacée de S1 vers S2 pour permettre la stabilisation du spike SSO. 2/ Spike OAuth2 étendu de 3 jours (budget R01 utilisé à 30 %). 3/ Revue de code collaborative planifiée pour S2. |
 | Points d'attention | Vélocité S1 (14 pts) inférieure à la cible (16 pts), à surveiller. PR rejetées (3) révèlent un besoin de formation revue de code. Taux de bugs (4/sprint) trop élevé : atelier tests unitaires planifié le 25/04. |
 | Prochaines actions | DEV : livrer US04 et US05 en S2 (10 pts SSO). DEV : atelier tests unitaires le 25/04. ANA : mettre à jour le registre des risques R01. CP : ajuster le planning S2 pour absorber le flottement SSO. |
-| Prochains jalons | J2 - Livraison Dev M1 : 25/04/2025 (sous surveillance). COPIL mensuel : 30/04/2025. |
+| Prochains jalons | J2 - Livraison Dev M1 : 25/04/2026 (sous surveillance). COPIL mensuel : 30/04/2026. |
 
-## 5.4 Revue d'étape - Compte-rendu COPROJ du 21/05/2025
+## 5.4 Revue d'étape - Compte-rendu COPROJ du 21/05/2026
 
-Date : 21 mai 2025 - 9h00 à 9h45
+Date : 21 mai 2026 - 9h00 à 9h45
 
 Animateur : Chef de Projet
 
@@ -905,7 +905,7 @@ Excusés : Sponsor (représenté par CP pour la synthèse)
 | Points de vigilance | US06 (webhook) en retard de 5 jours - décision de découpage prise. SPI encore sous la cible (0,93 vs 0,95). Recette UAT partenaires à planifier avant fin mai. |
 | Décisions actées | 1/ US06 découpée en US06a + US06b (validé). 2/ Test utilisateur UAT planifié le 29/05 avec 5 partenaires pilotes. 3/ Revue sécurité RGPD confirmée au J3 (06/06). |
 | Actions correctives | DEV : livrer US06a avant le 26/05. ANA : envoyer convocations UAT partenaires avant le 23/05. ANA : organiser session de grooming des 4 retours client CR01-CR04 (SCRUM-111 à 114) avant Sprint Planning S4 du 02/06 — prioriser CR01 et CR03 (SHOULD). CP : mettre à jour le planning et notifier le sponsor de l'ajustement J2. |
-| Prochains jalons | J3 - Recette UAT validée : 06/06/2025. J4 - MEP Go/NoGo : 30/06/2025. |
+| Prochains jalons | J3 - Recette UAT validée : 06/06/2026. J4 - MEP Go/NoGo : 30/06/2026. |
 
 ## 5.4 Plan d'actions correctives - C12.2
 
@@ -931,11 +931,11 @@ Les trois scénarios ci-dessous couvrent les principaux types d'écarts identifi
 
 | Champ | Détail |
 | --- | --- |
-| Écart identifié | CPI < 0,90 : pour chaque euro dépensé, moins de 0,90 € de valeur est produite. Dépassement potentiel de l'enveloppe de 32 351 €. |
+| Écart identifié | CPI < 0,90 : pour chaque euro dépensé, moins de 0,90 € de valeur est produite. Dépassement potentiel de l'enveloppe de 64 702 €. |
 | Cause racine | Charges DEV sous-estimées sur le lot SSO (risque R01) et/ou dépassement sur les licences/infrastructure (risque R02). |
-| Action corrective 1 | Activation immédiate de la réserve pour aléas (2 941 €) sur arbitrage CP + Sponsor. |
+| Action corrective 1 | Activation immédiate de la réserve pour aléas (5 882 €) sur arbitrage CP + Sponsor. |
 | Action corrective 2 | Gel des stories MoSCoW COULD (US11 Email récap, US12 Doc Swagger) pour libérer de la capacité DEV sans impact MEP. |
-| Action corrective 3 | Renegociation du TJM DEV si dépassement > 10 % : passage de 500 €/j à 480 €/j sur les jours restants (économie estimée : 400 €). |
+| Action corrective 3 | Renégociation du TJM DEV si dépassement > 10 % : passage de 500 €/j à 480 €/j sur les jours restants (économie estimée : 800 €). |
 | Responsable | Analyste + Chef de Projet |
 | Délai de mise en œuvre | Décision en COPIL sous 7 jours |
 | KPI de suivi | CPI ≥ 0,90 au jalon suivant. Budget consommé < 95 % de l'enveloppe à M+3. |
@@ -964,12 +964,12 @@ Responsable : Développeur (DEV)   |   Contributions : Analyste (documentation),
 | Champ | Valeur |
 | --- | --- |
 | ID Incident | INC-001 |
-| Date & heure de détection | 22 avril 2025 - 14h37 |
+| Date & heure de détection | 22 avril 2026 - 14h37 |
 | Détecté par | Développeur lors des tests d'intégration SSO en environnement de recette |
 | Sévérité initiale | CRITIQUE - bloquant pour la livraison du Sprint 2 (jalon J2) |
 | Environnement impacté | Environnement de recette uniquement - production non affectée |
 | Description technique | Erreur HTTP 401 (Unauthorized) systématique lors de l'échange de token OAuth2 entre le portail B2B et le serveur SSO Keycloak. La page de connexion SSO s'affiche correctement mais la redirection post-authentification échoue. Les logs Keycloak indiquent : 'Invalid redirect_uri' et 'CORS policy blocked'. |
-| Impact métier | Aucun partenaire ne peut s'authentifier en environnement de recette. Blocage total des tests d'intégration SSO. Risque de retard sur le jalon J2 (28/04/2025). |
+| Impact métier | Aucun partenaire ne peut s'authentifier en environnement de recette. Blocage total des tests d'intégration SSO. Risque de retard sur le jalon J2 (28/04/2026). |
 | Ticket Jira | BUG-047 - assigné au Développeur - priorité HIGHEST |
 
 ## 6.2 Recherche documentaire - Sources consultées
@@ -1013,13 +1013,13 @@ Responsable : Développeur (DEV)   |   Contributions : Analyste (documentation),
 | Intégrer la checklist CORS/SSO dans la DoD pour toutes les stories d'authentification | Process | CP | Sprint 3 - S1 | Réalisé |
 | Présenter l'incident en rétrospective S2 pour partage d'expérience équipe | RETEX | DEV | Rétro S2 - 30/04 | Réalisé |
 
-Clôture incident : INC-001 clôturé le 24 avril 2025 à 11h00 - validé par le Développeur et le Chef de Projet. Durée totale de résolution : 44 heures. Perte de vélocité estimée : 4 points de story. Absorbée par la réserve de risques (R01).
+Clôture incident : INC-001 clôturé le 24 avril 2026 à 11h00 - validé par le Développeur et le Chef de Projet. Durée totale de résolution : 44 heures. Perte de vélocité estimée : 4 points de story. Absorbée par la réserve de risques (R01).
 
 # LIVRABLE 7 - Plan de montée en compétences (C15)
 
 Responsable : Développeur (DEV)   |   Contributions : Chef de Projet (planification), Analyste (indicateurs d'impact)
 
-## 7.1 Diagnostic initial des besoins (réalisé le 07/03/2025)
+## 7.1 Diagnostic initial des besoins (réalisé le 07/03/2026)
 
 | Membre | Compétence évaluée | Niveau initial (auto-évaluation 1-5) | Niveau cible M+4 | Méthode de montée |
 | --- | --- | --- | --- | --- |
@@ -1032,11 +1032,11 @@ Responsable : Développeur (DEV)   |   Contributions : Chef de Projet (planifica
 
 | Session | Type | Contenu détaillé | Animateur | Date réalisée | Durée | Participants |
 | --- | --- | --- | --- | --- | --- | --- |
-| S1 - Atelier Tests Unitaires | Atelier pratique | Écriture de tests Jest sur le module d'authentification SSO. Concepts : mocks, stubs, couverture de code. Exercice : atteindre 70 % de couverture sur auth.service.js | DEV | 25/04/2025 | 2h00 | DEV, CP, ANA |
-| S2 - Revue de code collaborative | Revue croisée | Relecture du code API REST (routes, contrôleurs, middlewares) par ANA et CP. Focus : lisibilité, nommage des variables, élimination des duplications, respect des conventions REST | DEV | 07/05/2025 | 1h15 | DEV, CP, ANA |
-| S3 - RETEX Sprint 2 + Incident SSO | Rétrospective | Format Start/Stop/Continue. Analyse détaillée de l'incident INC-001 : causes, résolution, enseignements. Vote sur les 3 actions d'amélioration prioritaires | CP | 30/04/2025 | 1h00 | DEV, CP, ANA |
-| S4 - Micro-formation Documentation EN | Formation courte | Exercice pratique : lire la RFC 6749 (OAuth2) sections 1 à 4, identifier les 5 concepts clés, rédiger une fiche de synthèse en français en 45 minutes | ANA | 14/05/2025 | 45 min | ANA, DEV |
-| S5 - Jira Avancé | Formation courte | Configuration de dashboards KPI (SPI, CPI, vélocité), création de filtres JQL pour le suivi des risques et des stories bloquées, mise en place d'une automatisation d'alerte WIP | CP | 16/05/2025 | 1h00 | CP, ANA |
+| S1 - Atelier Tests Unitaires | Atelier pratique | Écriture de tests Jest sur le module d'authentification SSO. Concepts : mocks, stubs, couverture de code. Exercice : atteindre 70 % de couverture sur auth.service.js | DEV | 25/04/2026 | 2h00 | DEV, CP, ANA |
+| S2 - Revue de code collaborative | Revue croisée | Relecture du code API REST (routes, contrôleurs, middlewares) par ANA et CP. Focus : lisibilité, nommage des variables, élimination des duplications, respect des conventions REST | DEV | 07/05/2026 | 1h15 | DEV, CP, ANA |
+| S3 - RETEX Sprint 2 + Incident SSO | Rétrospective | Format Start/Stop/Continue. Analyse détaillée de l'incident INC-001 : causes, résolution, enseignements. Vote sur les 3 actions d'amélioration prioritaires | CP | 30/04/2026 | 1h00 | DEV, CP, ANA |
+| S4 - Micro-formation Documentation EN | Formation courte | Exercice pratique : lire la RFC 6749 (OAuth2) sections 1 à 4, identifier les 5 concepts clés, rédiger une fiche de synthèse en français en 45 minutes | ANA | 14/05/2026 | 45 min | ANA, DEV |
+| S5 - Jira Avancé | Formation courte | Configuration de dashboards KPI (SPI, CPI, vélocité), création de filtres JQL pour le suivi des risques et des stories bloquées, mise en place d'une automatisation d'alerte WIP | CP | 16/05/2026 | 1h00 | CP, ANA |
 
 ## 7.3 Indicateurs d'impact - Mesures avant / après
 
@@ -1049,7 +1049,7 @@ Responsable : Développeur (DEV)   |   Contributions : Chef de Projet (planifica
 | Compréhension doc technique EN | Score quiz auto-évaluation (sur 10) | 5,2 / 10 (ANA + DEV) | 7,8 / 10 | + 2,6 pts ↑ | Quiz interne Notion |
 | Lead time moyen To Do → Done | Jours ouvrés par story | 5,2 jours (S1) | 4,1 jours (S2) | - 1,1 j ↓ | Jira - cycle time |
 
-Bilan intermédiaire : Les 5 sessions réalisées ont produit des effets mesurables et cohérents entre eux : la couverture de tests (+35 pts) explique directement la baisse des bugs en recette (-50 %) et la réduction des PR rejetées (-67 %). La montée en compétences sur OAuth2, acquise en partie via l'incident INC-001, a permis une résolution autonome sans recours à un prestataire externe, économisant environ 1 500 € de budget.
+Bilan intermédiaire : Les 5 sessions réalisées ont produit des effets mesurables et cohérents entre eux : la couverture de tests (+35 pts) explique directement la baisse des bugs en recette (-50 %) et la réduction des PR rejetées (-67 %). La montée en compétences sur OAuth2, acquise en partie via l'incident INC-001, a permis une résolution autonome sans recours à un prestataire externe, économisant environ 3 000 € de budget.
 
 ## 7.4 Fiches RETEX - Synthèse des feedbacks (S3 - Sprint 2)
 
