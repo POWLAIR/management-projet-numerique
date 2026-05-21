@@ -100,6 +100,24 @@ bodyHtml = bodyHtml.replace(
 const MD_DIR = path.dirname(MD_FILE);
 bodyHtml = inlineImages(bodyHtml, MD_DIR);
 
+// Supprime le gras (<strong>) : remplacé par le contenu nu
+bodyHtml = bodyHtml.replace(/<strong>([\s\S]*?)<\/strong>/g, '$1');
+
+// Remplace les tirets longs (—) par un tiret demi-cadratin espacé ( – )
+bodyHtml = bodyHtml.replace(/—/g, '\u00a0\u2013\u00a0');
+
+// Remplace "ligne N :" dans les légendes par un carré coloré correspondant à la palette xychart.
+// Les couleurs suivent le même ordre que plotColorPalette : bleu, orange, vert, jaune.
+const LEGEND_COLORS = ['#4472C4', '#ED7D31', '#A9D18E', '#FFC000'];
+const legendSquare = (color) =>
+  `<span style="display:inline-block;width:9px;height:9px;background:${color};` +
+  `border-radius:1px;margin:0 3px 1px 0;vertical-align:middle;"></span>`;
+
+bodyHtml = bodyHtml.replace(/ligne\s+(\d+)\s*:\s*/gi, (_, n) => {
+  const color = LEGEND_COLORS[parseInt(n, 10) - 1] || '#888';
+  return legendSquare(color);
+});
+
 // Enveloppe le contenu avant le premier <h1> dans un div.cover-page
 const firstH1Index = bodyHtml.indexOf('<h1');
 if (firstH1Index > 0) {

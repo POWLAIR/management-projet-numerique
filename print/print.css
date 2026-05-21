@@ -273,9 +273,10 @@ a {
   text-decoration: underline;
 }
 
-/* ── Texte en gras / italique ─────────────────────────────── */
+/* ── Texte en gras : neutralisé — le gras est banni dans ce document ─── */
 strong {
-  color: #1a1a1a;
+  font-weight: normal;
+  color: inherit;
 }
 
 /* ── Images ───────────────────────────────────────────────── */

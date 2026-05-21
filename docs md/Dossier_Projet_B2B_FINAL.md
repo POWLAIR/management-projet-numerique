@@ -773,7 +773,7 @@ xychart-beta
 | Couverture de tests | 62 % | 71 % | 73 % (en progression) | ≥ 70 % |
 | Nombre de PR rejetées (revue code) | 3 | 1 | 0 à ce stade | ≤ 2 / sprint |
 
-*Vélocité par sprint - barres : points livrés · ligne : cible (16 pts)*
+*Vélocité par sprint – ligne 1 : points livrés (barres) · ligne 2 : cible (16 pts, référence)*
 
 ```mermaid
 xychart-beta
@@ -786,7 +786,7 @@ xychart-beta
 
 ### Sprint Report - Planifié vs Livré par sprint
 
-*Barres bleues : points planifiés (engagement) · Barres orange : points effectivement livrés (Done)*
+*Sprint Report – ligne 1 : points planifiés (engagement) · ligne 2 : points livrés (Done)*
 
 ```mermaid
 xychart-beta
@@ -801,7 +801,7 @@ Lecture : S1 : 14/16 pts livrés (87,5 %, US04 reportée S2 cause spike OAuth2) 
 
 ### Diagramme de flux cumulé - Items terminés (cumulatif)
 
-*Ligne : nombre cumulé d'items passés au statut "Terminé" depuis le lancement du projet*
+*Flux cumulé – ligne 1 : nombre d'items passés au statut "Terminé" depuis le lancement*
 
 ```mermaid
 xychart-beta
