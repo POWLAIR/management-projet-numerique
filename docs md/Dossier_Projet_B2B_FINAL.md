@@ -566,6 +566,10 @@ Le tableau ci-dessous reflète l'intégralité des items Jira : user stories (US
 | SCRUM-100 | Tâche | [L2] Front-end React 18 - portail partenaires + dashboard commandes | S3 | 19/05/2026 |
 | SCRUM-102 | Tâche | [L4] Tableau de bord KPI SPI/CPI + suivi EVM (budget 64 702€) | S3 | 21/05/2026 |
 
+> **Capture Jira — Sprint S1 : Socle SSO (8 tickets TERMINÉ)**
+>
+> ![Sprint S1 Jira](../asset/Screenshot%202026-05-20%20170850.png)
+
 ### En cours - IN PROGRESS (WIP = 2/2)
 
 | Réf Jira | Type | Item | Sprint | Démarré le |
@@ -579,6 +583,10 @@ Le tableau ci-dessous reflète l'intégralité des items Jira : user stories (US
 | --- | --- | --- | --- |
 | SCRUM-98 | Story | US09 - Export CSV/Excel des factures (comptabilité DSI) - SHOULD 3 pts | S3 |
 | SCRUM-101 | Tâche | [L3] Recette UAT : 5 partenaires pilotes (J3 - 06/06/2026) | S3 |
+
+> **Capture Jira — Sprint S3 : Facturation & Front React (état en cours)**
+>
+> ![Sprint S3 Jira](../asset/Screenshot%202026-05-20%20170914.png)
 
 ### À faire - TO DO sprint S4
 
@@ -632,6 +640,10 @@ Note sur le découpage US06 : suite à la complexité de la gestion de l'idempot
 En complément du backlog sprint priorisé (§4.3), le projet collecte en flux continu des retours issus des partenaires et de l'équipe interne. Ces retours arrivent via les canaux suivants : sessions UAT, feedback ERP post-intégration des webhooks, retours de la comptabilité pendant la préparation des UAT, et observations lors des dailys ou des revues UX. Ils sont remontés au COPROJ hebdomadaire, puis soumis au filtre de la DoR (rédaction de la story canonique, critères d'acceptation Given/When/Then, estimation en Planning Poker, identification des dépendances) avant toute entrée en sprint. Cette pratique de grooming continu garantit que le Sprint Planning S4 ne retient que des stories prêtes, réduisant le risque de blocage en cours de sprint (R08 - planning, §3). Elle illustre aussi concrètement pourquoi certains items MoSCoW COULD ne sont pas encore sprintés : ils sont en attente de raffinage, pas abandonnés.
 
 Les 4 retours ci-dessous (SCRUM-111 à SCRUM-114 dans Jira) sont dans le backlog en statut "À faire", **sans attribution de sprint**, labels `client-feedback` et `to-refine`.
+
+> **Capture Jira — Backlog retours client (CR01 à CR04, non priorisés)**
+>
+> ![Backlog retours client Jira](../asset/Screenshot%202026-05-20%20170931.png)
 
 | Réf | Jira | Source du retour | Description | Priorité MoSCoW provisoire | État DoR | Justification non-inclusion sprint |
 | --- | --- | --- | --- | --- | --- | --- |

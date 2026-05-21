@@ -15,7 +15,7 @@ Le scénario de mise en situation porte sur la **refonte d'un portail B2B** pour
 - Intégration d'un **SSO centralisé** (Keycloak / OAuth2 / OIDC)
 - Module de **facturation automatisée** (export PDF, envoi email)
 - Objectif : réduire de **−20 %** le délai de traitement des demandes partenaires
-- Budget cible : **32 351 €** — Première MEP à **M+4** (30 juin 2025)
+- Budget cible : **64 702 €** — Première MEP à **M+4** (30 juin 2026)
 
 ---
 
@@ -36,18 +36,32 @@ Le scénario de mise en situation porte sur la **refonte d'un portail B2B** pour
 
 ```
 .
-├── README.md                              ← ce fichier
+├── README.md
+├── package.json                           ← pipeline de génération PDF
 │
-├── Dossier_Projet_B2B_FINAL.md            ← dossier de projet complet (livrables collectifs)
-├── plan_realisations_m1_projet_numerique.md  ← plan de réalisation phase par phase
-├── Bloc2_Syllabus.md                      ← syllabus du module + fiche épreuve
-├── RNCP_notation_module.md                ← grille d'évaluation EC02 (C10 → C15)
+├── docs md/                               ← livrables Markdown
+│   ├── Dossier_Projet_B2B_FINAL.md        ← dossier de projet complet (livrables collectifs)
+│   ├── Dossier_Projet_B2B_FINAL.pdf       ← export PDF généré (npm run pdf)
+│   ├── plan_realisations_m1_projet_numerique.md  ← plan de réalisation phase par phase
+│   ├── Bloc2_Syllabus.md                  ← syllabus du module + fiche épreuve
+│   ├── RNCP_notation_module.md            ← grille d'évaluation EC02 (C10 → C15)
+│   └── ANNEXE_guide_soutenance_individuelle_P2.md  ← guide soutenance individuelle E2-P2
 │
-└── docs base/                             ← documents sources
-    ├── RNCP39765-BC02-EC02.pdf            ← référentiel officiel de l'épreuve
-    ├── Bloc 2- Syllabus - Management de Projet Numérique (EC).pdf
-    ├── Dossier_Projet_B2B_FINAL.docx      ← version Word originale du dossier
-    └── plan_realisations_m1_projet_numerique.html
+├── docs base/                             ← documents sources
+│   ├── RNCP39765-BC02-EC02.pdf            ← référentiel officiel de l'épreuve
+│   ├── Bloc 2- Syllabus - Management de Projet Numérique (EC).pdf
+│   ├── Dossier_Projet_B2B_FINAL.docx      ← version Word originale du dossier
+│   └── plan_realisations_m1_projet_numerique.html
+│
+├── asset/                                 ← captures d'écran Jira
+│   ├── Screenshot 2026-05-20 170850.png   ← Sprint S1 — Socle SSO
+│   ├── Screenshot 2026-05-20 170914.png   ← Sprint S3 — Facturation
+│   └── Screenshot 2026-05-20 170931.png   ← Backlog retours client
+│
+└── print/                                 ← pipeline de génération PDF
+    ├── generate-pdf.js                    ← script Puppeteer principal
+    ├── print.css                          ← feuille de style A4
+    └── md-to-pdf.config.cjs               ← config de référence
 ```
 
 ---
@@ -79,10 +93,31 @@ Soutenance orale de **10 minutes** (+ 5 min Q/R jury) présentant :
 
 | Livrable | Fichier | Rôle |
 |:---------|:--------|:-----|
-| **Dossier de projet complet** | `Dossier_Projet_B2B_FINAL.md` | Tous les livrables collectifs (cadrage → MEP) |
-| **Plan de réalisation** | `plan_realisations_m1_projet_numerique.md` | Feuille de route phase par phase avec mapping compétences |
-| **Syllabus & fiche épreuve** | `Bloc2_Syllabus.md` | Objectifs pédagogiques, plan de cours, consignes E2 |
-| **Grille d'évaluation** | `RNCP_notation_module.md` | Critères de notation C10 → C15 (barème 0 / 2 / 3 / 5) |
+| **Dossier de projet complet** | `docs md/Dossier_Projet_B2B_FINAL.md` | Tous les livrables collectifs (cadrage → MEP) |
+| **Export PDF** | `docs md/Dossier_Projet_B2B_FINAL.pdf` | Version imprimable générée via `npm run pdf` |
+| **Plan de réalisation** | `docs md/plan_realisations_m1_projet_numerique.md` | Feuille de route phase par phase avec mapping compétences |
+| **Syllabus & fiche épreuve** | `docs md/Bloc2_Syllabus.md` | Objectifs pédagogiques, plan de cours, consignes E2 |
+| **Grille d'évaluation** | `docs md/RNCP_notation_module.md` | Critères de notation C10 → C15 (barème 0 / 2 / 3 / 5) |
+| **Annexe soutenance individuelle** | `docs md/ANNEXE_guide_soutenance_individuelle_P2.md` | Guide de préparation E2-P2 |
+
+---
+
+## Génération PDF
+
+Le dossier de projet est exportable en PDF A4 via un pipeline Node.js / Puppeteer intégré au dépôt.
+
+```bash
+npm install        # installe les dépendances (Puppeteer, Mermaid, highlight.js) — une seule fois
+npm run pdf        # génère docs md/Dossier_Projet_B2B_FINAL.pdf  (~8 secondes)
+```
+
+Fonctionnalités du pipeline :
+
+- **12 diagrammes Mermaid** rendus (flowchart, gantt, quadrantChart, XY chart…) depuis un bundle local sans réseau
+- **Sommaire automatique** avec numéros de page estimés et liens cliquables internes
+- **Images Jira intégrées** en base64 (aucune dépendance externe au moment de la génération)
+- **Sauts de page maîtrisés** : titres jamais orphelins, tableaux paginables ligne par ligne, diagrammes mis à l'échelle
+- **En-tête / pied de page** : titre du dossier, référence RNCP, numérotation `n / total`
 
 ---
 

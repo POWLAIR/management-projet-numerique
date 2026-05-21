@@ -1,0 +1,478 @@
+/* ============================================================
+   PRINT STYLESHEET — Dossier Projet B2B
+   Cible : md-to-pdf / Puppeteer / Chromium headless
+   ============================================================ */
+
+/* ── Page A4 ─────────────────────────────────────────────── */
+@page {
+  size: A4 portrait;
+  margin: 22mm 18mm 24mm 18mm;
+}
+
+/* ── Typographie de base ──────────────────────────────────── */
+body {
+  font-family: 'Segoe UI', 'Inter', Arial, sans-serif;
+  font-size: 10.5pt;
+  line-height: 1.5;
+  color: #1a1a1a;
+  background: #fff;
+}
+
+/* ── Titres ───────────────────────────────────────────────── */
+
+/* H1 = chaque LIVRABLE → saut de page avant (sauf le tout premier) */
+h1 {
+  font-size: 18pt;
+  font-weight: 700;
+  color: #1f3a5f;
+  border-bottom: 2.5px solid #1f3a5f;
+  padding-bottom: 3mm;
+  margin-top: 0;
+  margin-bottom: 5mm;
+  break-before: page;
+  page-break-before: always;
+}
+
+/* Le premier H1 (page de garde / premier livrable) ne saute pas */
+h1:first-of-type {
+  break-before: avoid;
+  page-break-before: avoid;
+}
+
+h2 {
+  font-size: 13pt;
+  font-weight: 700;
+  color: #1f3a5f;
+  border-bottom: 1px solid #c8d3e0;
+  padding-bottom: 1.5mm;
+  margin-top: 6mm;
+  margin-bottom: 3mm;
+}
+
+h3 {
+  font-size: 11pt;
+  font-weight: 600;
+  color: #2c4a72;
+  margin-top: 4mm;
+  margin-bottom: 2mm;
+}
+
+h4 {
+  font-size: 10.5pt;
+  font-weight: 600;
+  color: #3a5a82;
+  margin-top: 3mm;
+  margin-bottom: 1.5mm;
+}
+
+h5, h6 {
+  font-size: 10pt;
+  font-weight: 600;
+  color: #4a6a92;
+  margin-top: 2mm;
+  margin-bottom: 1mm;
+}
+
+/* ── Anti-orphelin : aucun titre ne peut terminer une page ──
+   On applique break-after: avoid sur h1/h2 seulement.
+   Pour h3/h4, le contenu suivant est souvent un diagramme Mermaid :
+   on utilise break-after: auto pour éviter les pages blanches. */
+h1, h2 {
+  break-after: avoid;
+  page-break-after: avoid;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  orphans: 3;
+  widows: 3;
+}
+
+h3, h4, h5, h6 {
+  break-after: auto;
+  page-break-after: auto;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  orphans: 2;
+  widows: 2;
+}
+
+/* L'élément qui suit immédiatement un titre reste avec lui.
+   Exception : les divs Mermaid (trop grands → page blanche si contraints) */
+h1 + *:not(.mermaid),
+h2 + *:not(.mermaid),
+h3 + *:not(.mermaid),
+h4 + *:not(.mermaid),
+h5 + *:not(.mermaid),
+h6 + *:not(.mermaid) {
+  break-before: avoid;
+  page-break-before: avoid;
+}
+
+/* ── Paragraphes ──────────────────────────────────────────── */
+p {
+  margin: 0 0 2mm 0;
+  orphans: 3;
+  widows: 3;
+}
+
+/* ── Tableaux ─────────────────────────────────────────────── */
+/*
+  break-inside: auto sur table = on AUTORISE la coupure de table entre pages.
+  Seules les lignes (tr) restent non coupées → jamais de cellule en deux.
+  Sans ça, un tableau de 700px avec 300px restants sur la page crée une page blanche.
+*/
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9pt;
+  margin: 3mm 0 4mm 0;
+  break-inside: auto;
+  page-break-inside: auto;
+}
+
+thead {
+  display: table-header-group; /* répète l'en-tête si le tableau s'étale sur 2 pages */
+}
+
+th {
+  background: #1f3a5f;
+  color: #fff;
+  font-weight: 600;
+  font-size: 8.5pt;
+  padding: 3px 6px;
+  border: 1px solid #1f3a5f;
+  text-align: left;
+  vertical-align: top;
+}
+
+td {
+  border: 1px solid #c8d3e0;
+  padding: 3px 6px;
+  text-align: left;
+  vertical-align: top;
+}
+
+tr:nth-child(even) td {
+  background: #f5f7fa;
+}
+
+/* Les lignes ne sont jamais coupées en deux (mais la table elle peut paginer) */
+tr {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/* ── Listes ───────────────────────────────────────────────── */
+ul, ol {
+  margin: 1mm 0 2mm 0;
+  padding-left: 5mm;
+}
+
+li {
+  margin-bottom: 0.5mm;
+  orphans: 2;
+  widows: 2;
+}
+
+/* ── Blocs de code ────────────────────────────────────────── */
+pre {
+  background: #f5f7fa;
+  border: 1px solid #d0d7de;
+  border-radius: 3px;
+  padding: 3mm 4mm;
+  font-size: 8pt;
+  font-family: 'Courier New', 'Consolas', monospace;
+  line-height: 1.4;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  margin: 2mm 0 3mm 0;
+}
+
+code {
+  font-family: 'Courier New', 'Consolas', monospace;
+  font-size: 8.5pt;
+  background: #f0f2f5;
+  padding: 1px 3px;
+  border-radius: 2px;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* ── Citations / blockquotes ─────────────────────────────── */
+blockquote {
+  margin: 2mm 0 3mm 4mm;
+  padding: 2mm 4mm;
+  border-left: 3px solid #1f3a5f;
+  background: #f5f7fa;
+  color: #4a5568;
+  font-style: italic;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/* ── Diagrammes Mermaid ───────────────────────────────────── */
+.mermaid {
+  display: block;
+  text-align: center;
+  margin: 4mm auto;
+  max-width: 100%;
+  overflow: visible;
+}
+
+.mermaid svg {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Garder un mermaid avec le titre h3/h4 qui le précède directement */
+h3 + .mermaid,
+h4 + .mermaid {
+  break-before: avoid;
+  page-break-before: avoid;
+}
+
+/* ── Séparateurs ──────────────────────────────────────────── */
+hr {
+  border: none;
+  border-top: 1px solid #c8d3e0;
+  margin: 4mm 0;
+}
+
+/* ── Liens ────────────────────────────────────────────────── */
+a {
+  color: #1f3a5f;
+  text-decoration: underline;
+}
+
+/* ── Texte en gras / italique ─────────────────────────────── */
+strong {
+  color: #1a1a1a;
+}
+
+/* ── Images ───────────────────────────────────────────────── */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 3mm auto;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/* ── Figures ──────────────────────────────────────────────── */
+figure {
+  break-inside: avoid;
+  page-break-inside: avoid;
+  margin: 3mm 0;
+}
+
+/* ── Sommaire ─────────────────────────────────────────────── */
+.toc {
+  padding: 6mm 0 10mm 0;
+  break-after: page;
+  page-break-after: always;
+  break-inside: avoid;
+}
+
+.toc-title {
+  font-size: 16pt;
+  font-weight: 700;
+  color: #1f3a5f;
+  border-bottom: 2px solid #1f3a5f;
+  padding-bottom: 3mm;
+  margin-bottom: 6mm;
+  break-after: avoid;
+  page-break-after: avoid;
+  /* Annule le style h2 standard pour le titre du sommaire */
+  border-top: none;
+  margin-top: 0;
+}
+
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc-list li {
+  margin: 0;
+}
+
+.toc-list a {
+  display: flex;
+  align-items: baseline;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  gap: 0;
+}
+
+/* Texte du titre (prend tout l'espace disponible) */
+.toc-label {
+  flex: 1;
+  padding-right: 4mm;
+  /* Ligne pointillée vers le numéro de page via background */
+  background-image: radial-gradient(circle, #aaa 1px, transparent 1px);
+  background-size: 5px 1px;
+  background-repeat: repeat-x;
+  background-position: bottom 3px left;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: clip;
+}
+
+/* Numéro de page (à droite) */
+.toc-page {
+  flex-shrink: 0;
+  min-width: 10mm;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  background: #fff; /* masque les pointillés derrière le numéro */
+  padding-left: 2mm;
+}
+
+/* Entrées H1 : LIVRABLE X */
+.toc-h1 {
+  margin-top: 4mm;
+  padding: 1.5mm 0;
+  border-top: 1px solid #e0e5ec;
+}
+
+.toc-h1:first-child {
+  border-top: none;
+  margin-top: 0;
+}
+
+.toc-h1 a {
+  font-size: 11pt;
+  font-weight: 700;
+  color: #1f3a5f;
+}
+
+.toc-h1 .toc-label {
+  background-image: radial-gradient(circle, #1f3a5f 1px, transparent 1px);
+}
+
+/* Entrées H2 : sections */
+.toc-h2 {
+  padding: 0.8mm 0 0.8mm 8mm;
+}
+
+.toc-h2 a {
+  font-size: 9.5pt;
+  color: #333;
+}
+
+/* ── Page de garde ────────────────────────────────────────── */
+.cover-page {
+  min-height: 200mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20mm 10mm;
+  border-bottom: 3px solid #1f3a5f;
+  margin-bottom: 10mm;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+.cover-page p {
+  text-align: center;
+  margin: 2mm 0;
+  orphans: 2;
+  widows: 2;
+}
+
+/* Titre principal (1er paragraphe de la page de garde) */
+.cover-page p:first-child {
+  font-size: 24pt;
+  font-weight: 700;
+  color: #1f3a5f;
+  letter-spacing: 1px;
+  margin-bottom: 4mm;
+  text-transform: uppercase;
+}
+
+/* Sous-titre (2e paragraphe) */
+.cover-page p:nth-child(2) {
+  font-size: 15pt;
+  font-weight: 600;
+  color: #2c4a72;
+  margin-bottom: 6mm;
+}
+
+/* Infos RNCP (3e et 4e paragraphes) */
+.cover-page p:nth-child(3),
+.cover-page p:nth-child(4) {
+  font-size: 11pt;
+  color: #555;
+  font-style: italic;
+}
+
+/* Tableau d'équipe dans la page de garde */
+.cover-page table {
+  margin: 6mm auto;
+  width: auto;
+  min-width: 80%;
+  font-size: 10pt;
+}
+
+/* Dernier paragraphe (dates) en pied de page de garde */
+.cover-page p:last-child {
+  font-size: 9.5pt;
+  color: #666;
+  margin-top: 6mm;
+  font-style: normal;
+}
+
+/* ── Ajustements Mermaid / Gantt ──────────────────────────── */
+.mermaid svg {
+  max-width: 100%;
+  height: auto;
+  font-size: 9pt;
+}
+
+/* ── Code inline dans les tableaux ────────────────────────── */
+td code, th code {
+  font-size: 8pt;
+  background: #e8ecf0;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+/* ── Notes / annotations italiques ───────────────────────── */
+em { color: #4a5568; }
+
+/* ── Badges de statut dans les tableaux ──────────────────── */
+td:last-child { word-break: break-word; }
+
+/* ── Espacement entre livrables ──────────────────────────── */
+h1 {
+  margin-bottom: 6mm;
+}
+
+/* ── Texte de responsable sous les titres ─────────────────── */
+h1 + p em,
+h2 + p em {
+  font-size: 9pt;
+  color: #666;
+  display: block;
+  margin-bottom: 2mm;
+}

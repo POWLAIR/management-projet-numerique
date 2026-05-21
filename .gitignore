@@ -1,4 +1,11 @@
 
+# Node
+node_modules/
+package-lock.json
+
+# PDF généré (reproductible via npm run pdf)
+docs md/*.pdf
+
 # Eclipse
 .project
 .classpath
