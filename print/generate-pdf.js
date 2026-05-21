@@ -122,11 +122,17 @@ ${bodyHtml}
 mermaid.initialize({
   startOnLoad: false,
   theme: 'neutral',
-  themeVariables: { fontSize: '12px', fontFamily: 'Segoe UI, Arial, sans-serif' },
+  themeVariables: {
+    fontSize: '12px',
+    fontFamily: 'Segoe UI, Arial, sans-serif',
+    // Palette pour xychart-beta : bleu (planifié) + orange (livré) + vert + jaune
+    xyChart: { plotColorPalette: '#4472C4,#ED7D31,#A9D18E,#FFC000' },
+  },
   flowchart:     { useMaxWidth: true, htmlLabels: true },
   gantt:         { useMaxWidth: true },
   quadrantChart: { useMaxWidth: true },
   sequence:      { useMaxWidth: true },
+  xyChart:       { useMaxWidth: true },
   securityLevel: 'loose',
 });
 window.__mermaidDone = false;

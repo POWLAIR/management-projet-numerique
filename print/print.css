@@ -123,10 +123,11 @@ p {
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 9pt;
+  font-size: 8.5pt;
   margin: 3mm 0 4mm 0;
   break-inside: auto;
   page-break-inside: auto;
+  table-layout: auto;
 }
 
 thead {
@@ -137,18 +138,26 @@ th {
   background: #1f3a5f;
   color: #fff;
   font-weight: 600;
-  font-size: 8.5pt;
-  padding: 3px 6px;
+  font-size: 8pt;
+  padding: 3px 5px;
   border: 1px solid #1f3a5f;
   text-align: left;
   vertical-align: top;
+  /* Ne jamais couper en milieu de mot */
+  word-break: normal;
+  overflow-wrap: break-word;
+  hyphens: none;
 }
 
 td {
   border: 1px solid #c8d3e0;
-  padding: 3px 6px;
+  padding: 3px 5px;
   text-align: left;
   vertical-align: top;
+  /* Ne jamais couper en milieu de mot */
+  word-break: normal;
+  overflow-wrap: break-word;
+  hyphens: none;
 }
 
 tr:nth-child(even) td {
@@ -240,6 +249,13 @@ svg {
 /* Garder un mermaid avec le titre h3/h4 qui le précède directement */
 h3 + .mermaid,
 h4 + .mermaid {
+  break-before: avoid;
+  page-break-before: avoid;
+}
+
+/* Garder un mermaid avec le paragraphe de légende qui le précède directement.
+   Évite que la légende (italique) se retrouve sur une page et le diagramme sur la suivante. */
+p + .mermaid {
   break-before: avoid;
   page-break-before: avoid;
 }
@@ -460,8 +476,22 @@ td code, th code {
 /* ── Notes / annotations italiques ───────────────────────── */
 em { color: #4a5568; }
 
-/* ── Badges de statut dans les tableaux ──────────────────── */
-td:last-child { word-break: break-word; }
+/* ── Dernière colonne : largeur minimale pour les tableaux normaux ── */
+td:last-child, th:last-child {
+  min-width: 14mm;
+}
+
+/* ── Tableaux très larges (≥ 9 colonnes) : micro-fonte pour éviter les coupures ──
+   CSS :has() est supporté dans Chromium 105+ (utilisé par Puppeteer).
+   On cible : tout tableau dont le thead contient au moins 9 th. */
+table:has(thead th:nth-child(9)) {
+  font-size: 7pt;
+}
+table:has(thead th:nth-child(9)) td,
+table:has(thead th:nth-child(9)) th {
+  padding: 2px 3px;
+  font-size: 7pt;
+}
 
 /* ── Espacement entre livrables ──────────────────────────── */
 h1 {
