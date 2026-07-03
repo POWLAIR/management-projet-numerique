@@ -1,0 +1,1484 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Horizon B2B · Chef de Projet · Soutenance E2-P2</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface2: #f1f5f9;
+      --border: #e2e8f0;
+      --shadow: rgba(15, 23, 42, 0.06);
+
+      --teal: #0d9488;
+      --teal-s: #0f766e;
+      --teal-l: #ccfbf1;
+      --teal-mid: #14b8a6;
+
+      --green: #15803d;
+      --green-l: #dcfce7;
+      --blue: #1d4ed8;
+      --blue-l: #dbeafe;
+      --amber: #b45309;
+      --amber-l: #fef3c7;
+      --red: #dc2626;
+      --red-l: #fee2e2;
+      --violet: #6d28d9;
+      --violet-l: #ede9fe;
+
+      --text: #0f172a;
+      --text2: #1e293b;
+      --muted: #475569;
+      --dim: #94a3b8;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    #deck {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
+    .slide.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* ── Progress ── */
+    #progress {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--teal), var(--teal-mid));
+      transition: width 0.45s cubic-bezier(.4, 0, .2, 1);
+      z-index: 100;
+    }
+
+    /* ── Nav ── */
+    #controls {
+      position: fixed;
+      bottom: 18px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 100;
+    }
+
+    #slide-count {
+      font-size: 12px;
+      color: var(--dim);
+      letter-spacing: .06em;
+    }
+
+    .nav-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .18s;
+      font-size: 14px;
+      box-shadow: 0 1px 3px var(--shadow);
+    }
+
+    .nav-btn:hover {
+      background: var(--teal-l);
+      color: var(--teal);
+      border-color: var(--teal-mid);
+    }
+
+    #hint {
+      position: fixed;
+      bottom: 22px;
+      left: 20px;
+      font-size: 11px;
+      color: var(--dim);
+      letter-spacing: .04em;
+    }
+
+    /* ── Role badge ── */
+    .role-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      background: var(--teal-l);
+      border: 1px solid rgba(13, 148, 136, .25);
+      border-radius: 20px;
+      font-size: 12px;
+      color: var(--teal-s);
+      letter-spacing: .08em;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    /* ══ COVER ══ */
+    .slide-cover {
+      background: linear-gradient(150deg, #ffffff 0%, #f0fdfa 50%, #f8fafc 100%);
+      justify-content: center;
+      padding: 0 120px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cover-accent {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(ellipse at top right, rgba(13, 148, 136, .08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .cover-accent-2 {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(ellipse at bottom left, rgba(13, 148, 136, .05) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .cover-eyebrow {
+      font-size: 12px;
+      color: var(--dim);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      font-weight: 500;
+    }
+
+    .cover-title {
+      font-size: 80px;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -.04em;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .cover-title span {
+      background: linear-gradient(120deg, var(--teal) 0%, var(--teal-mid) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .cover-sub {
+      font-size: 24px;
+      color: var(--muted);
+      font-weight: 400;
+      margin-bottom: 56px;
+    }
+
+    .cover-divider {
+      width: 48px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--teal), var(--teal-mid));
+      margin-bottom: 36px;
+      border-radius: 2px;
+    }
+
+    .cover-name {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 10px;
+    }
+
+    .cover-info {
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    /* ══ STANDARD ══ */
+    .slide-std {
+      padding: 48px 80px;
+      background: var(--bg);
+    }
+
+    .slide-hd {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 36px;
+    }
+
+    .slide-title {
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -.025em;
+      line-height: 1.15;
+      color: var(--text);
+    }
+
+    .slide-title em {
+      font-style: normal;
+      color: var(--teal);
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 1px 4px var(--shadow);
+    }
+
+    /* ── Mission cards ── */
+    .mission-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .mission-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      box-shadow: 0 1px 3px var(--shadow);
+    }
+
+    .mission-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .mission-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 5px;
+    }
+
+    .mission-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .tag {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .06em;
+    }
+
+    .tag-teal {
+      background: var(--teal-l);
+      color: var(--teal-s);
+    }
+
+    .tag-blue {
+      background: var(--blue-l);
+      color: var(--blue);
+    }
+
+    .tag-green {
+      background: var(--green-l);
+      color: var(--green);
+    }
+
+    .tag-amber {
+      background: var(--amber-l);
+      color: var(--amber);
+    }
+
+    .tag-violet {
+      background: var(--violet-l);
+      color: var(--violet);
+    }
+
+    /* ── Two-col layout ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    /* ── Challenge / solution ── */
+    .challenge-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .challenge-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      box-shadow: 0 1px 3px var(--shadow);
+    }
+
+    .challenge-ico {
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .challenge-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+
+    .challenge-desc {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .col-header {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .col-header.teal {
+      color: var(--teal-s);
+      border-color: rgba(13, 148, 136, .3);
+    }
+
+    /* ── Method comparison ── */
+    .method-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .method-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: 0 1px 3px var(--shadow);
+    }
+
+    .method-card.selected {
+      border-color: rgba(13, 148, 136, .4);
+      background: #f0fdfa;
+      box-shadow: 0 0 0 3px rgba(13, 148, 136, .08);
+    }
+
+    .method-name {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .method-verdict {
+      display: inline-block;
+      padding: 3px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+
+    .vko {
+      background: #f1f5f9;
+      color: var(--dim);
+    }
+
+    .vok {
+      background: var(--teal-l);
+      color: var(--teal-s);
+    }
+
+    .method-items {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .method-item {
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      gap: 7px;
+      align-items: flex-start;
+      line-height: 1.45;
+    }
+
+    .ico-ok {
+      color: var(--green);
+      flex-shrink: 0;
+      font-weight: 700;
+    }
+
+    .ico-ko {
+      color: var(--red);
+      flex-shrink: 0;
+      font-weight: 700;
+    }
+
+    /* ── Governance stack ── */
+    .gov-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .gov-level {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      box-shadow: 0 1px 3px var(--shadow);
+    }
+
+    .gov-level:nth-child(1) {
+      border-left: 4px solid var(--teal-mid);
+    }
+
+    .gov-level:nth-child(2) {
+      border-left: 4px solid var(--blue);
+    }
+
+    .gov-level:nth-child(3) {
+      border-left: 4px solid var(--green);
+    }
+
+    .gov-level:nth-child(4) {
+      border-left: 4px solid var(--amber);
+    }
+
+    .gov-freq {
+      min-width: 120px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .gf-teal {
+      background: var(--teal-l);
+      color: var(--teal-s);
+    }
+
+    .gf-blue {
+      background: var(--blue-l);
+      color: var(--blue);
+    }
+
+    .gf-green {
+      background: var(--green-l);
+      color: var(--green);
+    }
+
+    .gf-amber {
+      background: var(--amber-l);
+      color: var(--amber);
+    }
+
+    .gov-name {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--text);
+      min-width: 170px;
+      flex-shrink: 0;
+    }
+
+    .gov-desc {
+      font-size: 14px;
+      color: var(--muted);
+      flex: 1;
+    }
+
+    .gov-who {
+      font-size: 12px;
+      color: var(--dim);
+      text-align: right;
+      min-width: 130px;
+      flex-shrink: 0;
+    }
+
+    /* ── Jalons cards ── */
+    .jalons-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      position: relative;
+      margin-top: 4px;
+    }
+
+    /* fine connector line behind the circles */
+    .jalons-grid::before {
+      content: '';
+      position: absolute;
+      top: 62px;
+      left: 13%;
+      right: 13%;
+      height: 1px;
+      background: var(--border);
+      z-index: 0;
+    }
+
+    .jalon-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 14px 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      text-align: center;
+      box-shadow: 0 1px 4px var(--shadow);
+      position: relative;
+      z-index: 1;
+    }
+
+    .jc-done    { border-top: 3px solid var(--green); }
+    .jc-warn    { border-top: 3px solid var(--amber); }
+    .jc-partial { border-top: 3px solid var(--blue); }
+
+    /* big circle with milestone code */
+    .jalon-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: -.01em;
+      flex-shrink: 0;
+    }
+
+    .jci-done    { background: var(--green-l);  color: var(--green);  border: 2px solid rgba(21,128,61,.25); }
+    .jci-warn    { background: var(--amber-l);  color: var(--amber);  border: 2px solid rgba(180,83,9,.25); }
+    .jci-partial { background: var(--blue-l);   color: var(--blue);   border: 2px solid rgba(29,78,216,.2); }
+
+    .jalon-name {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .jalon-desc {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .jalons-tagline {
+      text-align: center;
+      font-size: 13px;
+      color: var(--dim);
+      margin-top: 14px;
+      letter-spacing: .01em;
+    }
+
+    .jalons-tagline strong {
+      color: var(--teal);
+      font-weight: 700;
+    }
+
+    /* ── INC-001 flow ── */
+    .inc-flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .inc-step {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 16px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 9px;
+      position: relative;
+      box-shadow: 0 1px 3px var(--shadow);
+    }
+
+    .inc-step:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--dim);
+      font-size: 16px;
+      font-weight: 700;
+      z-index: 1;
+    }
+
+    .inc-num {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--teal-l);
+      border: 1px solid rgba(13, 148, 136, .3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--teal-s);
+    }
+
+    .inc-verb {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--teal-s);
+      letter-spacing: .04em;
+    }
+
+    .inc-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .inc-desc {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .decision-box {
+      background: var(--teal-l);
+      border: 1px solid rgba(13, 148, 136, .3);
+      border-radius: 10px;
+      padding: 13px 20px;
+      margin-top: 16px;
+      font-size: 14px;
+      color: var(--teal-s);
+      text-align: center;
+      font-weight: 600;
+    }
+
+    /* ── Corrective scenarios ── */
+    .scenario-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .scenario-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: 18px;
+      align-items: center;
+      box-shadow: 0 1px 3px var(--shadow);
+    }
+
+    .scenario-trigger {
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .03em;
+      text-align: center;
+    }
+
+    .st-warn {
+      background: var(--amber-l);
+      color: var(--amber);
+      border: 1px solid rgba(180, 83, 9, .2);
+    }
+
+    .st-crit {
+      background: var(--red-l);
+      color: var(--red);
+      border: 1px solid rgba(220, 38, 38, .2);
+    }
+
+    .st-debt {
+      background: var(--violet-l);
+      color: var(--violet);
+      border: 1px solid rgba(109, 40, 217, .2);
+    }
+
+    .scenario-actions {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .scenario-actions strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ── Reco cards ── */
+    .reco-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .reco-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 22px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      box-shadow: 0 1px 3px var(--shadow);
+    }
+
+    .reco-num {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: var(--teal-l);
+      border: 1px solid rgba(13, 148, 136, .3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      font-weight: 900;
+      color: var(--teal-s);
+    }
+
+    .reco-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .reco-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    /* ══ CONCLUSION ══ */
+    .slide-conclusion {
+      background: linear-gradient(150deg, #f0fdfa 0%, #ffffff 60%, #f8fafc 100%);
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 80px;
+    }
+
+    .concl-quote {
+      font-size: 38px;
+      font-weight: 800;
+      line-height: 1.35;
+      letter-spacing: -.02em;
+      max-width: 800px;
+      margin: 0 auto 20px;
+      color: var(--text);
+    }
+
+    .concl-quote span {
+      color: var(--teal);
+    }
+
+    .concl-sub {
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 48px;
+    }
+
+    .chips-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .chip {
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid;
+    }
+
+    .chip-teal {
+      background: var(--teal-l);
+      border-color: rgba(13, 148, 136, .3);
+      color: var(--teal-s);
+    }
+
+    .chip-green {
+      background: var(--green-l);
+      border-color: rgba(21, 128, 61, .25);
+      color: var(--green);
+    }
+
+    .chip-blue {
+      background: var(--blue-l);
+      border-color: rgba(29, 78, 216, .2);
+      color: var(--blue);
+    }
+
+    .concl-merci {
+      font-size: 14px;
+      color: var(--dim);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-top: 16px;
+    }
+
+    /* ══ SPEAKER NOTES ══ */
+    #notes-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, .92);
+      backdrop-filter: blur(6px);
+      z-index: 200;
+      padding: 56px 80px;
+      overflow-y: auto;
+    }
+
+    #notes-overlay.on {
+      display: block;
+    }
+
+    #notes-close {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 9px 18px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      color: #94a3b8;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    #notes-close:hover {
+      color: #f8fafc;
+    }
+
+    #notes-slide {
+      font-size: 13px;
+      color: #64748b;
+      margin-bottom: 8px;
+      letter-spacing: .08em;
+    }
+
+    #notes-body {
+      font-size: 19px;
+      line-height: 1.8;
+      color: #f1f5f9;
+    }
+
+    #notes-body p {
+      margin-bottom: 14px;
+    }
+
+    #notes-body strong {
+      color: #5eead4;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="deck">
+
+
+    <!-- ══════════════════════════════
+  SLIDE 1 — COVER
+══════════════════════════════ -->
+    <section class="slide slide-cover active"
+      data-notes="<p>Bonjour à tous. Je suis Paul Claverie, Chef de Projet sur le projet Horizon B2B pour TechPartner SA.</p><p>Mon rôle : cadrer, planifier, piloter, coordonner. Pendant ces quatre mois, chaque décision stratégique est passée par moi — du périmètre initial au Go/NoGo MEP.</p><p>En 10 minutes, on va vous montrer comment on a piloté ce projet, les choix qu'on a faits, pourquoi on les a faits, et ce qu'on en retient.</p>">
+
+      <div class="cover-accent"></div>
+      <div class="cover-accent-2"></div>
+
+      <div class="cover-eyebrow">RNCP 39765 · Bloc 2 · Épreuve E2-P2 · Soutenance individuelle</div>
+
+      <div class="cover-title">Horizon <span>B2B</span></div>
+      <div class="cover-sub">Refonte du portail partenaires TechPartner SA</div>
+
+      <div class="cover-divider"></div>
+
+      <div>
+        <div class="cover-name">
+          <span class="role-badge">&#9670; Chef de Projet</span>
+          <span>Paul Claverie</span>
+        </div>
+        <div class="cover-info">Soutenance · 3 juillet 2026 &nbsp;·&nbsp; Promotion 2025-2026</div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════
+  SLIDE 2 — LE PROJET
+══════════════════════════════ -->
+    <section class="slide slide-std"
+      data-notes="<p>TechPartner SA utilise depuis 2018 un portail monolithique pour gérer ses partenaires. Trois problèmes concrets qu'on a dû adresser : des délais de traitement des commandes au-delà de la cible sectorielle — l'objectif est de les réduire de vingt pour cent ; une authentification fragmentée, sans centralisation des accès ; une facturation entièrement manuelle, source d'erreurs et de délais.</p><p>La contrainte principale qu'on a dû gérer dès le cadrage : une date de mise en production non négociable. M+4, contractuellement engagée vis-à-vis des partenaires. C'est cette contrainte qui a guidé toutes nos décisions de planification.</p>">
+
+      <div class="slide-hd">
+        <div class="slide-title">Le projet — <em>contexte &amp; enjeux</em></div>
+        <span class="role-badge">&#9670; Chef de Projet</span>
+      </div>
+
+      <div class="two-col">
+        <div class="challenge-col">
+          <div class="col-header">&#128308; L'existant — Problèmes à résoudre</div>
+          <div class="challenge-card">
+            <span class="challenge-ico">&#128513;</span>
+            <div>
+              <div class="challenge-title">Portail monolithique vieillissant</div>
+              <div class="challenge-desc">Architecture bloquante · délais de traitement au-delà de la cible sectorielle
+              </div>
+            </div>
+          </div>
+          <div class="challenge-card">
+            <span class="challenge-ico">&#128274;</span>
+            <div>
+              <div class="challenge-title">Authentification fragmentée</div>
+              <div class="challenge-desc">Accès non centralisés · comptes orphelins non maîtrisés</div>
+            </div>
+          </div>
+          <div class="challenge-card">
+            <span class="challenge-ico">&#128203;</span>
+            <div>
+              <div class="challenge-title">Facturation 100 % manuelle</div>
+              <div class="challenge-desc">Saisie manuelle · risque d'erreurs · traçabilité insuffisante</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="challenge-col">
+          <div class="col-header teal">&#10024; La cible — Ce que nous livrons</div>
+          <div class="challenge-card">
+            <span class="challenge-ico">&#9889;</span>
+            <div>
+              <div class="challenge-title">Portail React + API REST</div>
+              <div class="challenge-desc">Node.js/Express · dashboard KPI · réduction des délais de traitement</div>
+            </div>
+          </div>
+          <div class="challenge-card">
+            <span class="challenge-ico">&#128273;</span>
+            <div>
+              <div class="challenge-title">SSO centralisé — Keycloak</div>
+              <div class="challenge-desc">OAuth2/OIDC · gestion des rôles · zéro compte orphelin à la MEP</div>
+            </div>
+          </div>
+          <div class="challenge-card">
+            <span class="challenge-ico">&#128176;</span>
+            <div>
+              <div class="challenge-title">Facturation automatisée</div>
+              <div class="challenge-desc">Génération PDF · envoi email · export comptable</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════
+  SLIDE 3 — MON RÔLE
+══════════════════════════════ -->
+    <section class="slide slide-std"
+      data-notes="<p>En tant que Chef de Projet, j'avais quatre responsabilités — définies dans la RACI qu'on a construite.</p><p><strong>Le cadrage et la charte.</strong> C'est moi qui ai défini ce qui est dans le périmètre et ce qui n'y est pas. Un périmètre mal défini au départ, c'est un projet qui dérive. On a formalisé les engagements dans la note de cadrage validée par le client.</p><p><strong>La planification.</strong> On a construit le WBS, le Gantt, et identifié le chemin critique. Cette étape nous a révélé que le lot SSO Keycloak était sur le chemin critique — ce qui a directement justifié un spike technique en Sprint 1 pour lever l'incertitude avant d'engager le développement complet.</p><p><strong>Le pilotage et les arbitrages.</strong> Chaque semaine, on reçoit les indicateurs de l'analyste et on décide des actions. Quand le jalon J2 a été menacé par l'incident SSO, c'est moi qui ai pris la décision d'ajuster le jalon plutôt que de sacrifier du périmètre.</p><p><strong>La coordination et le reporting.</strong> On anime les dailys, les COPROJ hebdomadaires, et on présente au client lors des COPIL mensuels. Mon rôle : traducteur entre l'équipe technique et la direction.</p>">
+
+      <div class="slide-hd">
+        <div class="slide-title">Mon rôle — <em>Chef de Projet</em></div>
+        <span class="role-badge">&#9670; Chef de Projet</span>
+      </div>
+
+      <div class="mission-grid">
+        <div class="mission-card">
+          <div class="mission-icon">&#128203;</div>
+          <div>
+            <div class="mission-title">Cadrage &amp; charte projet</div>
+            <div class="mission-desc">Définition du périmètre IN/OUT, contraintes, hypothèses, RACI. La base de toutes
+              les décisions à venir.</div>
+            <span class="tag tag-teal">C10</span>
+          </div>
+        </div>
+
+        <div class="mission-card">
+          <div class="mission-icon">&#128197;</div>
+          <div>
+            <div class="mission-title">Planification &amp; jalons</div>
+            <div class="mission-desc">WBS, Gantt, chemin critique, flottements. Identification des lots à risque avant
+              même de démarrer.</div>
+            <span class="tag tag-blue">C10 · C12</span>
+          </div>
+        </div>
+
+        <div class="mission-card">
+          <div class="mission-icon">&#9889;</div>
+          <div>
+            <div class="mission-title">Pilotage &amp; arbitrages</div>
+            <div class="mission-desc">Décisions sur les écarts : ajuster un jalon, découper une story, activer la
+              réserve. Le Go/NoGo MEP.</div>
+            <span class="tag tag-amber">C12 · C14</span>
+          </div>
+        </div>
+
+        <div class="mission-card">
+          <div class="mission-icon">&#129309;</div>
+          <div>
+            <div class="mission-title">Coordination &amp; reporting</div>
+            <div class="mission-desc">Animation des dailys, COPROJ hebdo, COPIL mensuel. Lien entre l'équipe technique
+              et le client.</div>
+            <span class="tag tag-green">C11 · C15</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════
+  SLIDE 4 — GOUVERNANCE
+══════════════════════════════ -->
+    <section class="slide slide-std"
+      data-notes="<p>On a mis en place une gouvernance à quatre niveaux. Ce n'est pas un organigramme de papier — c'est ce qui a permis au projet de rester aligné en permanence.</p><p><strong>Le COPIL mensuel</strong> avec le client. Décisions stratégiques, validation des jalons, arbitrages budgétaires. On a choisi d'aligner chaque COPIL sur deux sprints terminés — on peut toujours présenter une démo fonctionnelle, pas une présentation de chiffres abstraits.</p><p><strong>Le COPROJ hebdomadaire</strong> tous les lundis. Chaque réunion produit un PV horodaté avec les décisions prises et leurs responsables. Un PV horodaté, c'est la traçabilité des décisions. Quand un incident arrive, on sait exactement ce qui a été décidé, par qui, et quand.</p><p><strong>Le daily stand-up</strong> à 9h15, quinze minutes maximum. Trois questions : hier, aujourd'hui, blocage. C'est là où les problèmes remontent avant de devenir des incidents — comme on l'a vécu avec l'incident SSO.</p><p><strong>Les cérémonies Scrum</strong> à chaque sprint. La Review devient la démo du COPIL mensuel — elles s'articulent naturellement.</p>">
+
+      <div class="slide-hd">
+        <div class="slide-title">La gouvernance — <em>quatre niveaux</em></div>
+        <span class="role-badge">&#9670; Chef de Projet</span>
+      </div>
+
+      <div class="gov-stack">
+        <div class="gov-level">
+          <span class="gov-freq gf-teal">Mensuel</span>
+          <span class="gov-name">&#9670; COPIL</span>
+          <span class="gov-desc">Décisions stratégiques · validation des jalons · arbitrages budget · Go/NoGo MEP</span>
+          <span class="gov-who">Client · CP · Analyste</span>
+        </div>
+
+        <div class="gov-level">
+          <span class="gov-freq gf-blue">Hebdomadaire</span>
+          <span class="gov-name">&#9671; COPROJ</span>
+          <span class="gov-desc">Suivi opérationnel · levée des blocages · PV horodaté · traçabilité des
+            décisions</span>
+          <span class="gov-who">CP · DEV · ANA</span>
+        </div>
+
+        <div class="gov-level">
+          <span class="gov-freq gf-green">Quotidien</span>
+          <span class="gov-name">&#9900; Daily stand-up</span>
+          <span class="gov-desc">Hier · Aujourd'hui · Blocages — 15 min max · détection précoce des incidents</span>
+          <span class="gov-who">CP · DEV · ANA</span>
+        </div>
+
+        <div class="gov-level">
+          <span class="gov-freq gf-amber">Par sprint</span>
+          <span class="gov-name">&#11835; Sprint ceremonies</span>
+          <span class="gov-desc">Planning · Review (démo) · Rétrospective — Review = démo du COPIL mensuel</span>
+          <span class="gov-who">Équipe + Client</span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════
+  SLIDE 5 — CHOIX MÉTHODOLOGIQUE
+══════════════════════════════ -->
+    <section class="slide slide-std"
+      data-notes="<p>Le choix de la méthode, c'est la première vraie décision stratégique d'un Chef de Projet. Et on va vous expliquer comment on y est arrivé — pas par intuition, mais par analyse des contraintes.</p><p><strong>Le Cycle en V</strong> nous aurait donné des jalons fixes et un budget clair par phase — exactement ce que le client voulait. Mais il exigeait de figer les spécifications dès le début. Or l'intégration SSO avec Keycloak comportait une incertitude technique que ni moi ni le développeur ne pouvions quantifier avant d'avoir lancé un prototype. En Cycle en V, cette incertitude aurait généré des avenants en cours de projet — exactement ce qu'on voulait éviter.</p><p><strong>Le Scrum pur</strong> aurait résolu le problème de l'incertitude technique — les sprints permettent d'ajuster au fur et à mesure. Mais le client avait un engagement contractuel avec les partenaires : une date de MEP fixe. En Scrum pur, pas de jalon contractuel. Impossible d'engager une date ferme.</p><p><strong>L'hybride</strong>, c'est notre réponse aux deux contraintes simultanément. Des jalons fixes J0 à J4 pour les engagements. Des sprints de deux semaines pour absorber l'incertitude et intégrer les retours des partenaires pilotes. C'est la seule approche cohérente avec ce contexte — et on l'a argumentée devant le client lors du COPIL de lancement.</p>">
+
+      <div class="slide-hd">
+        <div class="slide-title">Choix méthodologique — <em>pourquoi l'hybride ?</em></div>
+        <span class="role-badge">&#9670; Chef de Projet</span>
+      </div>
+
+      <div class="method-row">
+        <div class="method-card">
+          <div>
+            <div class="method-name">Cycle en V</div>
+            <span class="method-verdict vko">Écarté</span>
+          </div>
+          <div class="method-items">
+            <div class="method-item"><span class="ico-ok">&#10003;</span> Jalons fixes · engagement client</div>
+            <div class="method-item"><span class="ico-ok">&#10003;</span> Budget par phase, prévisible</div>
+            <div class="method-item"><span class="ico-ko">&#10005;</span> Spécifications figées dès J0</div>
+            <div class="method-item"><span class="ico-ko">&#10005;</span> Incertitude SSO/UX non absorbable</div>
+            <div class="method-item"><span class="ico-ko">&#10005;</span> Retours partenaires uniquement en fin</div>
+          </div>
+        </div>
+
+        <div class="method-card">
+          <div>
+            <div class="method-name">Scrum pur</div>
+            <span class="method-verdict vko">Écarté</span>
+          </div>
+          <div class="method-items">
+            <div class="method-item"><span class="ico-ok">&#10003;</span> Adaptation sprint par sprint</div>
+            <div class="method-item"><span class="ico-ok">&#10003;</span> Incertitude technique bien gérée</div>
+            <div class="method-item"><span class="ico-ko">&#10005;</span> Pas de jalon fixe — MEP incompatible</div>
+            <div class="method-item"><span class="ico-ko">&#10005;</span> Engagement contractuel impossible</div>
+            <div class="method-item"><span class="ico-ko">&#10005;</span> Budget difficile à verrouiller</div>
+          </div>
+        </div>
+
+        <div class="method-card selected">
+          <div>
+            <div class="method-name">Hybride</div>
+            <span class="method-verdict vok">&#10003; Retenu</span>
+          </div>
+          <div class="method-items">
+            <div class="method-item"><span class="ico-ok">&#10003;</span> Jalons J0–J4 · engagements contractuels</div>
+            <div class="method-item"><span class="ico-ok">&#10003;</span> Sprints 2 sem. · incertitude absorbée</div>
+            <div class="method-item"><span class="ico-ok">&#10003;</span> WIP max · surcharge visible en temps réel
+            </div>
+            <div class="method-item"><span class="ico-ok">&#10003;</span> COPIL mensuel = 2 sprints exactement</div>
+            <div class="method-item"><span class="ico-ok">&#10003;</span> Spike OAuth2 S1 · risque levé avant dev</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════
+  SLIDE 6 — LES JALONS
+══════════════════════════════ -->
+    <section class="slide slide-std"
+      data-notes="<p>En hybride, les jalons fixent nos <strong>engagements de livraison</strong> en COPIL — pas un suivi d'avancement. Les sprints organisent le travail entre deux jalons.</p><p><strong>J0 — Kick-off.</strong> Cadrage validé, RACI, budget. Le cadre contractuel du projet.</p><p><strong>J1 — Architecture validée.</strong> Schéma API, specs SSO, revue sécurité DSI. On verrouille la technique avant le dev massif.</p><p><strong>J2 — Livraison Dev M1.</strong> API REST + SSO fonctionnels en recette. Sur le chemin critique — le cœur métier doit être intégrable.</p><p><strong>J3 — Recette UAT.</strong> PV signé, validation par les partenaires pilotes. Le produit est validé métier avant la MEP.</p><p><strong>J4 — MEP Go/NoGo.</strong> Décision de mise en production avec le client. Engagement M+4 — le jalon le plus contraignant.</p><p>Les jalons disent <strong>quoi livrer</strong> ; les sprints disent <strong>comment y arriver</strong>.</p>">
+
+      <div class="slide-hd">
+        <div class="slide-title">Les jalons — <em>du kick-off à la MEP</em></div>
+        <span class="role-badge">&#9670; Chef de Projet</span>
+      </div>
+
+      <div class="jalons-grid">
+
+        <div class="jalon-card jc-done">
+          <div class="jalon-circle jci-done">J0</div>
+          <div class="jalon-name">Kick-off</div>
+          <div class="jalon-desc">Cadrage · RACI · budget — cadre contractuel</div>
+        </div>
+
+        <div class="jalon-card jc-done">
+          <div class="jalon-circle jci-done">J1</div>
+          <div class="jalon-name">Architecture</div>
+          <div class="jalon-desc">Schéma API · SSO · revue sécurité DSI</div>
+        </div>
+
+        <div class="jalon-card jc-warn">
+          <div class="jalon-circle jci-warn">J2</div>
+          <div class="jalon-name">Dev M1</div>
+          <div class="jalon-desc">API + SSO en recette · chemin critique</div>
+        </div>
+
+        <div class="jalon-card jc-partial">
+          <div class="jalon-circle jci-partial">J3</div>
+          <div class="jalon-name">Recette UAT</div>
+          <div class="jalon-desc">PV partenaires pilotes · validation métier</div>
+        </div>
+
+        <div class="jalon-card jc-partial">
+          <div class="jalon-circle jci-partial">J4</div>
+          <div class="jalon-name">MEP Go/NoGo</div>
+          <div class="jalon-desc">Mise en production · engagement M+4</div>
+        </div>
+
+      </div>
+
+      <p class="jalons-tagline">Les jalons disent <strong>quoi livrer</strong> — les sprints disent <strong>comment y arriver</strong></p>
+    </section>
+
+
+    <!-- ══════════════════════════════
+  SLIDE 7 — L'IMPRÉVU
+══════════════════════════════ -->
+    <section class="slide slide-std"
+      data-notes="<p>Tout projet connaît des imprévus. La qualité d'un Chef de Projet se mesure à sa façon de les gérer, pas à leur absence.</p><p>En Sprint 2, le développeur détecte une erreur critique sur le flux d'authentification SSO. Blocage total des tests. Risque sur J2.</p><p><strong>Détecter.</strong> Le daily stand-up nous a donné l'information le jour même. Sans daily, l'information aurait mis plusieurs jours à remonter.</p><p><strong>Décider.</strong> On a immédiatement ouvert un ticket priorité critique, dédié le développeur exclusivement à la résolution, et suspendu toute nouvelle fonctionnalité. En tant que CP, la priorisation c'est ma responsabilité.</p><p><strong>Absorber.</strong> On avait planifié un flottement sur le chemin critique. On a utilisé ce flottement pour décaler J2 de trois jours — sans sacrifier de périmètre, sans dépasser le budget. Notre décision : ajuster le jalon plutôt que réduire ce qu'on livre. Le client a été informé dans les vingt-quatre heures.</p><p><strong>Capitaliser.</strong> Lors de la rétrospective Sprint 2, on a organisé un RETEX collectif. Résultat concret : une checklist de vérification SSO/CORS est maintenant intégrée à la définition de terminé pour toutes les stories d'authentification. L'erreur ne peut plus se reproduire sans être détectée.</p>">
+
+      <div class="slide-hd">
+        <div class="slide-title">Face à l'imprévu — <em>incident SSO</em></div>
+        <span class="role-badge">&#9670; Chef de Projet</span>
+      </div>
+
+      <div class="inc-flow">
+        <div class="inc-step">
+          <div class="inc-num">1</div>
+          <div class="inc-verb">DÉTECTER</div>
+          <div class="inc-title">Alerte en daily</div>
+          <div class="inc-desc">Blocage SSO remonté le jour même grâce au stand-up quotidien</div>
+        </div>
+
+        <div class="inc-step">
+          <div class="inc-num">2</div>
+          <div class="inc-verb">DÉCIDER</div>
+          <div class="inc-title">Ressources dédiées</div>
+          <div class="inc-desc">Développeur exclusivement sur la résolution · zéro nouvelle fonctionnalité</div>
+        </div>
+
+        <div class="inc-step">
+          <div class="inc-num">3</div>
+          <div class="inc-verb">ABSORBER</div>
+          <div class="inc-title">Ajustement J2</div>
+          <div class="inc-desc">Utilisation du flottement planifié · J2 décalé · périmètre intact</div>
+        </div>
+
+        <div class="inc-step">
+          <div class="inc-num">4</div>
+          <div class="inc-verb">CAPITALISER</div>
+          <div class="inc-title">RETEX S2</div>
+          <div class="inc-desc">Checklist SSO/CORS intégrée à la DoD · RETEX collectif Sprint 2</div>
+        </div>
+      </div>
+
+      <div class="decision-box">
+        &#128161; Notre décision : ajuster le jalon plutôt que sacrifier le périmètre · client informé dans les
+        vingt-quatre heures
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════
+  SLIDE 8 — MESURES CORRECTIVES
+══════════════════════════════ -->
+    <section class="slide slide-std"
+      data-notes="<p>Un plan sans mesures correctives n'est pas un plan — c'est un vœu pieux. On a défini trois scénarios d'écart avec leurs actions associées, avant même que les problèmes se produisent.</p><p><strong>Retard planning.</strong> Deux leviers : découper les stories trop grandes en sous-stories livrables indépendamment — c'est ce qu'on a fait avec la story webhook en Sprint 2 — et ajuster les jalons dans le flottement disponible. Si ça ne suffit pas, arbitrage de périmètre avec le client.</p><p><strong>Tension budgétaire.</strong> On avait intégré une réserve pour aléas dès le budget prévisionnel. Quand le risque se matérialise, on l'active. Si la dérive persiste, on gèle les stories optionnelles.</p><p><strong>Dette technique.</strong> La définition de terminé bloque automatiquement toute story sans couverture de tests suffisante. Ce n'est pas une option — c'est une règle qu'on a imposée dès Sprint 1. Résultat : on n'a jamais eu à choisir entre qualité et délai.</p>">
+
+      <div class="slide-hd">
+        <div class="slide-title">Mesures correctives — <em>anticipées</em></div>
+        <span class="role-badge">&#9670; Chef de Projet</span>
+      </div>
+
+      <div class="scenario-list">
+        <div class="scenario-card">
+          <div class="scenario-trigger st-warn">Retard planning</div>
+          <div class="scenario-actions">
+            <strong>Découper</strong> les stories trop grandes en sous-stories livrables ·<br>
+            <strong>Ajuster</strong> les jalons dans le flottement disponible ·<br>
+            si persistant : <strong>arbitrage périmètre</strong> en COPIL avec le client
+          </div>
+        </div>
+
+        <div class="scenario-card">
+          <div class="scenario-trigger st-crit">Tension budgétaire</div>
+          <div class="scenario-actions">
+            <strong>Activer</strong> la réserve pour aléas prévue dès la planification ·<br>
+            <strong>Geler</strong> les stories optionnelles pour libérer de la capacité ·<br>
+            si critique : <strong>arbitrage client</strong> et demande d'avenant
+          </div>
+        </div>
+
+        <div class="scenario-card">
+          <div class="scenario-trigger st-debt">Dette technique</div>
+          <div class="scenario-actions">
+            <strong>DoD bloquante</strong> : toute story sans couverture de tests suffisante ne peut pas être livrée
+            ·<br>
+            <strong>Revue de code</strong> dédiée dans les jours suivants ·<br>
+            <strong>Gate CI/CD</strong> automatique sur les critères qualité
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════
+  SLIDE 9 — RECOMMANDATIONS
+══════════════════════════════ -->
+    <section class="slide slide-std"
+      data-notes="<p><strong>Recommandation 1 : documenter les environnements dès le kick-off.</strong> L'incident SSO nous a appris que la différence de configuration entre recette et production n'était pas documentée. Une fiche par environnement livrée avec la note de cadrage. Ce n'est pas un détail technique — c'est un risque projet qui m'appartient en tant que CP d'éliminer dès J0.</p><p><strong>Recommandation 2 : revoir la vélocité cible à la hausse.</strong> L'équipe a fortement progressé entre Sprint 1 et Sprint 2. Pour la phase 2, avec une équipe renforcée et les compétences acquises, on calibrerait la cible sprint à la hausse dès le planning initial — pour ne pas partir avec une trajectoire trop conservative.</p><p><strong>Recommandation 3 : formaliser le grooming comme rituel fixe.</strong> Pendant ce projet, on a collecté des retours clients qui attendent d'être instruits. En phase 2, le grooming sera un créneau fixe dans le calendrier — pas une session convoquée la veille du Sprint Planning. Un Sprint Planning avec un backlog non préparé, c'est une demi-journée perdue et un sprint qui démarre mal.</p>">
+
+      <div class="slide-hd">
+        <div class="slide-title">Recommandations — <em>phase 2</em></div>
+        <span class="role-badge">&#9670; Chef de Projet</span>
+      </div>
+
+      <div class="reco-list">
+        <div class="reco-card">
+          <div class="reco-num">1</div>
+          <div>
+            <div class="reco-title">Fiches environnements dès J0</div>
+            <div class="reco-desc">Dev, recette, prod — livrées avec la note de cadrage. Leçon de l'incident SSO.</div>
+          </div>
+        </div>
+
+        <div class="reco-card">
+          <div class="reco-num">2</div>
+          <div>
+            <div class="reco-title">Vélocité cible à la hausse</div>
+            <div class="reco-desc">Progression nette S1 → S2 : ne pas partir trop conservateur en phase 2.</div>
+          </div>
+        </div>
+
+        <div class="reco-card">
+          <div class="reco-num">3</div>
+          <div>
+            <div class="reco-title">Grooming hebdo fixe</div>
+            <div class="reco-desc">Retours clients instruits avant le Sprint Planning — pas la veille.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══════════════════════════════
+  SLIDE 10 — CONCLUSION
+══════════════════════════════ -->
+    <section class="slide slide-conclusion"
+      data-notes="<p>Trois choses qu'on retient de ce projet.</p><p><strong>La gouvernance n'est pas de la bureaucratie.</strong> Le daily stand-up a détecté l'incident SSO le jour même. Le COPIL mensuel a maintenu le client informé et impliqué. Ces instances ont une valeur opérationnelle concrète.</p><p><strong>La planification, c'est prévoir les marges.</strong> On avait prévu un flottement sur le chemin critique et une réserve pour aléas dans le budget. Quand l'incident s'est produit, on avait les outils pour absorber sans catastrophe.</p><p><strong>L'approche hybride a prouvé sa valeur.</strong> Les jalons fixes ont rassuré le client. Les sprints ont absorbé l'incertitude. Et malgré l'incident, le projet reste sur la trajectoire MEP M+4.</p><p>Piloter un projet, c'est décider à temps avec des informations incomplètes. C'est exactement ce qu'on a fait.</p><p>Je suis à votre disposition pour vos questions.</p>">
+
+      <div class="concl-quote">
+        "Piloter un projet, c'est décider à temps<br>avec des <span>informations incomplètes.</span>"
+      </div>
+      <div class="concl-sub">Paul Claverie — Chef de Projet · Horizon B2B · TechPartner SA</div>
+
+      <div class="chips-row">
+        <span class="chip chip-teal">&#10003; MEP M+4 sur trajectoire</span>
+        <span class="chip chip-green">&#127775; Gouvernance à 4 niveaux</span>
+        <span class="chip chip-blue">&#9889; Hybride · jalons + sprints</span>
+        <span class="chip chip-teal">&#128073; Imprévus absorbés</span>
+      </div>
+
+      <div class="concl-merci">Merci · Questions &amp; Réponses</div>
+    </section>
+
+
+  </div><!-- /deck -->
+
+  <div id="progress"></div>
+
+  <div id="controls">
+    <span id="slide-count">1 / 10</span>
+    <button class="nav-btn" id="prev">&#8592;</button>
+    <button class="nav-btn" id="next">&#8594;</button>
+  </div>
+
+  <div id="hint">&#8592; &#8594; ou clic pour avancer &nbsp;·&nbsp; N pour les notes &nbsp;·&nbsp; F pour plein écran
+  </div>
+
+  <div id="notes-overlay">
+    <button id="notes-close">&#10005; Fermer</button>
+    <div id="notes-slide">Notes — Slide <span id="notes-num">1</span> / 10</div>
+    <div id="notes-body"></div>
+  </div>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const total = slides.length;
+    let cur = 0;
+
+    function goTo(n) {
+      slides[cur].classList.remove('active');
+      cur = Math.max(0, Math.min(n, total - 1));
+      slides[cur].classList.add('active');
+      updateUI();
+    }
+
+    function updateUI() {
+      document.getElementById('progress').style.width = ((cur + 1) / total * 100) + '%';
+      document.getElementById('slide-count').textContent = (cur + 1) + ' / ' + total;
+    }
+
+    document.getElementById('prev').onclick = () => goTo(cur - 1);
+    document.getElementById('next').onclick = () => goTo(cur + 1);
+
+    document.addEventListener('keydown', e => {
+      if (['ArrowRight', 'ArrowDown', ' '].includes(e.key)) { e.preventDefault(); goTo(cur + 1); }
+      if (['ArrowLeft', 'ArrowUp'].includes(e.key)) { e.preventDefault(); goTo(cur - 1); }
+      if (e.key === 'n' || e.key === 'N') toggleNotes();
+      if (e.key === 'f' || e.key === 'F') document.documentElement.requestFullscreen?.();
+      if (e.key === 'Escape') closeNotes();
+    });
+
+    document.getElementById('deck').addEventListener('click', e => {
+      if (e.target.closest('.nav-btn') || e.target.closest('#notes-overlay')) return;
+      goTo(cur + 1);
+    });
+
+    function toggleNotes() {
+      document.getElementById('notes-overlay').classList.contains('on') ? closeNotes() : showNotes();
+    }
+    function showNotes() {
+      document.getElementById('notes-num').textContent = cur + 1;
+      document.getElementById('notes-body').innerHTML = slides[cur].dataset.notes || '<p>Pas de notes pour cette slide.</p>';
+      document.getElementById('notes-overlay').classList.add('on');
+    }
+    function closeNotes() {
+      document.getElementById('notes-overlay').classList.remove('on');
+    }
+    document.getElementById('notes-close').onclick = closeNotes;
+
+    updateUI();
+  </script>
+</body>
+
+</html>
